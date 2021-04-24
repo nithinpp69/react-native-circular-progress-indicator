@@ -1,0 +1,19 @@
+# OSX
+#
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log
+
+# Runtime data
+tmp
+build
+dist
+
+# Dependency directory
+node_modules/
+npm-debug.log
+yarn-error.log
+
+/coverage

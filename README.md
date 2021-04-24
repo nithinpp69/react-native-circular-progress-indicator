@@ -8,6 +8,11 @@ A simple and customizable React Native circular progress indicator component.
 
 ![](demo.gif)
 
+## Prerequisites
+
+This component has a peer dependency on react-native-svg to draw the countdown circle. react-native-svg has to be installed and linked into your project.
+Follow [react-native-svg](https://www.npmjs.com/package/react-native-svg#installation) to install the dependency.
+
 ## Installation
 
  Supported version: react-native >= 0.59.0
@@ -21,6 +26,7 @@ A simple and customizable React Native circular progress indicator component.
   ```
   yarn add react-native-circular-progress-indicator
   ```
+  
 ## Example
 ```
 import CircularProgress from 'react-native-circular-progress-indicator';

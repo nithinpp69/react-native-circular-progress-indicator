@@ -124,7 +124,7 @@ CircularProgress.propTypes = {
   strokeWidth: PropTypes.number,
   duration: PropTypes.number,
   color: PropTypes.string,
-  delay: PropTypes.string,
+  delay: PropTypes.number,
   textColor: PropTypes.string,
   maxValue: PropTypes.number,
   fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

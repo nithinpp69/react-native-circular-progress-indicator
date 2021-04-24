@@ -1,0 +1,19 @@
+# Logs
+*.log
+npm-debug.log
+
+# OSX
+#
+.DS_Store
+
+# Dependency directory
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Runtime data
+tmp
+
+# Examples (If applicable to your project)
+examples
+/coverage

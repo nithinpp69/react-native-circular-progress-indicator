@@ -105,7 +105,7 @@ const CircularProgress = (props) => {
       />
     </View>
   );
-}
+};
 
 export const dynamicStyles = (props) => {
   return StyleSheet.create({

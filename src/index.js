@@ -18,14 +18,15 @@ const CircularProgress = (props) => {
     fontSize,
     maxValue,
     outerCircleOpacity,
-    strokeLinecap
+    strokeLinecap,
+    onAnimationComplete,
   } = props;
 
   const styleProps = {
     radius,
     textColor,
     color,
-    fontSize
+    fontSize,
   };
 
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -58,6 +59,9 @@ const CircularProgress = (props) => {
         inputRef?.current?.setNativeProps({
           text: `${Math.round(v?.value)}`,
         });
+      }
+      if (value === v?.value) {
+        onAnimationComplete();
       }
     });
     return () => animatedValue.removeAllListeners();
@@ -98,10 +102,7 @@ const CircularProgress = (props) => {
         underlineColorAndroid={'transparent'}
         editable={false}
         defaultValue={'0'}
-        style={[
-          StyleSheet.absoluteFillObject,
-          dynamicStyles(styleProps).input
-        ]}
+        style={[StyleSheet.absoluteFillObject, dynamicStyles(styleProps).input]}
       />
     </View>
   );
@@ -113,8 +114,8 @@ export const dynamicStyles = (props) => {
       fontSize: props.fontSize ?? props.radius / 2,
       color: props.textColor ?? props.color,
       fontWeight: '900',
-      textAlign: 'center'
-    }
+      textAlign: 'center',
+    },
   });
 };
 
@@ -129,7 +130,8 @@ CircularProgress.propTypes = {
   maxValue: PropTypes.number,
   fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   outerCircleOpacity: PropTypes.number,
-  strokeLinecap: PropTypes.oneOf(['butt', 'round', 'sqaure'])
+  strokeLinecap: PropTypes.oneOf(['butt', 'round', 'sqaure']),
+  onAnimationComplete: PropTypes.func,
 };
 
 CircularProgress.defaultProps = {
@@ -141,7 +143,8 @@ CircularProgress.defaultProps = {
   delay: 0,
   maxValue: 100,
   outerCircleOpacity: 0.2,
-  strokeLinecap: 'round'
+  strokeLinecap: 'round',
+  onAnimationComplete: () => {}
 };
 
 export default CircularProgress;

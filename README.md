@@ -64,8 +64,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 | fontSize     | progress value text font size | Number |  | false |
 | outerCircleOpacity  | progress outer circle opacity value | Number | 0.2  | false |
 | strokeLinecap  | progress stroke line cap | 'round' or 'butt' or 'square' | 'round' | false |
-
-
+| onAnimationComplete  | callback when animation is completed. | Function | ()=>{} | false |
 
 ## License
 This project is licenced under the MIT License.

@@ -20,6 +20,7 @@ const CircularProgress = (props) => {
     outerCircleOpacity,
     strokeLinecap,
     onAnimationComplete,
+    valueSuffix
   } = props;
 
   const styleProps = {
@@ -57,7 +58,7 @@ const CircularProgress = (props) => {
       }
       if (inputRef?.current) {
         inputRef?.current?.setNativeProps({
-          text: `${Math.round(v?.value)}`,
+          text: valueSuffix ? `${Math.round(v?.value)} ${valueSuffix}` : `${Math.round(v?.value)}`,
         });
       }
       if (value === v?.value) {
@@ -101,7 +102,7 @@ const CircularProgress = (props) => {
         ref={inputRef}
         underlineColorAndroid={'transparent'}
         editable={false}
-        defaultValue={'0'}
+        defaultValue={valueSuffix ? `0 ${valueSuffix}` : '0'}
         style={[StyleSheet.absoluteFillObject, dynamicStyles(styleProps).input]}
       />
     </View>
@@ -132,6 +133,7 @@ CircularProgress.propTypes = {
   outerCircleOpacity: PropTypes.number,
   strokeLinecap: PropTypes.oneOf(['butt', 'round', 'sqaure']),
   onAnimationComplete: PropTypes.func,
+  valueSuffix: PropTypes.string
 };
 
 CircularProgress.defaultProps = {
@@ -144,7 +146,8 @@ CircularProgress.defaultProps = {
   maxValue: 100,
   outerCircleOpacity: 0.2,
   strokeLinecap: 'round',
-  onAnimationComplete: () => {}
+  onAnimationComplete: () => { },
+  valueSuffix: ''
 };
 
 export default CircularProgress;

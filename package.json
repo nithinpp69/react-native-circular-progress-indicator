@@ -1,6 +1,6 @@
 {
   "name": "react-native-circular-progress-indicator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React Native customizable circular progress indicator",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,8 @@
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-native": ">=0.59.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-native-svg": "^12.1.1"
   },
   "author": "Nithin P P <nithinpp69@gmail.com>",
   "license": "MIT",
@@ -66,8 +67,5 @@
     "animated-chart",
     "progress-indicator",
     "animated-progress-indicator"
-  ],
-  "dependencies": {
-    "react-native-svg": "^12.1.1"
-  }
+  ]
 }

@@ -58,7 +58,7 @@ const CircularProgress = (props) => {
       }
       if (inputRef?.current) {
         inputRef?.current?.setNativeProps({
-          text: valueSuffix ? `${Math.round(v?.value)} ${valueSuffix}` : `${Math.round(v?.value)}`,
+          text: valueSuffix ? `${Math.round(v?.value)}${valueSuffix}` : `${Math.round(v?.value)}`,
         });
       }
       if (value === v?.value) {
@@ -102,7 +102,7 @@ const CircularProgress = (props) => {
         ref={inputRef}
         underlineColorAndroid={'transparent'}
         editable={false}
-        defaultValue={valueSuffix ? `0 ${valueSuffix}` : '0'}
+        defaultValue={valueSuffix ? `0${valueSuffix}` : '0'}
         style={[StyleSheet.absoluteFillObject, dynamicStyles(styleProps).input]}
       />
     </View>

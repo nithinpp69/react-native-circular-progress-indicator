@@ -7,6 +7,8 @@
 A simple and customizable React Native circular progress indicator component. 
 
 ![](demo.gif)
+![](demo2.gif)
+![](demo3.gif)
 
 ## Prerequisites
 
@@ -47,6 +49,32 @@ import CircularProgress from 'react-native-circular-progress-indicator';
  value={60}
  strokeWidth={12}
  textColor={'#ecf0f1'}
+/>
+
+// with value prefix/siffix
+
+<CircularProgress
+  value={90}
+  color={'#2ecc71'}
+  valuePrefix={'$'}
+/>
+
+<CircularProgress
+  value={85}
+  color={'#2ecc71'}
+  textColor={'#fff'}
+  valueSuffix={'%'}
+/>
+
+
+// with callback function
+
+<CircularProgress
+  value={90}
+  color={'#2ecc71'}
+  textColor={'#fff'}
+  valueSuffix={'%'}
+  onAnimationComplete={() => { alert('callback') }}
 />
 
 ```

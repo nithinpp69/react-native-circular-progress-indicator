@@ -10,32 +10,37 @@ const CircularProgress = (props) => {
   const {
     value,
     radius,
-    strokeWidth,
     duration,
-    color,
     delay,
     textColor,
+    textStyle,
     fontSize,
     maxValue,
-    outerCircleOpacity,
     strokeLinecap,
     onAnimationComplete,
     valuePrefix,
-    valueSuffix
+    valueSuffix,
+    activeStrokeColor,
+    activeStrokeWidth,
+    inActiveStrokeColor,
+    inActiveStrokeWidth,
+    inActiveStrokeOpacity,
+    showProgressValue
   } = props;
 
   const styleProps = {
     radius,
     textColor,
-    color,
     fontSize,
+    textStyle,
+    activeStrokeColor
   };
 
   const animatedValue = useRef(new Animated.Value(0)).current;
   const circleRef = useRef();
   const inputRef = useRef();
 
-  const halfCircle = radius + strokeWidth;
+  const halfCircle = radius + Math.max(activeStrokeWidth, inActiveStrokeWidth);
   const circleCircumference = 2 * Math.PI * radius;
   const animation = (toValue) => {
     return Animated.timing(animatedValue, {
@@ -79,18 +84,18 @@ const CircularProgress = (props) => {
           <Circle
             cx="50%"
             cy="50%"
-            stroke={color}
-            strokeWidth={strokeWidth}
+            stroke={inActiveStrokeColor}
+            strokeWidth={inActiveStrokeWidth}
             r={radius}
             fill={'transparent'}
-            strokeOpacity={outerCircleOpacity}
+            strokeOpacity={inActiveStrokeOpacity}
           />
           <AnimatedCircle
             ref={circleRef}
             cx="50%"
             cy="50%"
-            stroke={color}
-            strokeWidth={strokeWidth}
+            stroke={activeStrokeColor}
+            strokeWidth={activeStrokeWidth}
             r={radius}
             fill={'transparent'}
             strokeDasharray={circleCircumference}
@@ -99,22 +104,26 @@ const CircularProgress = (props) => {
           />
         </G>
       </Svg>
-      <AnimatedInput
-        ref={inputRef}
-        underlineColorAndroid={'transparent'}
-        editable={false}
-        defaultValue={`${valuePrefix}0${valueSuffix}`}
-        style={[StyleSheet.absoluteFillObject, dynamicStyles(styleProps).input]}
-      />
+      {showProgressValue && (
+        <AnimatedInput
+          ref={inputRef}
+          underlineColorAndroid={'transparent'}
+          editable={false}
+          defaultValue={`${valuePrefix}0${valueSuffix}`}
+          style={[StyleSheet.absoluteFillObject, dynamicStyles(styleProps).input, textStyle, dynamicStyles(styleProps).fromProps]}
+        />
+      )}
     </View>
   );
 };
 
 export const dynamicStyles = (props) => {
   return StyleSheet.create({
-    input: {
+    fromProps: {
       fontSize: props.fontSize ?? props.radius / 2,
-      color: props.textColor ?? props.color,
+      color: props.textColor ? props.textColor : (props.textStyle && props.textStyle?.color) ? props.textStyle?.color : props.activeStrokeColor,
+    },
+    input: {
       fontWeight: '900',
       textAlign: 'center',
     },
@@ -124,33 +133,41 @@ export const dynamicStyles = (props) => {
 CircularProgress.propTypes = {
   value: PropTypes.number.isRequired,
   radius: PropTypes.number,
-  strokeWidth: PropTypes.number,
   duration: PropTypes.number,
-  color: PropTypes.string,
   delay: PropTypes.number,
   textColor: PropTypes.string,
+  textStyle: PropTypes.object,
   maxValue: PropTypes.number,
   fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  outerCircleOpacity: PropTypes.number,
   strokeLinecap: PropTypes.oneOf(['butt', 'round', 'sqaure']),
   onAnimationComplete: PropTypes.func,
   valuePrefix: PropTypes.string,
   valueSuffix: PropTypes.string,
+  activeStrokeColor: PropTypes.string,
+  inActiveStrokeColor: PropTypes.string,
+  inActiveStrokeOpacity: PropTypes.number,
+  activeStrokeWidth: PropTypes.number,
+  inActiveStrokeWidth: PropTypes.number,
+  showProgressValue: PropTypes.bool
 };
 
 CircularProgress.defaultProps = {
   value: 0,
   radius: 60,
-  strokeWidth: 10,
   duration: 500,
-  color: '#e74c3c',
   delay: 0,
   maxValue: 100,
-  outerCircleOpacity: 0.2,
   strokeLinecap: 'round',
   onAnimationComplete: () => { },
   valuePrefix: '',
-  valueSuffix: ''
+  valueSuffix: '',
+  textStyle: {},
+  activeStrokeColor: '#2ecc71',
+  inActiveStrokeColor: 'rgba(0,0,0,0.3)',
+  inActiveStrokeOpacity: 1,
+  activeStrokeWidth: 10,
+  inActiveStrokeWidth: 10,
+  showProgressValue: true
 };
 
 export default CircularProgress;

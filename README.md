@@ -1,15 +1,19 @@
 # react-native-circular-progress-indicator
 
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat&colorB=191A17)
 [![Version](https://img.shields.io/npm/v/react-native-circular-progress-indicator.svg)](https://www.npmjs.com/package/react-native-circular-progress-indicator)
-[![NPM](https://img.shields.io/npm/dm/react-native-circular-progress-indicator.svg)](https://www.npmjs.com/package/react-native-circular-progress-indicator)
+[![npm](https://img.shields.io/npm/dt/react-native-circular-progress-indicator.svg)](https://www.npmjs.com/package/react-native-circular-progress-indicator)
 
 A simple and customizable React Native circular progress indicator component. 
+
+## Demo
 
 ![](demo.gif)
 ![](demo2.gif)
 ![](demo3.gif)
 ![](demo4.gif)
+![](demo5.gif)
 
 ## Prerequisites
 
@@ -50,7 +54,15 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   textColor={'#ecf0f1'}
 />
 
-// with value prefix/suffix
+```
+![](demo.gif)
+
+#### with value prefix/suffix
+
+```
+import CircularProgress from 'react-native-circular-progress-indicator';
+
+....
 
 <CircularProgress
   value={90}
@@ -67,8 +79,15 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   valueSuffix={'%'}
 />
 
+```
+![](demo2.gif)
 
-// with callback function
+#### with callback function
+
+```
+import CircularProgress from 'react-native-circular-progress-indicator';
+
+....
 
 <CircularProgress
   value={90}
@@ -79,8 +98,15 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   onAnimationComplete={() => { alert('callback') }}
 />
 
+```
+![](demo3.gif)
 
-//gone crazy
+#### custom
+
+```
+import CircularProgress from 'react-native-circular-progress-indicator';
+
+....
 
  <CircularProgress
   value={60}
@@ -113,17 +139,42 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   textStyle={{ fontWeight: '100', color: 'yellow' }}
 />
 
-``` 
+```
+
+![](demo4.gif)
+
+#### use as a countdown timer
+
+```
+import CircularProgress from 'react-native-circular-progress-indicator';
+
+....
+
+<CircularProgress
+  value={0}
+  radius={120}
+  maxValue={10}
+  initialValue={10}
+  textColor={'#fff'}
+  activeStrokeWidth={15}
+  inActiveStrokeWidth={15}
+  duration={10000}
+  onAnimationComplete={() => alert('time out')}
+/>
+
+```
+
+![](demo5.gif)
 
 ## Props
 | Prop          | Description   | Type   | Default Value | Required |
 | :-----------: |:-------------:| :-----:| :-----: | :-----: |
 | value     | progress value  | Number | 0 | true |
+| initialValue     | initial progress value. Helpful when used as a countdown timer  | Number | 0 | false |
 | radius     | progress circle radius  | Number | 60 | false |
 | activeStrokeWidth     | active progress circle stroke width  | Number | 10 | false |
 | inActiveStrokeWidth     | inactive progress circle stroke width  | Number | 10 | false |
 | duration     | progress animation duration  | Number | 500 | false |
-| color     | progress color | String | '#e74c3c' | false |
 | delay     | progress animation delay | Number | 0 | false |
 | textColor     | progress value text color | String |  | false |
 | textStyle     | progress value text style | Object | {} | false |

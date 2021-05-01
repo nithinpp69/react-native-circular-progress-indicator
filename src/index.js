@@ -9,6 +9,7 @@ const AnimatedInput = Animated.createAnimatedComponent(TextInput);
 const CircularProgress = (props) => {
   const {
     value,
+    initialValue,
     radius,
     duration,
     delay,
@@ -36,7 +37,7 @@ const CircularProgress = (props) => {
     activeStrokeColor
   };
 
-  const animatedValue = useRef(new Animated.Value(0)).current;
+  const animatedValue = useRef(new Animated.Value(initialValue)).current;
   const circleRef = useRef();
   const inputRef = useRef();
 
@@ -55,7 +56,8 @@ const CircularProgress = (props) => {
     animation(value);
     animatedValue.addListener((v) => {
       if (circleRef?.current) {
-        const maxPerc = (100 * v.value) / maxValue;
+        const biggestValue = Math.max(initialValue, maxValue);
+        const maxPerc = (100 * v.value) / biggestValue;
         const strokeDashoffset =
           circleCircumference - (circleCircumference * maxPerc) / 100;
         circleRef?.current?.setNativeProps({
@@ -72,7 +74,7 @@ const CircularProgress = (props) => {
       }
     });
     return () => animatedValue.removeAllListeners();
-  }, [maxValue, value]);
+  }, [value]);
 
   return (
     <View>
@@ -132,6 +134,7 @@ export const dynamicStyles = (props) => {
 
 CircularProgress.propTypes = {
   value: PropTypes.number.isRequired,
+  initialValue: PropTypes.number,
   radius: PropTypes.number,
   duration: PropTypes.number,
   delay: PropTypes.number,
@@ -153,6 +156,7 @@ CircularProgress.propTypes = {
 
 CircularProgress.defaultProps = {
   value: 0,
+  initialValue: 0,
   radius: 60,
   duration: 500,
   delay: 0,

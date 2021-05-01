@@ -1,6 +1,6 @@
 {
   "name": "react-native-circular-progress-indicator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "React Native customizable circular progress indicator",
   "main": "index.js",
   "scripts": {
@@ -66,6 +66,13 @@
     "ui",
     "animated-chart",
     "progress-indicator",
-    "animated-progress-indicator"
+    "animated-progress-indicator",
+    "animated-progress-bar",
+    "circular-progress-bar",
+    "circular-progress",
+    "circular-progress-indicator",
+    "mobile",
+    "android",
+    "ios"
   ]
 }

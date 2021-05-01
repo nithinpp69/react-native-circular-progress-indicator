@@ -7,10 +7,13 @@
 
 A simple and customizable React Native circular progress indicator component. 
 
+## Demo
+
 ![](demo.gif)
 ![](demo2.gif)
 ![](demo3.gif)
 ![](demo4.gif)
+![](demo5.gif)
 
 ## Prerequisites
 
@@ -51,7 +54,17 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   textColor={'#ecf0f1'}
 />
 
+```
+![](demo.gif)
+
+
+
 // with value prefix/suffix
+
+```
+import CircularProgress from 'react-native-circular-progress-indicator';
+
+....
 
 <CircularProgress
   value={90}
@@ -68,8 +81,15 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   valueSuffix={'%'}
 />
 
+```
+![](demo2.gif)
 
 // with callback function
+
+```
+import CircularProgress from 'react-native-circular-progress-indicator';
+
+....
 
 <CircularProgress
   value={90}
@@ -80,8 +100,15 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   onAnimationComplete={() => { alert('callback') }}
 />
 
+```
+![](demo3.gif)
 
-//gone crazy
+// custom
+
+```
+import CircularProgress from 'react-native-circular-progress-indicator';
+
+....
 
  <CircularProgress
   value={60}
@@ -114,12 +141,39 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   textStyle={{ fontWeight: '100', color: 'yellow' }}
 />
 
-``` 
+```
+
+![](demo4.gif)
+
+
+// use as a countdown timer
+
+```
+import CircularProgress from 'react-native-circular-progress-indicator';
+
+....
+
+<CircularProgress
+  value={0}
+  radius={120}
+  maxValue={10}
+  initialValue={10}
+  textColor={'#fff'}
+  activeStrokeWidth={15}
+  inActiveStrokeWidth={15}
+  duration={10000}
+  onAnimationComplete={() => alert('time out')}
+/>
+
+```
+
+![](demo5.gif)
 
 ## Props
 | Prop          | Description   | Type   | Default Value | Required |
 | :-----------: |:-------------:| :-----:| :-----: | :-----: |
 | value     | progress value  | Number | 0 | true |
+| initialValue     | initial progress value. Helpful when used as a countdown timer  | Number | 0 | false |
 | radius     | progress circle radius  | Number | 60 | false |
 | activeStrokeWidth     | active progress circle stroke width  | Number | 10 | false |
 | inActiveStrokeWidth     | inactive progress circle stroke width  | Number | 10 | false |

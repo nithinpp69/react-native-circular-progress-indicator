@@ -57,9 +57,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 ```
 ![](demo.gif)
 
-
-
-// with value prefix/suffix
+#### with value prefix/suffix
 
 ```
 import CircularProgress from 'react-native-circular-progress-indicator';
@@ -84,7 +82,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 ```
 ![](demo2.gif)
 
-// with callback function
+#### with callback function
 
 ```
 import CircularProgress from 'react-native-circular-progress-indicator';
@@ -103,7 +101,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 ```
 ![](demo3.gif)
 
-// custom
+#### custom
 
 ```
 import CircularProgress from 'react-native-circular-progress-indicator';
@@ -145,8 +143,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 ![](demo4.gif)
 
-
-// use as a countdown timer
+#### use as a countdown timer
 
 ```
 import CircularProgress from 'react-native-circular-progress-indicator';

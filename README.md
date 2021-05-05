@@ -7,6 +7,7 @@
 
 A simple and customizable React Native circular progress indicator component. 
 
+This project is inspired from this [Youtube tutorial](https://www.youtube.com/watch?v=x2LtzCxbWI0). Do check it out. Special mention at [@mironcatalin](https://www.youtube.com/channel/UCTcH04SRuyedaSuuQVeAcdg)
 ## Demo
 
 ![](demo.gif)

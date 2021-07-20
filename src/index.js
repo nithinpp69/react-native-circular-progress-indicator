@@ -142,7 +142,7 @@ CircularProgress.propTypes = {
   textStyle: PropTypes.object,
   maxValue: PropTypes.number,
   fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  strokeLinecap: PropTypes.oneOf(['butt', 'round', 'sqaure']),
+  strokeLinecap: PropTypes.oneOf(['butt', 'round', 'square']),
   onAnimationComplete: PropTypes.func,
   valuePrefix: PropTypes.string,
   valueSuffix: PropTypes.string,

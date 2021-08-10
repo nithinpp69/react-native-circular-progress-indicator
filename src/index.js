@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { StyleSheet, View, TextInput, Animated } from 'react-native';
 import PropTypes from 'prop-types';
-import Svg, { G, Circle } from 'react-native-svg';
+import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const AnimatedInput = Animated.createAnimatedComponent(TextInput);
@@ -22,6 +22,7 @@ const CircularProgress = (props) => {
     valuePrefix,
     valueSuffix,
     activeStrokeColor,
+    activeStrokeSecondaryColor,
     activeStrokeWidth,
     inActiveStrokeColor,
     inActiveStrokeWidth,
@@ -82,6 +83,15 @@ const CircularProgress = (props) => {
         width={radius * 2}
         height={radius * 2}
         viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}>
+        {activeStrokeSecondaryColor ?
+          <Defs>
+            <LinearGradient id={'grad'} x1="0%" y1="0%" x2="0%" y2="100%">
+              <Stop offset="0%" stopColor={activeStrokeSecondaryColor} />
+              <Stop offset="100%" stopColor={activeStrokeColor} />
+            </LinearGradient>
+          </Defs>
+          : null}
+
         <G rotation={'-90'} origin={`${halfCircle}, ${halfCircle}`}>
           <Circle
             cx="50%"
@@ -96,7 +106,7 @@ const CircularProgress = (props) => {
             ref={circleRef}
             cx="50%"
             cy="50%"
-            stroke={activeStrokeColor}
+            stroke={activeStrokeSecondaryColor ? `url(#grad)` : activeStrokeColor}
             strokeWidth={activeStrokeWidth}
             r={radius}
             fill={'transparent'}
@@ -147,6 +157,7 @@ CircularProgress.propTypes = {
   valuePrefix: PropTypes.string,
   valueSuffix: PropTypes.string,
   activeStrokeColor: PropTypes.string,
+  activeStrokeSecondaryColor: PropTypes.string,
   inActiveStrokeColor: PropTypes.string,
   inActiveStrokeOpacity: PropTypes.number,
   activeStrokeWidth: PropTypes.number,
@@ -167,6 +178,7 @@ CircularProgress.defaultProps = {
   valueSuffix: '',
   textStyle: {},
   activeStrokeColor: '#2ecc71',
+  activeStrokeSecondaryColor: '',
   inActiveStrokeColor: 'rgba(0,0,0,0.3)',
   inActiveStrokeOpacity: 1,
   activeStrokeWidth: 10,

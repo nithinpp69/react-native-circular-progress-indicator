@@ -15,6 +15,7 @@ This project is inspired from this [Youtube tutorial](https://www.youtube.com/wa
 ![](demo3.gif)
 ![](demo4.gif)
 ![](demo5.gif)
+![](gradient.png)
 
 ## Prerequisites
 
@@ -167,6 +168,23 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 ![](demo5.gif)
 
+#### with gradient effect
+
+```
+import CircularProgress from 'react-native-circular-progress-indicator';
+
+....
+
+<CircularProgress
+  value={100}
+  activeStrokeColor={'#2465FD'}
+  activeStrokeSecondaryColor={'#C25AFF'}
+/>
+
+```
+
+![](gradient.png)
+
 ## Props
 | Prop          | Description   | Type   | Default Value | Required |
 | :-----------: |:-------------:| :-----:| :-----: | :-----: |
@@ -187,6 +205,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 | valuePrefix  | prefix value | String | '' | false |
 | valueSuffix  | suffix value | String | '' | false |
 | activeStrokeColor  | active progress circle color | String | '#2ecc71' | false |
+| activeStrokeSecondaryColor  | active progress secondary color. Use this to provide a gradient effect | String | '' | false |
 | inActiveStrokeColor  | inactive progress circle color | String | 'rgba(0,0,0,0.3)' | false |
 | showProgressValue  | show or hide the progress text value | Bool | true | false |
 

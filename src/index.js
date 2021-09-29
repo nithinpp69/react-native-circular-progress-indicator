@@ -1,5 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { StyleSheet, View, TextInput, Animated, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Animated,
+  Text,
+  Dimensions,
+} from "react-native";
 import PropTypes from "prop-types";
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from "react-native-svg";
 
@@ -38,6 +45,7 @@ const CircularProgress = (props) => {
     textColor,
     fontSize,
     textStyle,
+    description,
     activeStrokeColor,
   };
 
@@ -60,7 +68,8 @@ const CircularProgress = (props) => {
     animation(value);
     animatedValue.addListener((v) => {
       if (circleRef?.current) {
-        const biggestValue = Math.max(initialValue, maxValue);
+        let biggestValue = Math.max(initialValue, maxValue);
+        biggestValue = biggestValue <= 0 ? 1 : biggestValue;
         const maxPerc = (100 * v.value) / biggestValue;
         const strokeDashoffset =
           circleCircumference - (circleCircumference * maxPerc) / 100;
@@ -139,8 +148,7 @@ const CircularProgress = (props) => {
       <Text
         style={[
           StyleSheet.absoluteFillObject,
-          dynamicStyles(styleProps).input,
-          dynamicStyles(styleProps).fromProps,
+          dynamicStyles(styleProps).description,
           descriptionStyle,
         ]}
       >
@@ -156,9 +164,19 @@ export const dynamicStyles = (props) => {
       fontSize: props.fontSize || props.textStyle?.fontSize || props.radius / 2,
       color:
         props.textColor || props.textStyle?.color || props.activeStrokeColor,
+      marginTop: props.description
+        ? Dimensions.get("screen").height * -0.03
+        : undefined,
     },
     input: {
-      fontWeight: "900",
+      fontWeight: "bold",
+      textAlign: "center",
+    },
+    description: {
+      marginTop: Dimensions.get("screen").height * 0.13,
+      fontSize: 14,
+      color: "white",
+      fontWeight: "500",
       textAlign: "center",
     },
   });

@@ -53,8 +53,19 @@
     "react-test-renderer": "16.13.1",
     "typescript": "^4.4.2"
   },
+  "resolutions": {
+    "@types/react": "^17"
+  },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "husky": {
     "hooks": {

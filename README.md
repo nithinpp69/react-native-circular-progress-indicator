@@ -15,7 +15,7 @@ This project is inspired from this [Youtube tutorial](https://www.youtube.com/wa
 ![](demo3.gif)
 ![](demo4.gif)
 ![](demo5.gif)
-![](gradient.png)
+![](demo6.gif)
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 />
 <CircularProgress
   value={60}
-  strokeWidth={12}
+  activeStrokeWidth={12}
   textColor={'#ecf0f1'}
 />
 
@@ -183,7 +183,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 ```
 
-![](gradient.png)
+![](demo6.gif)
 
 ## Props
 | Prop          | Description   | Type   | Default Value | Required |

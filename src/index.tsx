@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 import Animated, { useSharedValue, withTiming, useAnimatedProps, withDelay, useAnimatedReaction, runOnJS } from 'react-native-reanimated';
-import {CircularProgressProps} from '@src/types';
+import { CircularProgressProps } from './types';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const AnimatedInput = Animated.createAnimatedComponent(TextInput);

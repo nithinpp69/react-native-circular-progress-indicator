@@ -2,7 +2,7 @@
   "name": "react-native-circular-progress-indicator",
   "version": "1.1.2",
   "description": "React Native customizable circular progress indicator",
-  "main": "index.ts",
+  "main": "index",
   "scripts": {
     "test": "jest",
     "lint": "eslint .",

@@ -1,3 +1,3 @@
-import CircularProgress from '@src/index';
+import CircularProgress from './src/index';
 
 export default CircularProgress;

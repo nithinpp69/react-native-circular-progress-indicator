@@ -19,6 +19,14 @@ This project is inspired from this [Youtube tutorial](https://www.youtube.com/wa
 
 ## Prerequisites
 
+ ⚠️ Peer Dependencies
+
+ * [react-native-svg](https://www.npmjs.com/package/react-native-svg#installation)
+ * [react-native-reanimated-v2](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation/)
+
+This component has a peer dependency on react-native-reanimated-v2. react-native-reanimated-v2 has to be installed and linked into your project.
+Follow [react-native-reanimated-v2](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation/) to install the dependency.
+
 This component has a peer dependency on react-native-svg to draw the countdown circle. react-native-svg has to be installed and linked into your project.
 Follow [react-native-svg](https://www.npmjs.com/package/react-native-svg#installation) to install the dependency.
 

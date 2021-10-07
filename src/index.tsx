@@ -28,7 +28,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   inActiveStrokeWidth = 10,
   inActiveStrokeOpacity = 1,
   showProgressValue = true,
-}) => {
+}: CircularProgressProps) => {
 
   const styleProps = {
     radius,

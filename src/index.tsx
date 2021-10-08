@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
-import Animated, { useSharedValue, withTiming, useAnimatedProps, withDelay, useAnimatedReaction, runOnJS } from 'react-native-reanimated';
+import Animated, { useSharedValue, withTiming, useAnimatedProps, withDelay, useAnimatedReaction, runOnJS, useDerivedValue } from 'react-native-reanimated';
 import { CircularProgressProps } from './types';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -39,30 +39,30 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   };
 
   const animatedValue = useSharedValue(initialValue);
-  const inputRef = useRef();
   const viewBox = radius + Math.max(activeStrokeWidth, inActiveStrokeWidth);
   const circleCircumference = 2 * Math.PI * radius;
 
-  const animatedProps = useAnimatedProps(() => {
+  const animatedCircleProps = useAnimatedProps(() => {
     let biggestValue = Math.max(initialValue, maxValue);
     biggestValue = biggestValue <= 0 ? 1 : biggestValue;
     const maxPerc = (100 * animatedValue.value) / biggestValue;
     return {
       strokeDashoffset: circleCircumference - (circleCircumference * maxPerc) / 100,
-    }
+    };
   });
 
-  const updateProgressValue = (value: number) => {
-    if (inputRef?.current) {
-      inputRef?.current?.setNativeProps({
-        text: `${valuePrefix}${Math.round(value)}${valueSuffix}`,
-      });
+  const progressValue = useDerivedValue(() => {
+    return `${valuePrefix}${Math.round(animatedValue.value)}${valueSuffix}`;
+  });
+
+  const animatedTextProps = useAnimatedProps(() => {
+    return {
+      text: progressValue.value
     };
-  };
+  });
 
   useAnimatedReaction(() => animatedValue?.value,
     (newValue: number | undefined) => {
-      runOnJS(updateProgressValue)(animatedValue.value)
       if (newValue === value)
         runOnJS(onAnimationComplete)?.();
     }
@@ -104,14 +104,13 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
             r={radius}
             fill={'transparent'}
             strokeDasharray={circleCircumference}
-            animatedProps={animatedProps}
+            animatedProps={animatedCircleProps}
             strokeLinecap={strokeLinecap}
           />
         </G>
       </Svg>
       {showProgressValue && (
         <AnimatedInput
-          ref={inputRef}
           underlineColorAndroid={'transparent'}
           editable={false}
           defaultValue={`${valuePrefix}0${valueSuffix}`}
@@ -121,6 +120,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
             textStyle,
             dynamicStyles(styleProps).fromProps,
           ]}
+          animatedProps={animatedTextProps}
         />
       )}
     </View>

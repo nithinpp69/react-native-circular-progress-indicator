@@ -56,17 +56,17 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     const maxPerc = (100 * animatedValue.value) / biggestValue;
     return {
       strokeDashoffset: circleCircumference - (circleCircumference * maxPerc) / 100,
-    }
+    };
   });
 
   const progressValue = useDerivedValue(() => {
-    return `${valuePrefix}${Math.round(animatedValue.value)}${valueSuffix}`
+    return `${valuePrefix}${Math.round(animatedValue.value)}${valueSuffix}`;
   });
 
   const animatedTextProps = useAnimatedProps(() => {
     return {
       text: progressValue.value
-    }
+    };
   });
 
   useAnimatedReaction(() => animatedValue?.value,

@@ -59,6 +59,9 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   duration={2000}
   textColor={'#ecf0f1'}
   maxValue={200}
+  title={'KM/H'}
+  titleTextColor={'white'}
+  titleStyle={{fontWeight: 'bold'}}
 />
 <CircularProgress
   value={60}
@@ -196,28 +199,32 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 ![](demo6.gif)
 
 ## Props
-| Prop          | Description   | Type   | Default Value | Required |
-| :-----------: |:-------------:| :-----:| :-----: | :-----: |
-| value     | progress value  | Number | 0 | true |
-| initialValue     | initial progress value. Helpful when used as a countdown timer  | Number | 0 | false |
-| radius     | progress circle radius  | Number | 60 | false |
-| activeStrokeWidth     | active progress circle stroke width  | Number | 10 | false |
-| inActiveStrokeWidth     | inactive progress circle stroke width  | Number | 10 | false |
-| duration     | progress animation duration  | Number | 500 | false |
-| delay     | progress animation delay | Number | 0 | false |
-| textColor     | progress value text color | String |  | false |
-| textStyle     | progress value text style | Object | {} | false |
-| maxValue     | progress maximum value. Percentage calculation is based on the maximum value provided | String | 100 | false |
-| fontSize     | progress value text font size | Number |  | false |
-| inActiveStrokeOpacity  | inactive progress circle opacity value | Number | 1 | false |
-| strokeLinecap  | progress stroke line cap | 'round' or 'butt' or 'square' | 'round' | false |
-| onAnimationComplete  | callback when animation is completed. | Function | ()=>{} | false |
-| valuePrefix  | prefix value | String | '' | false |
-| valueSuffix  | suffix value | String | '' | false |
-| activeStrokeColor  | active progress circle color | String | '#2ecc71' | false |
-| activeStrokeSecondaryColor  | active progress secondary color. Use this to provide a gradient effect | String | '' | false |
-| inActiveStrokeColor  | inactive progress circle color | String | 'rgba(0,0,0,0.3)' | false |
-| showProgressValue  | show or hide the progress text value | Bool | true | false |
+| Prop                        | Description                                                                           | Type                          | Default Value       | Required |
+| :--------------------------:|:--------------------------------------------------------------------------------------|:-----------------------------:|:-------------------:|:--------:|
+| value                       | progress value                                                                        | Number                        | 0                   | true     |
+| initialValue                | initial progress value. Helpful when used as a countdown timer                        | Number                        | 0                   | false    |
+| title                       | title to display below the progress value                                             | String                        | ''                  | false    |
+| titleStyle                  | title text style                                                                      | Object                        | {}                  | false    |
+| titleTextColor              | title text color                                                                      | String                        |                     | false    |
+| titleTextFontSize           | title text font size                                                                  | Number                        |                     | false    |
+| radius                      | progress circle radius                                                                | Number                        | 60                  | false    |
+| activeStrokeWidth           | active progress circle stroke width                                                   | Number                        | 10                  | false    |
+| inActiveStrokeWidth         | inactive progress circle stroke width                                                 | Number                        | 10                  | false    |
+| duration                    | progress animation duration                                                           | Number                        | 500                 | false    |
+| delay                       | progress animation delay                                                              | Number                        | 0                   | false    |
+| textColor                   | progress value text color                                                             | String                        |                     | false    |
+| textStyle                   | progress value text style                                                             | Object                        | {}                  | false    |
+| maxValue                    | progress maximum value. Percentage calculation is based on the maximum value provided | String                        | 100                 | false    |
+| fontSize                    | progress value text font size                                                         | Number                        |                     | false    |
+| inActiveStrokeOpacity       | inactive progress circle opacity value                                                | Number                        | 1                   | false    |
+| strokeLinecap               | progress stroke line cap                                                              | 'round' or 'butt' or 'square' | 'round'             | false    |
+| onAnimationComplete         | callback when animation is completed.                                                 | Function                      | ()=>{}              | false    |
+| valuePrefix                 | prefix value                                                                          | String                        | ''                  | false    |
+| valueSuffix                 | suffix value                                                                          | String                        | ''                  | false    |
+| activeStrokeColor           | active progress circle color                                                          | String                        | '#2ecc71'         | false    |
+| activeStrokeSecondaryColor  | active progress secondary color. Use this to provide a gradient effect                | String                        | ''                  | false    |
+| inActiveStrokeColor         | inactive progress circle color                                                        | String                        | 'rgba(0,0,0,0.3)' | false    |
+| showProgressValue           | show or hide the progress text value                                                  | Bool                          | true                | false    |
 
 ## License
 This project is licenced under the MIT License.

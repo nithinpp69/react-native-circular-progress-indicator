@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput, Text } from 'react-native';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 import Animated, { useSharedValue, withTiming, useAnimatedProps, withDelay, useAnimatedReaction, runOnJS, useDerivedValue } from 'react-native-reanimated';
 import { CircularProgressProps } from './types';
@@ -10,6 +10,10 @@ const AnimatedInput = Animated.createAnimatedComponent(TextInput);
 const CircularProgress: React.FC<CircularProgressProps> = ({
   value,
   initialValue = 0,
+  title = '',
+  titleStyle = {},
+  titleTextColor,
+  titleTextFontSize,
   radius = 60,
   duration = 500,
   delay = 0,
@@ -36,6 +40,10 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     fontSize,
     textStyle,
     activeStrokeColor,
+    titleStyle,
+    titleTextColor,
+    titleTextFontSize,
+    showProgressValue
   };
 
   const animatedValue = useSharedValue(initialValue);
@@ -48,17 +56,17 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     const maxPerc = (100 * animatedValue.value) / biggestValue;
     return {
       strokeDashoffset: circleCircumference - (circleCircumference * maxPerc) / 100,
-    };
+    }
   });
 
   const progressValue = useDerivedValue(() => {
-    return `${valuePrefix}${Math.round(animatedValue.value)}${valueSuffix}`;
+    return `${valuePrefix}${Math.round(animatedValue.value)}${valueSuffix}`
   });
 
   const animatedTextProps = useAnimatedProps(() => {
     return {
       text: progressValue.value
-    };
+    }
   });
 
   useAnimatedReaction(() => animatedValue?.value,
@@ -109,20 +117,32 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           />
         </G>
       </Svg>
-      {showProgressValue && (
-        <AnimatedInput
-          underlineColorAndroid={'transparent'}
-          editable={false}
-          defaultValue={`${valuePrefix}0${valueSuffix}`}
-          style={[
-            StyleSheet.absoluteFillObject,
-            dynamicStyles(styleProps).input,
-            textStyle,
-            dynamicStyles(styleProps).fromProps,
-          ]}
-          animatedProps={animatedTextProps}
-        />
-      )}
+      <View style={[StyleSheet.absoluteFillObject, dynamicStyles(styleProps).valueContainer]}>
+        {showProgressValue && (
+          <AnimatedInput
+            underlineColorAndroid={'transparent'}
+            editable={false}
+            defaultValue={`${valuePrefix}0${valueSuffix}`}
+            style={[
+              dynamicStyles(styleProps).input,
+              textStyle,
+              dynamicStyles(styleProps).fromProps,
+            ]}
+            animatedProps={animatedTextProps}
+          />
+        )}
+        {title && title !== '' ?
+          <Text
+            style={[
+              dynamicStyles(styleProps).title,
+              titleStyle,
+            ]}
+            numberOfLines={2}
+          >
+            {title}
+          </Text> : null
+        }
+      </View>
     </View>
   );
 };
@@ -137,6 +157,18 @@ export const dynamicStyles = props => {
       fontWeight: 'bold',
       textAlign: 'center',
     },
+    valueContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    title: {
+      textAlign: 'center',
+      width: '70%',
+      marginTop: props.showProgressValue ? props.radius * 0.05 : 0,
+      color: props.titleTextColor || props.titleStyle?.color || props.activeStrokeColor,
+      fontSize: props.titleTextFontSize || props.titleStyle?.fontSize || props.fontSize || props.radius / 4,
+    }
   });
 };
 

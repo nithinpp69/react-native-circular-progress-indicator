@@ -133,9 +133,16 @@ export declare const dynamicStyles: (props: any) => {
     textAlign: "center";
   };
   valueContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1;
+    alignItems: "center";
+    justifyContent: "center";
+  };
+  title: {
+    textAlign: "center";
+    width: "70%";
+    marginTop: any;
+    color: any;
+    fontSize: any;
   };
 };
 export default CircularProgress;

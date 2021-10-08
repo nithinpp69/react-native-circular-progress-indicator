@@ -9,6 +9,22 @@ export interface CircularProgressProps {
    */
   initialValue?: number;
   /**
+   * title to display below the progress value
+   */
+  title: string | undefined;
+  /**
+   * title text style
+   */
+  titleStyle: object;
+  /**
+   * title text color
+   */
+  titleTextColor: string | undefined,
+  /**
+   * title text font size
+   */
+  titleTextFontSize: number | undefined,
+  /**
    * progress circle radius
    */
   radius?: number;
@@ -81,9 +97,13 @@ export interface CircularProgressProps {
    */
   showProgressValue?: boolean;
 }
-declare const CircularProgress: ({ value, initialValue, radius, duration, delay, textColor, textStyle, fontSize, maxValue, strokeLinecap, onAnimationComplete, valuePrefix, valueSuffix, activeStrokeColor, activeStrokeSecondaryColor, activeStrokeWidth, inActiveStrokeColor, inActiveStrokeWidth, inActiveStrokeOpacity, showProgressValue, }: {
+declare const CircularProgress: ({ value, initialValue, title, titleStyle, titleTextColor, titleTextFontSize, radius, duration, delay, textColor, textStyle, fontSize, maxValue, strokeLinecap, onAnimationComplete, valuePrefix, valueSuffix, activeStrokeColor, activeStrokeSecondaryColor, activeStrokeWidth, inActiveStrokeColor, inActiveStrokeWidth, inActiveStrokeOpacity, showProgressValue, }: {
   value: any;
   initialValue?: number | undefined;
+  title?: string | undefined;
+  titleStyle?: {} | undefined;
+  titleTextColor: any;
+  titleTextFontSize?: number | undefined;
   radius?: number | undefined;
   duration?: number | undefined;
   delay?: number | undefined;
@@ -111,6 +131,18 @@ export declare const dynamicStyles: (props: any) => {
   input: {
     fontWeight: "bold";
     textAlign: "center";
+  };
+  valueContainer: {
+    flex: 1;
+    alignItems: "center";
+    justifyContent: "center";
+  };
+  title: {
+    textAlign: "center";
+    width: "70%";
+    marginTop: any;
+    color: any;
+    fontSize: any;
   };
 };
 export default CircularProgress;

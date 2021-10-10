@@ -60,7 +60,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   textColor={'#ecf0f1'}
   maxValue={200}
   title={'KM/H'}
-  titleTextColor={'white'}
+  titleColor={'white'}
   titleStyle={{fontWeight: 'bold'}}
 />
 <CircularProgress
@@ -205,8 +205,9 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 | initialValue                | initial progress value. Helpful when used as a countdown timer                        | Number                        | 0                   | false    |
 | title                       | title to display below the progress value                                             | String                        | ''                  | false    |
 | titleStyle                  | title text style                                                                      | Object                        | {}                  | false    |
-| titleTextColor              | title text color                                                                      | String                        |                     | false    |
-| titleTextFontSize           | title text font size                                                                  | Number                        |                     | false    |
+| titleColor                  | title text color                                                                      | String                        |                     | false    |
+| titleFontSize               | title text font size                                                                  | Number                        |                     | false    |
+| circleBackgroundColor       | progress circle background color                                                      | String                        | 'transparent'       | false    |
 | radius                      | progress circle radius                                                                | Number                        | 60                  | false    |
 | activeStrokeWidth           | active progress circle stroke width                                                   | Number                        | 10                  | false    |
 | inActiveStrokeWidth         | inactive progress circle stroke width                                                 | Number                        | 10                  | false    |

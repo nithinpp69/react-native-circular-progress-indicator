@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View, TextInput, Text } from 'react-native';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
-import Animated, { useSharedValue, withTiming, useAnimatedProps, withDelay, useAnimatedReaction, runOnJS, useDerivedValue } from 'react-native-reanimated';
+import Animated, { useSharedValue, withTiming, useAnimatedProps, withDelay, runOnJS, useDerivedValue } from 'react-native-reanimated';
 import { CircularProgressProps } from './types';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -12,8 +12,9 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   initialValue = 0,
   title = '',
   titleStyle = {},
-  titleTextColor,
-  titleTextFontSize,
+  titleColor,
+  titleFontSize,
+  circleBackgroundColor = 'transparent',
   radius = 60,
   duration = 500,
   delay = 0,
@@ -41,8 +42,8 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     textStyle,
     activeStrokeColor,
     titleStyle,
-    titleTextColor,
-    titleTextFontSize,
+    titleColor,
+    titleFontSize,
     showProgressValue
   };
 
@@ -69,15 +70,12 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     };
   });
 
-  useAnimatedReaction(() => animatedValue?.value,
-    (newValue: number | undefined) => {
-      if (newValue === value)
-        runOnJS(onAnimationComplete)?.();
-    }
-  );
-
   useEffect(() => {
-    animatedValue.value = withDelay(delay, withTiming(value, { duration, }));
+    animatedValue.value = withDelay(delay, withTiming(value, { duration, },(isFinished) => {
+      if(isFinished){
+        runOnJS(onAnimationComplete)?.();
+      }
+    }));
   }, [value]);
 
   return (
@@ -110,7 +108,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
             stroke={activeStrokeSecondaryColor ? 'url(#grad)' : activeStrokeColor}
             strokeWidth={activeStrokeWidth}
             r={radius}
-            fill={'transparent'}
+            fill={circleBackgroundColor}
             strokeDasharray={circleCircumference}
             animatedProps={animatedCircleProps}
             strokeLinecap={strokeLinecap}
@@ -166,8 +164,8 @@ export const dynamicStyles = props => {
       textAlign: 'center',
       width: '70%',
       marginTop: props.showProgressValue ? props.radius * 0.05 : 0,
-      color: props.titleTextColor || props.titleStyle?.color || props.activeStrokeColor,
-      fontSize: props.titleTextFontSize || props.titleStyle?.fontSize || props.fontSize || props.radius / 4,
+      color: props.titleColor || props.titleStyle?.color || props.activeStrokeColor,
+      fontSize: props.titleFontSize || props.titleStyle?.fontSize || props.fontSize || props.radius / 4,
     }
   });
 };

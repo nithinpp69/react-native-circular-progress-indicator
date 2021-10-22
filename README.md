@@ -18,6 +18,7 @@ This project is inspired from this [Youtube tutorial](https://www.youtube.com/wa
 ![](demo4.gif)
 ![](demo5.gif)
 ![](demo6.gif)
+![](demo7.gif)
 
 ## Prerequisites
 
@@ -197,6 +198,48 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 ```
 
 ![](demo6.gif)
+#### with multiple child
+```
+import { CircularProgressWithChild } from 'react-native-circular-progress-indicator';
+
+// accepts any react element as child
+....
+
+const props = {
+  activeStrokeWidth: 25,
+  inActiveStrokeWidth: 25,
+  inActiveStrokeOpacity: 0.2
+};
+
+...
+
+<CircularProgressWithChild
+  {...props}
+  value={80}
+  radius={125}
+  activeStrokeColor={'#e84118'}
+  inActiveStrokeColor={'#e84118'}
+>
+  <CircularProgressWithChild
+    {...props}
+    value={87}
+    radius={100}
+    activeStrokeColor={'#badc58'}
+    inActiveStrokeColor={'#badc58'}
+  >
+    <CircularProgressWithChild
+      {...props}
+      value={62}
+      radius={75}
+      activeStrokeColor={'#18dcff'}
+      inActiveStrokeColor={'#18dcff'}
+    />
+  </CircularProgressWithChild>
+</CircularProgressWithChild>
+
+```
+
+![](demo7.gif)
 
 ## Props
 | Prop                        | Description                                                                           | Type                          | Default Value       | Required |

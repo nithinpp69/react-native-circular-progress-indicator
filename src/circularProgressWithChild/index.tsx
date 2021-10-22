@@ -1,51 +1,29 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, TextInput, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
-import Animated, { useSharedValue, withTiming, useAnimatedProps, withDelay, runOnJS, useDerivedValue } from 'react-native-reanimated';
-import { CircularProgressProps } from './types';
+import Animated, { useSharedValue, withTiming, useAnimatedProps, withDelay, runOnJS } from 'react-native-reanimated';
+import { CircularProgressWithChildProps } from './types';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-const AnimatedInput = Animated.createAnimatedComponent(TextInput);
 
-const CircularProgress: React.FC<CircularProgressProps> = ({
+const CircularProgressWithChild: React.FC<CircularProgressWithChildProps> = ({
   value,
   initialValue = 0,
-  title = '',
-  titleStyle = {},
-  titleColor,
-  titleFontSize,
   circleBackgroundColor = 'transparent',
   radius = 60,
   duration = 500,
   delay = 0,
-  textColor,
-  textStyle = {},
-  fontSize,
   maxValue = 100,
   strokeLinecap = 'round',
   onAnimationComplete = () => { },
-  valuePrefix = '',
-  valueSuffix = '',
   activeStrokeColor = '#2ecc71',
   activeStrokeSecondaryColor = '',
   activeStrokeWidth = 10,
   inActiveStrokeColor = 'rgba(0,0,0,0.3)',
   inActiveStrokeWidth = 10,
   inActiveStrokeOpacity = 1,
-  showProgressValue = true,
-}: CircularProgressProps) => {
-
-  const styleProps = {
-    radius,
-    textColor,
-    fontSize,
-    textStyle,
-    activeStrokeColor,
-    titleStyle,
-    titleColor,
-    titleFontSize,
-    showProgressValue
-  };
+  children,
+}: CircularProgressWithChildProps) => {
 
   const animatedValue = useSharedValue(initialValue);
   const viewBox = radius + Math.max(activeStrokeWidth, inActiveStrokeWidth);
@@ -57,16 +35,6 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     const maxPerc = (100 * animatedValue.value) / biggestValue;
     return {
       strokeDashoffset: circleCircumference - (circleCircumference * maxPerc) / 100,
-    };
-  });
-
-  const progressValue = useDerivedValue(() => {
-    return `${valuePrefix}${Math.round(animatedValue.value)}${valueSuffix}`;
-  });
-
-  const animatedTextProps = useAnimatedProps(() => {
-    return {
-      text: progressValue.value
     };
   });
 
@@ -115,59 +83,19 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           />
         </G>
       </Svg>
-      <View style={[StyleSheet.absoluteFillObject, dynamicStyles(styleProps).valueContainer]}>
-        {showProgressValue && (
-          <AnimatedInput
-            underlineColorAndroid={'transparent'}
-            editable={false}
-            defaultValue={`${valuePrefix}0${valueSuffix}`}
-            style={[
-              dynamicStyles(styleProps).input,
-              textStyle,
-              dynamicStyles(styleProps).fromProps,
-            ]}
-            animatedProps={animatedTextProps}
-          />
-        )}
-        {title && title !== '' ?
-          <Text
-            style={[
-              dynamicStyles(styleProps).title,
-              titleStyle,
-            ]}
-            numberOfLines={2}
-          >
-            {title}
-          </Text> : null
-        }
+      <View style={[StyleSheet.absoluteFillObject, styles.valueContainer]}>
+        {children}
       </View>
     </View>
   );
 };
 
-export const dynamicStyles = props => {
-  return StyleSheet.create({
-    fromProps: {
-      fontSize: props.fontSize || props.textStyle?.fontSize || props.radius / 2,
-      color: props.textColor || props.textStyle?.color || props.activeStrokeColor,
-    },
-    input: {
-      fontWeight: 'bold',
-      textAlign: 'center',
-    },
-    valueContainer: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    title: {
-      textAlign: 'center',
-      width: '70%',
-      marginTop: props.showProgressValue ? props.radius * 0.05 : 0,
-      color: props.titleColor || props.titleStyle?.color || props.activeStrokeColor,
-      fontSize: props.titleFontSize || props.titleStyle?.fontSize || props.fontSize || props.radius / 4,
-    }
-  });
-};
+export const styles = StyleSheet.create({
+  valueContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
-export default CircularProgress;
+export default CircularProgressWithChild;

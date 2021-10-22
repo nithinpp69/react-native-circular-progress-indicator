@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, TextInput, Text, StyleProp, TextStyle } from 'react-native';
+import { StyleSheet, View, TextInput, Text } from 'react-native';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 import Animated, { useSharedValue, withTiming, useAnimatedProps, withDelay, runOnJS, useDerivedValue } from 'react-native-reanimated';
 import { CircularProgressProps } from './types';
@@ -120,7 +120,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           <AnimatedInput
             underlineColorAndroid={'transparent'}
             editable={false}
-            defaultValue={`${valuePrefix}0${valueSuffix}`}
+            defaultValue={`${valuePrefix}${initialValue}${valueSuffix}`}
             style={[
               dynamicStyles(styleProps).input,
               textStyle,

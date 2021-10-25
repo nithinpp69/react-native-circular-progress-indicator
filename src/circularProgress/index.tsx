@@ -33,6 +33,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   inActiveStrokeWidth = 10,
   inActiveStrokeOpacity = 1,
   showProgressValue = true,
+  clockwise = true
 }) => {
 
   const styleProps = {
@@ -54,7 +55,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   const animatedCircleProps = useAnimatedProps(() => {
     let biggestValue = Math.max(initialValue, maxValue);
     biggestValue = biggestValue <= 0 ? 1 : biggestValue;
-    const maxPerc = (100 * animatedValue.value) / biggestValue;
+    const maxPerc: number = clockwise ?  (100 * animatedValue.value) / biggestValue :(100 * -animatedValue.value) / biggestValue;
     return {
       strokeDashoffset: circleCircumference - (circleCircumference * maxPerc) / 100,
     };

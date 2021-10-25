@@ -33,7 +33,9 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   inActiveStrokeWidth = 10,
   inActiveStrokeOpacity = 1,
   showProgressValue = true,
-  clockwise = true
+  clockwise = true,
+  subTitleStyle = {}
+  subTitle = ''
 }) => {
 
   const styleProps = {
@@ -45,7 +47,8 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     titleStyle,
     titleColor,
     titleFontSize,
-    showProgressValue
+    showProgressValue,
+    subTitleStyle
   };
 
   const animatedValue = useSharedValue(initialValue);
@@ -136,9 +139,20 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
               dynamicStyles(styleProps).title,
               titleStyle,
             ]}
-            numberOfLines={2}
+            numberOfLines={1}
           >
             {title}
+          </Text> : null
+        }
+        {subTitle && subTitle !== '' ?
+          <Text
+            style={[
+              dynamicStyles(styleProps).title,
+              subTitleStyle,
+            ]}
+            numberOfLines={1}
+          >
+            {subTitle}
           </Text> : null
         }
       </View>

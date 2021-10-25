@@ -101,6 +101,10 @@ export interface CircularProgressProps {
      * show or hide the progress text value
      */
     showProgressValue?: boolean;
+    /**
+     * change direction of progress ring
+     */
+     clockwise?: boolean;
 }
 declare const CircularProgress: React.FC<CircularProgressProps>;
 export declare const dynamicStyles: (props: any) => {

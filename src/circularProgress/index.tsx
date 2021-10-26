@@ -34,7 +34,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   inActiveStrokeOpacity = 1,
   showProgressValue = true,
   clockwise = true,
-  subTitleStyle = {}
+  subTitleStyle = {},
   subTitle = ''
 }) => {
 

@@ -106,13 +106,21 @@ export interface CircularProgressProps {
      */
     clockwise?: boolean;
     /**
-     * subtitleStyles
+     * subtitle text value
      */
-    subTitleStyle: StyleProp<TextStyle>;
+    subtitle?: StyleProp<TextStyle>;
     /**
-     * subtitle
+     * subtitle text style
      */
-    subTitle?: StyleProp<TextStyle>;
+    subtitleStyle?: StyleProp<TextStyle>;
+    /**
+     * subtitle text color
+     */
+    subtitleColor?: string,
+    /**
+     * subtitle text font size
+     */
+    subtitleFontSize?: number,
 }
 declare const CircularProgress: React.FC<CircularProgressProps>;
 export declare const dynamicStyles: (props: any) => {
@@ -133,6 +141,10 @@ export declare const dynamicStyles: (props: any) => {
         textAlign: "center";
         width: string;
         marginTop: number;
+        color: any;
+        fontSize: any;
+    };
+    subtitle: {
         color: any;
         fontSize: any;
     };

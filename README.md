@@ -250,6 +250,10 @@ const props = {
 | titleStyle                  | title text style                                                                      | Object                        | {}                  | false    |
 | titleColor                  | title text color                                                                      | String                        |                     | false    |
 | titleFontSize               | title text font size                                                                  | Number                        |                     | false    |
+| subtitle                    | subtitle to display below the progress value                                          | String                        | ''                  | false    |
+| subtitleStyle               | subtitle text style                                                                   | Object                        | {}                  | false    |
+| subtitleColor               | subtitle text color                                                                   | String                        |                     | false    |
+| subtitleFontSize            | subtitle text font size                                                               | Number                        |                     | false    |
 | circleBackgroundColor       | progress circle background color                                                      | String                        | 'transparent'       | false    |
 | radius                      | progress circle radius                                                                | Number                        | 60                  | false    |
 | activeStrokeWidth           | active progress circle stroke width                                                   | Number                        | 10                  | false    |
@@ -269,6 +273,7 @@ const props = {
 | activeStrokeSecondaryColor  | active progress secondary color. Use this to provide a gradient effect                | String                        | ''                  | false    |
 | inActiveStrokeColor         | inactive progress circle color                                                        | String                        | 'rgba(0,0,0,0.3)' | false    |
 | showProgressValue           | show or hide the progress text value                                                  | Bool                          | true                | false    |
+| clockwise                   | show ring progress clockwise or anti-clockwise. pass false to enable anti clock-wise  | Bool                          | true                |  false    |
 
 ## License
 This project is licenced under the MIT License.

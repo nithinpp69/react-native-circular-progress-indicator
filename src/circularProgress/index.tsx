@@ -33,6 +33,9 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   inActiveStrokeWidth = 10,
   inActiveStrokeOpacity = 1,
   showProgressValue = true,
+  clockwise = true,
+  subTitleStyle = {},
+  subTitle = ''
 }) => {
 
   const styleProps = {
@@ -44,7 +47,8 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     titleStyle,
     titleColor,
     titleFontSize,
-    showProgressValue
+    showProgressValue,
+    subTitleStyle
   };
 
   const animatedValue = useSharedValue(initialValue);
@@ -54,7 +58,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   const animatedCircleProps = useAnimatedProps(() => {
     let biggestValue = Math.max(initialValue, maxValue);
     biggestValue = biggestValue <= 0 ? 1 : biggestValue;
-    const maxPerc = (100 * animatedValue.value) / biggestValue;
+    const maxPerc: number = clockwise ?  (100 * animatedValue.value) / biggestValue :(100 * -animatedValue.value) / biggestValue;
     return {
       strokeDashoffset: circleCircumference - (circleCircumference * maxPerc) / 100,
     };
@@ -135,9 +139,20 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
               dynamicStyles(styleProps).title,
               titleStyle,
             ]}
-            numberOfLines={2}
+            numberOfLines={1}
           >
             {title}
+          </Text> : null
+        }
+        {subTitle && subTitle !== '' ?
+          <Text
+            style={[
+              dynamicStyles(styleProps).title,
+              subTitleStyle,
+            ]}
+            numberOfLines={1}
+          >
+            {subTitle}
           </Text> : null
         }
       </View>

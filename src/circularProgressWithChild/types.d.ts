@@ -64,6 +64,10 @@ export interface CircularProgressWithChildProps {
      * inactive progress circle stroke width
      */
     children?: React.ReactNode;
+    /**
+     * change direction of progress ring
+     */
+    clockwise?: boolean;
 }
 declare const CircularProgressWithChild: React.FC<CircularProgressWithChildProps>;
 export declare const styles: {

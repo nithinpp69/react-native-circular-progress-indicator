@@ -80,7 +80,7 @@ const CircularProgressWithChild: React.FC<CircularProgressWithChildProps> = ({
             stroke={inActiveStrokeColor}
             strokeWidth={inActiveStrokeWidth}
             r={radius}
-            fill={"transparent"}
+            fill={circleBackgroundColor}
             strokeOpacity={inActiveStrokeOpacity}
           />
           <AnimatedCircle
@@ -91,7 +91,7 @@ const CircularProgressWithChild: React.FC<CircularProgressWithChildProps> = ({
             }
             strokeWidth={activeStrokeWidth}
             r={radius}
-            fill={circleBackgroundColor}
+            fill={"transparent"}
             strokeDasharray={circleCircumference}
             animatedProps={animatedCircleProps}
             strokeLinecap={strokeLinecap}

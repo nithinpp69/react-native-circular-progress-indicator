@@ -12,23 +12,23 @@ export interface CircularProgressProps {
     /**
      * title to display below the progress value
      */
-    title: string | undefined;
+    title?: string;
     /**
      * title text style
      */
-    titleStyle: StyleProp<TextStyle>;
+    titleStyle?: StyleProp<TextStyle>;
     /**
      * title text color
      */
-    titleColor: string | undefined;
+    titleColor?: string;
     /**
      * title text font size
      */
-    titleFontSize: number | undefined;
+    titleFontSize?: number;
     /**
      * progress circle background color
      */
-    circleBackgroundColor: string | undefined;
+    circleBackgroundColor?: string;
     /**
      * progress circle radius
      */
@@ -108,7 +108,7 @@ export interface CircularProgressProps {
     /**
      * subtitle text value
      */
-    subtitle?: StyleProp<TextStyle>;
+    subtitle?: string;
     /**
      * subtitle text style
      */

@@ -45,6 +45,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   subtitleStyle = {},
   subtitleColor,
   subtitleFontSize,
+  rotation=-90
 }) => {
   const styleProps = {
     radius,
@@ -112,7 +113,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
             </LinearGradient>
           </Defs>
         ) : null}
-        <G rotation={"-90"} origin={`${viewBox}, ${viewBox}`}>
+        <G rotation={rotation} origin={`${viewBox}, ${viewBox}`}>
           <Circle
             cx="50%"
             cy="50%"

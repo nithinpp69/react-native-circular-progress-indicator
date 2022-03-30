@@ -1,6 +1,5 @@
 import React from 'react';
-import { TextStyle } from 'react-native';
-export interface CircularProgressProps {
+export interface CircularProgressBaseProps {
     /**
      * progress value
      */
@@ -74,70 +73,7 @@ export interface CircularProgressProps {
      * accepts a number from -360 to 360
      */
     rotation?: number;
-    /**
-     * title to display below the progress value
-     */
-    title?: string;
-    /**
-     * title text style
-     */
-    titleStyle?: TextStyle;
-    /**
-     * title text color
-     */
-    titleColor?: string;
-    /**
-     * title text font size
-     */
-    titleFontSize?: number;
-    /**
-     * progress value text color
-     */
-    progressValueColor?: string;
-    /**
-     * progress value text style
-     */
-    progressValueStyle?: TextStyle;
-    /**
-     * progress value text font size
-     */
-    fontSize?: number;
-    /**
-     * prefix value
-     */
-    valuePrefix?: string;
-    /**
-     * suffix value
-     */
-    valueSuffix?: string;
-    /**
-     * show or hide the progress text value
-     */
-    showProgressValue?: boolean;
-    /**
-     * subtitle text value
-     */
-    subtitle?: string;
-    /**
-     * subtitle text style
-     */
-    subtitleStyle?: TextStyle;
-    /**
-     * subtitle text color
-     */
-    subtitleColor?: string;
-    /**
-     * subtitle text font size
-     */
-    subtitleFontSize?: number;
-    /**
-     * function to format the progress value.
-     * By default, the value is rounded to the nearest integer.
-     * Make sure to define it as a worklet function.
-     * https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
-     */
-    progressFormatter?: (v: number) => number;
 }
-declare const CircularProgress: React.FC<CircularProgressProps>;
-export default CircularProgress;
+declare const CircularProgressBase: React.FC<CircularProgressBaseProps>;
+export default CircularProgressBase;
 //# sourceMappingURL=index.d.ts.map

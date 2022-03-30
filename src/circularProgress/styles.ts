@@ -1,17 +1,18 @@
-import { StyleProp, StyleSheet, TextStyle } from 'react-native';
+import { StyleSheet, TextStyle } from 'react-native';
 
 type StyleProps = {
   radius: number;
   progressValueColor?: string;
   fontSize?: number;
-  progressValueStyle?: StyleProp<TextStyle>;
+  progressValueStyle?: TextStyle;
   activeStrokeColor?: string;
-  titleStyle?: StyleProp<TextStyle>;
+  titleStyle?: TextStyle;
   titleColor?: string;
   titleFontSize?: number;
   showProgressValue?: boolean;
   subtitleColor?: string;
   subtitleFontSize?: number;
+  subtitleStyle: TextStyle;
   rotation: number;
 };
 

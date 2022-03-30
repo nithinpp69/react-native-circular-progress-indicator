@@ -1,12 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import {
-  StyleProp,
-  StyleSheet,
-  Text,
-  TextInput,
-  TextStyle,
-  View,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 import Animated, {
   useSharedValue,
@@ -14,16 +7,14 @@ import Animated, {
   useAnimatedProps,
   withDelay,
   runOnJS,
-  useDerivedValue,
   Easing,
 } from 'react-native-reanimated';
-import COLORS from '../utils/colors';
 import styles from './styles';
 
-const AnimatedInput = Animated.createAnimatedComponent(TextInput);
+export const ProgressContext = React.createContext(0);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-export interface CircularProgressProps {
+export interface CircularProgressBaseProps {
   /**
    * progress value
    */
@@ -97,109 +88,28 @@ export interface CircularProgressProps {
    * accepts a number from -360 to 360
    */
   rotation?: number;
-  /**
-   * title to display below the progress value
-   */
-  title?: string;
-  /**
-   * title text style
-   */
-  titleStyle?: StyleProp<TextStyle>;
-  /**
-   * title text color
-   */
-  titleColor?: string;
-  /**
-   * title text font size
-   */
-  titleFontSize?: number;
-  /**
-   * progress value text color
-   */
-  progressValueColor?: string;
-  /**
-   * progress value text style
-   */
-  progressValueStyle?: StyleProp<TextStyle>;
-  /**
-   * progress value text font size
-   */
-  fontSize?: number;
-  /**
-   * prefix value
-   */
-  valuePrefix?: string;
-  /**
-   * suffix value
-   */
-  valueSuffix?: string;
-  /**
-   * show or hide the progress text value
-   */
-  showProgressValue?: boolean;
-  /**
-   * subtitle text value
-   */
-  subtitle?: string;
-  /**
-   * subtitle text style
-   */
-  subtitleStyle?: StyleProp<TextStyle>;
-  /**
-   * subtitle text color
-   */
-  subtitleColor?: string;
-  /**
-   * subtitle text font size
-   */
-  subtitleFontSize?: number;
-  /**
-   * function to format the progress value.
-   * By default, the value is rounded to the nearest integer.
-   * Make sure to define it as a worklet function.
-   * https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
-   */
-  progressFormatter?: (v: number) => number;
 }
 
-const CircularProgress: React.FC<CircularProgressProps> = ({
+const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
   value,
   initialValue = 0,
-  circleBackgroundColor = COLORS.TRANSPARENT,
+  circleBackgroundColor = 'transparent',
   radius = 60,
   duration = 500,
   delay = 0,
   maxValue = 100,
   strokeLinecap = 'round',
   onAnimationComplete = () => null,
-  activeStrokeColor = COLORS.GREEN,
+  activeStrokeColor = '#2ecc71',
   activeStrokeSecondaryColor = null,
   activeStrokeWidth = 10,
-  inActiveStrokeColor = COLORS.BLACK_30,
+  inActiveStrokeColor = 'rgba(0,0,0,0.3)',
   inActiveStrokeWidth = 10,
   inActiveStrokeOpacity = 1,
   clockwise = true,
   rotation = 0,
-  title = '',
-  titleStyle = {},
-  titleColor,
-  titleFontSize,
-  progressValueColor,
-  progressValueStyle = {},
-  fontSize,
-  valuePrefix = '',
-  valueSuffix = '',
-  showProgressValue = true,
-  subtitle = '',
-  subtitleStyle = {},
-  subtitleColor,
-  subtitleFontSize,
-  progressFormatter = (v: number) => {
-    'worklet';
-
-    return Math.round(v);
-  },
-}: CircularProgressProps) => {
+  children,
+}: CircularProgressBaseProps) => {
   const animatedValue = useSharedValue(initialValue);
   const viewBox = radius + Math.max(activeStrokeWidth, inActiveStrokeWidth);
   const circleCircumference = 2 * Math.PI * radius;
@@ -208,31 +118,8 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     () => ({
       radius,
       rotation,
-      progressValueColor,
-      fontSize,
-      progressValueStyle,
-      activeStrokeColor,
-      titleStyle,
-      titleColor,
-      titleFontSize,
-      showProgressValue,
-      subtitleColor,
-      subtitleFontSize,
     }),
-    [
-      radius,
-      rotation,
-      progressValueColor,
-      fontSize,
-      progressValueStyle,
-      activeStrokeColor,
-      titleStyle,
-      titleColor,
-      titleFontSize,
-      showProgressValue,
-      subtitleColor,
-      subtitleFontSize,
-    ]
+    [radius, rotation],
   );
 
   const animatedCircleProps = useAnimatedProps(() => {
@@ -250,25 +137,13 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   useEffect(() => {
     animatedValue.value = withDelay(
       delay,
-      withTiming(value, { duration, easing: Easing.linear }, (isFinished) => {
+      withTiming(value, { duration, easing: Easing.linear }, isFinished => {
         if (isFinished) {
           runOnJS(onAnimationComplete)?.();
         }
-      })
+      }),
     );
   }, [value]);
-
-  const progressValue = useDerivedValue(() => {
-    return `${valuePrefix}${progressFormatter(
-      animatedValue.value
-    )}${valueSuffix}`;
-  });
-
-  const animatedTextProps = useAnimatedProps(() => {
-    return {
-      text: progressValue.value,
-    } as any;
-  });
 
   return (
     <View style={styles(styleProps).container}>
@@ -318,42 +193,10 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           styles(styleProps).valueContainer,
         ]}
       >
-        {showProgressValue && (
-          <AnimatedInput
-            underlineColorAndroid="transparent"
-            editable={false}
-            defaultValue={`${valuePrefix}${initialValue}${valueSuffix}`}
-            style={[
-              styles(styleProps).input,
-              progressValueStyle,
-              styles(styleProps).fromProps,
-            ]}
-            animatedProps={animatedTextProps}
-          />
-        )}
-        {title && title !== '' ? (
-          <Text
-            style={[styles(styleProps).title, titleStyle]}
-            numberOfLines={1}
-          >
-            {title}
-          </Text>
-        ) : null}
-        {subtitle && subtitle !== '' ? (
-          <Text
-            style={[
-              styles(styleProps).title,
-              styles(styleProps).subtitle,
-              subtitleStyle,
-            ]}
-            numberOfLines={1}
-          >
-            {subtitle}
-          </Text>
-        ) : null}
+        {children}
       </View>
     </View>
   );
 };
 
-export default CircularProgress;
+export default CircularProgressBase;

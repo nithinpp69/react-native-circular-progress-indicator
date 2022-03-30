@@ -240,6 +240,22 @@ const props = {
 ```
 
 ![](demo7.gif)
+#### custom progress formatter function
+
+By default, the progress value is rounded to the nearest integer. If you want to display decimal place values, you can do so by,
+
+```
+<CircularProgress
+  value={56}
+  progressFormatter={(value: number) => {
+    'worklet';
+     
+    return value.toFixed(2); // 2 decimal places
+  }}
+/>
+```
+
+Make sure to mark this function as a worklet function. Read more about worklets at https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
 
 ## Props
 | Prop                        | Description                                                                           | Type                          | Default Value       | Required |

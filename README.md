@@ -265,6 +265,7 @@ const props = {
 | maxValue                    | progress maximum value. Percentage calculation is based on the maximum value provided | String                        | 100                 | false    |
 | fontSize                    | progress value text font size                                                         | Number                        |                     | false    |
 | inActiveStrokeOpacity       | inactive progress circle opacity value                                                | Number                        | 1                   | false    |
+| rotation                    | rotation value of the indicator(-360 - 360)                                           | Number                        | -90 | false    |
 | strokeLinecap               | progress stroke line cap                                                              | 'round' or 'butt' or 'square' | 'round'             | false    |
 | onAnimationComplete         | callback when animation is completed.                                                 | Function                      | ()=>{}              | false    |
 | valuePrefix                 | prefix value                                                                          | String                        | ''                  | false    |

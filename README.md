@@ -12,13 +12,13 @@ This project is inspired from this [Youtube tutorial](https://www.youtube.com/wa
 
 ## ❤️ [Try on Expo Snack](https://snack.expo.dev/@nithinpp69/react-native-circular-progress-indicator/?platform=ios)
 
-![](demo.gif)
-![](demo2.gif)
-![](demo3.gif)
-![](demo4.gif)
-![](demo5.gif)
-![](demo6.gif)
-![](demo7.gif)
+![](examples/demo.gif)
+![](examples/demo2.gif)
+![](examples/demo3.gif)
+![](examples/demo4.gif)
+![](examples/demo5.gif)
+![](examples/demo6.gif)
+![](examples/demo7.gif)
 
 ## Prerequisites
 
@@ -71,7 +71,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 />
 
 ```
-![](demo.gif)
+![](examples/demo.gif)
 
 #### with value prefix/suffix
 
@@ -96,7 +96,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 />
 
 ```
-![](demo2.gif)
+![](examples/demo2.gif)
 
 #### with callback function
 
@@ -115,7 +115,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 />
 
 ```
-![](demo3.gif)
+![](examples/demo3.gif)
 
 #### custom
 
@@ -157,7 +157,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 ```
 
-![](demo4.gif)
+![](examples/demo4.gif)
 
 #### use as a countdown timer
 
@@ -180,7 +180,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 ```
 
-![](demo5.gif)
+![](examples/demo5.gif)
 
 #### with gradient effect
 
@@ -197,7 +197,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 ```
 
-![](demo6.gif)
+![](examples/demo6.gif)
 #### with multiple child
 ```
 import { CircularProgressBase } from 'react-native-circular-progress-indicator';
@@ -239,7 +239,7 @@ const props = {
 
 ```
 
-![](demo7.gif)
+![](examples/demo7.gif)
 #### custom progress formatter function
 
 By default, the progress value is rounded to the nearest integer. If you want to display decimal place values, you can do so by,

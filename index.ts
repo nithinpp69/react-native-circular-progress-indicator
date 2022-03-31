@@ -1,5 +1,5 @@
 import CircularProgress from './src/circularProgress/index';
-import CircularProgressWithChild from './src/circularProgressWithChild/index';
+import circularProgressBase from './src/circularProgressBase/index';
 
 export default CircularProgress;
-export { CircularProgressWithChild};
+export { circularProgressBase };

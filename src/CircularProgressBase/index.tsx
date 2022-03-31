@@ -1,10 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 import Animated, {
   useSharedValue,
@@ -12,54 +7,33 @@ import Animated, {
   useAnimatedProps,
   withDelay,
   runOnJS,
-  useDerivedValue,
   Easing,
 } from 'react-native-reanimated';
-import COLORS from '../utils/colors';
 import styles from './styles';
-import {CircularProgressProps} from './types';
+import { CircularProgressBaseProps } from './types';
 
-const AnimatedInput = Animated.createAnimatedComponent(TextInput);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-const CircularProgress: React.FC<CircularProgressProps> = ({
+const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
   value,
   initialValue = 0,
-  circleBackgroundColor = COLORS.TRANSPARENT,
+  circleBackgroundColor = 'transparent',
   radius = 60,
   duration = 500,
   delay = 0,
   maxValue = 100,
   strokeLinecap = 'round',
   onAnimationComplete = () => null,
-  activeStrokeColor = COLORS.GREEN,
+  activeStrokeColor = '#2ecc71',
   activeStrokeSecondaryColor = null,
   activeStrokeWidth = 10,
-  inActiveStrokeColor = COLORS.BLACK_30,
+  inActiveStrokeColor = 'rgba(0,0,0,0.3)',
   inActiveStrokeWidth = 10,
   inActiveStrokeOpacity = 1,
   clockwise = true,
   rotation = 0,
-  title = '',
-  titleStyle = {},
-  titleColor,
-  titleFontSize,
-  progressValueColor,
-  progressValueStyle = {},
-  fontSize,
-  valuePrefix = '',
-  valueSuffix = '',
-  showProgressValue = true,
-  subtitle = '',
-  subtitleStyle = {},
-  subtitleColor,
-  subtitleFontSize,
-  progressFormatter = (v: number) => {
-    'worklet';
-
-    return Math.round(v);
-  },
-}: CircularProgressProps) => {
+  children,
+}: CircularProgressBaseProps) => {
   const animatedValue = useSharedValue(initialValue);
   const viewBox = radius + Math.max(activeStrokeWidth, inActiveStrokeWidth);
   const circleCircumference = 2 * Math.PI * radius;
@@ -68,33 +42,8 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     () => ({
       radius,
       rotation,
-      progressValueColor,
-      fontSize,
-      progressValueStyle,
-      activeStrokeColor,
-      titleStyle,
-      titleColor,
-      titleFontSize,
-      showProgressValue,
-      subtitleColor,
-      subtitleFontSize,
-      subtitleStyle,
     }),
-    [
-      radius,
-      rotation,
-      progressValueColor,
-      fontSize,
-      progressValueStyle,
-      activeStrokeColor,
-      titleStyle,
-      titleColor,
-      titleFontSize,
-      showProgressValue,
-      subtitleColor,
-      subtitleFontSize,
-      subtitleStyle,
-    ]
+    [radius, rotation]
   );
 
   const animatedCircleProps = useAnimatedProps(() => {
@@ -119,18 +68,6 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
       })
     );
   }, [value]);
-
-  const progressValue = useDerivedValue(() => {
-    return `${valuePrefix}${progressFormatter(
-      animatedValue.value
-    )}${valueSuffix}`;
-  });
-
-  const animatedTextProps = useAnimatedProps(() => {
-    return {
-      text: progressValue.value,
-    } as any;
-  });
 
   return (
     <View style={styles(styleProps).container}>
@@ -180,42 +117,10 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           styles(styleProps).valueContainer,
         ]}
       >
-        {showProgressValue && (
-          <AnimatedInput
-            underlineColorAndroid="transparent"
-            editable={false}
-            defaultValue={`${valuePrefix}${initialValue}${valueSuffix}`}
-            style={[
-              styles(styleProps).input,
-              progressValueStyle,
-              styles(styleProps).fromProps,
-            ]}
-            animatedProps={animatedTextProps}
-          />
-        )}
-        {title && title !== '' ? (
-          <Text
-            style={[styles(styleProps).title, titleStyle]}
-            numberOfLines={1}
-          >
-            {title}
-          </Text>
-        ) : null}
-        {subtitle && subtitle !== '' ? (
-          <Text
-            style={[
-              styles(styleProps).title,
-              styles(styleProps).subtitle,
-              subtitleStyle,
-            ]}
-            numberOfLines={1}
-          >
-            {subtitle}
-          </Text>
-        ) : null}
+        {children}
       </View>
     </View>
   );
 };
 
-export default CircularProgress;
+export default CircularProgressBase;

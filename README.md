@@ -199,6 +199,12 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 ![](examples/demo6.gif)
 #### with multiple child
+
+```
+!IMPORTANT CircularProgressWithChild component has been renamed to CircularProgressBase. The CircularProgressWithChild component is still available in the package but will be removed in the
+next releases Please use the new CircularProgressBase component instead.
+```
+
 ```
 import { CircularProgressBase } from 'react-native-circular-progress-indicator';
 

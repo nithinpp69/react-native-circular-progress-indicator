@@ -1,5 +1,5 @@
 import React from 'react';
-export interface CircularProgressBaseProps {
+export interface CircularProgressWithChildProps {
     /**
      * progress value
      */
@@ -11,7 +11,7 @@ export interface CircularProgressBaseProps {
     /**
      * progress circle background color
      */
-    circleBackgroundColor?: string;
+    circleBackgroundColor: string | undefined;
     /**
      * progress circle radius
      */
@@ -43,7 +43,7 @@ export interface CircularProgressBaseProps {
     /**
      * active progress secondary color. Use this to provide a gradient effect
      */
-    activeStrokeSecondaryColor?: string | null;
+    activeStrokeSecondaryColor?: string;
     /**
      * inactive progress circle color
      */
@@ -61,19 +61,21 @@ export interface CircularProgressBaseProps {
      */
     inActiveStrokeWidth?: number;
     /**
-     * custom child component for circular progress
+     * inactive progress circle stroke width
      */
     children?: React.ReactNode;
     /**
      * change direction of progress ring
      */
     clockwise?: boolean;
-    /**
-     * rotate the progress ring by this value
-     * accepts a number from -360 to 360
-     */
-    rotation?: number;
 }
-declare const CircularProgressBase: React.FC<CircularProgressBaseProps>;
-export default CircularProgressBase;
+declare const CircularProgressWithChild: React.FC<CircularProgressWithChildProps>;
+export declare const styles: {
+    valueContainer: {
+        flex: number;
+        alignItems: "center";
+        justifyContent: "center";
+    };
+};
+export default CircularProgressWithChild;
 //# sourceMappingURL=index.d.ts.map

@@ -200,7 +200,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 ![](examples/demo6.gif)
 #### with multiple child
 ```
-import { CircularProgressBase } from 'react-native-circular-progress-indicator';
+import { CircularProgressWithChild } from 'react-native-circular-progress-indicator';
 
 // accepts any react element as child
 ....
@@ -213,35 +213,33 @@ const props = {
 
 ...
 
-<CircularProgressBase
+<CircularProgressWithChild
   {...props}
   value={80}
   radius={125}
   activeStrokeColor={'#e84118'}
   inActiveStrokeColor={'#e84118'}
 >
-  <CircularProgressBase
+  <CircularProgressWithChild
     {...props}
     value={87}
     radius={100}
     activeStrokeColor={'#badc58'}
     inActiveStrokeColor={'#badc58'}
   >
-    <CircularProgressBase
+    <CircularProgressWithChild
       {...props}
       value={62}
       radius={75}
       activeStrokeColor={'#18dcff'}
       inActiveStrokeColor={'#18dcff'}
     />
-  </CircularProgressBase>
-</CircularProgressBase>
+  </CircularProgressWithChild>
+</CircularProgressWithChild>
 
 ```
 
 ![](examples/demo7.gif)
-
-Make sure to mark this function as a worklet function. Read more about worklets at https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
 
 ## Props
 | Prop                        | Description                                                                           | Type                          | Default Value       | Required |

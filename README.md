@@ -220,22 +220,25 @@ const props = {
   activeStrokeColor={'#e84118'}
   inActiveStrokeColor={'#e84118'}
 >
-  <CircularProgressWithChild
+
+  <circularProgressWithChild
     {...props}
     value={87}
     radius={100}
     activeStrokeColor={'#badc58'}
     inActiveStrokeColor={'#badc58'}
   >
-    <CircularProgressWithChild
-      {...props}
-      value={62}
-      radius={75}
-      activeStrokeColor={'#18dcff'}
-      inActiveStrokeColor={'#18dcff'}
-    />
+     <CircularProgressWithChild
+        <circularProgressWithChild
+          {...props}
+          value={62}
+          radius={75}
+          activeStrokeColor={'#18dcff'}
+          inActiveStrokeColor={'#18dcff'}
+        />
+    </CircularProgressWithChild>
   </CircularProgressWithChild>
-</CircularProgressWithChild>
+</circularProgressWithChild>
 
 ```
 

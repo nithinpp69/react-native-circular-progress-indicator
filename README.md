@@ -200,7 +200,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 ![](examples/demo6.gif)
 #### with multiple child
 ```
-import { CircularProgressWithChild } from 'react-native-circular-progress-indicator';
+import { CircularProgressBase } from 'react-native-circular-progress-indicator';
 
 // accepts any react element as child
 ....
@@ -213,33 +213,49 @@ const props = {
 
 ...
 
-<CircularProgressWithChild
+<CircularProgressBase
   {...props}
   value={80}
   radius={125}
   activeStrokeColor={'#e84118'}
   inActiveStrokeColor={'#e84118'}
 >
-  <CircularProgressWithChild
+  <CircularProgressBase
     {...props}
     value={87}
     radius={100}
     activeStrokeColor={'#badc58'}
     inActiveStrokeColor={'#badc58'}
   >
-    <CircularProgressWithChild
+    <CircularProgressBase
       {...props}
       value={62}
       radius={75}
       activeStrokeColor={'#18dcff'}
       inActiveStrokeColor={'#18dcff'}
     />
-  </CircularProgressWithChild>
-</CircularProgressWithChild>
+  </CircularProgressBase>
+</CircularProgressBase>
 
 ```
 
 ![](examples/demo7.gif)
+#### custom progress formatter function
+
+By default, the progress value is rounded to the nearest integer. If you want to display decimal place values, you can do so by,
+
+```
+<CircularProgress
+  value={56}
+  progressFormatter={(value: number) => {
+    'worklet';
+     
+    return value.toFixed(2); // 2 decimal places
+  }}
+/>
+```
+
+Make sure to mark this function as a worklet function. Read more about worklets at https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
 
 ## Props
 | Prop                        | Description                                                                           | Type                          | Default Value       | Required |
@@ -265,6 +281,7 @@ const props = {
 | maxValue                    | progress maximum value. Percentage calculation is based on the maximum value provided | String                        | 100                 | false    |
 | fontSize                    | progress value text font size                                                         | Number                        |                     | false    |
 | inActiveStrokeOpacity       | inactive progress circle opacity value                                                | Number                        | 1                   | false    |
+| rotation                    | rotate the progress ring by this value. Accepts a number from -360 to 360             | Number                        | 0                   | false    |
 | strokeLinecap               | progress stroke line cap                                                              | 'round' or 'butt' or 'square' | 'round'             | false    |
 | onAnimationComplete         | callback when animation is completed.                                                 | Function                      | ()=>null            | false    |
 | valuePrefix                 | prefix value                                                                          | String                        | ''                  | false    |
@@ -274,6 +291,7 @@ const props = {
 | inActiveStrokeColor         | inactive progress circle color                                                        | String                        | 'rgba(0,0,0,0.3)' | false    |
 | showProgressValue           | show or hide the progress text value                                                  | Bool                          | true                | false    |
 | clockwise                   | show ring progress clockwise or anti-clockwise. pass false to enable anti clock-wise  | Bool                          | true                |  false   |
+| progressFormatter           | function to format the progress value. Make sure to define it as a worklet function.  | Function                      | (v)=> Math.round(v) | false    |
 
 ## License
 This project is licenced under the MIT License.

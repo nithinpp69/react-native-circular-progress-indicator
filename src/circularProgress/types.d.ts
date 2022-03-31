@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleProp, TextStyle } from 'react-native';
+import { TextStyle } from 'react-native';
 export interface CircularProgressProps {
     /**
      * progress value
@@ -9,22 +9,6 @@ export interface CircularProgressProps {
      * initial progress value. Helpful when used as a countdown timer
      */
     initialValue?: number;
-    /**
-     * title to display below the progress value
-     */
-    title?: string;
-    /**
-     * title text style
-     */
-    titleStyle?: StyleProp<TextStyle>;
-    /**
-     * title text color
-     */
-    titleColor?: string;
-    /**
-     * title text font size
-     */
-    titleFontSize?: number;
     /**
      * progress circle background color
      */
@@ -42,21 +26,9 @@ export interface CircularProgressProps {
      */
     delay?: number;
     /**
-     * progress value text color
-     */
-    textColor?: string;
-    /**
-     * progress value text style
-     */
-    textStyle?: StyleProp<TextStyle>;
-    /**
      * progress maximum value. Percentage calculation is based on the maximum value provided
      */
     maxValue?: number;
-    /**
-     * progress value text font size
-     */
-    fontSize?: number | string;
     /**
      * progress stroke line cap
      */
@@ -66,21 +38,13 @@ export interface CircularProgressProps {
      */
     onAnimationComplete?: () => void;
     /**
-     * prefix value
-     */
-    valuePrefix?: string;
-    /**
-     * suffix value
-     */
-    valueSuffix?: string;
-    /**
      * active progress circle color
      */
     activeStrokeColor?: string;
     /**
      * active progress secondary color. Use this to provide a gradient effect
      */
-    activeStrokeSecondaryColor?: string;
+    activeStrokeSecondaryColor?: string | null;
     /**
      * inactive progress circle color
      */
@@ -98,13 +62,58 @@ export interface CircularProgressProps {
      */
     inActiveStrokeWidth?: number;
     /**
-     * show or hide the progress text value
+     * custom child component for circular progress
      */
-    showProgressValue?: boolean;
+    children?: React.ReactNode;
     /**
      * change direction of progress ring
      */
     clockwise?: boolean;
+    /**
+     * rotate the progress ring by this value
+     * accepts a number from -360 to 360
+     */
+    rotation?: number;
+    /**
+     * title to display below the progress value
+     */
+    title?: string;
+    /**
+     * title text style
+     */
+    titleStyle?: TextStyle;
+    /**
+     * title text color
+     */
+    titleColor?: string;
+    /**
+     * title text font size
+     */
+    titleFontSize?: number;
+    /**
+     * progress value text color
+     */
+    progressValueColor?: string;
+    /**
+     * progress value text style
+     */
+    progressValueStyle?: TextStyle;
+    /**
+     * progress value text font size
+     */
+    fontSize?: number;
+    /**
+     * prefix value
+     */
+    valuePrefix?: string;
+    /**
+     * suffix value
+     */
+    valueSuffix?: string;
+    /**
+     * show or hide the progress text value
+     */
+    showProgressValue?: boolean;
     /**
      * subtitle text value
      */
@@ -112,42 +121,23 @@ export interface CircularProgressProps {
     /**
      * subtitle text style
      */
-    subtitleStyle?: StyleProp<TextStyle>;
+    subtitleStyle?: TextStyle;
     /**
      * subtitle text color
      */
-    subtitleColor?: string,
+    subtitleColor?: string;
     /**
      * subtitle text font size
      */
-    subtitleFontSize?: number,
+    subtitleFontSize?: number;
+    /**
+     * function to format the progress value.
+     * By default, the value is rounded to the nearest integer.
+     * Make sure to define it as a worklet function.
+     * https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
+     */
+    progressFormatter?: (v: number) => number;
 }
 declare const CircularProgress: React.FC<CircularProgressProps>;
-export declare const dynamicStyles: (props: any) => {
-    fromProps: {
-        fontSize: any;
-        color: any;
-    };
-    input: {
-        fontWeight: "bold";
-        textAlign: "center";
-    };
-    valueContainer: {
-        flex: number;
-        alignItems: "center";
-        justifyContent: "center";
-    };
-    title: {
-        textAlign: "center";
-        width: string;
-        marginTop: number;
-        color: any;
-        fontSize: any;
-    };
-    subtitle: {
-        color: any;
-        fontSize: any;
-    };
-};
 export default CircularProgress;
 //# sourceMappingURL=index.d.ts.map

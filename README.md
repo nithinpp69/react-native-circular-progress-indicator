@@ -58,7 +58,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   value={60}
   radius={120}
   duration={2000}
-  textColor={'#ecf0f1'}
+  progressValueColor={'#ecf0f1'}
   maxValue={200}
   title={'KM/H'}
   titleColor={'white'}
@@ -67,7 +67,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 <CircularProgress
   value={60}
   activeStrokeWidth={12}
-  textColor={'#ecf0f1'}
+  progressValueColor={'#ecf0f1'}
 />
 
 ```
@@ -91,7 +91,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   value={85}
   inActiveStrokeColor={'#2ecc71'}
   inActiveStrokeOpacity={0.2}
-  textColor={'#fff'}
+  progressValueColor={'#fff'}
   valueSuffix={'%'}
 />
 
@@ -109,7 +109,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   value={90}
   inActiveStrokeColor={'#2ecc71'}
   inActiveStrokeOpacity={0.2}
-  textColor={'#fff'}
+  progressValueColor={'#fff'}
   valueSuffix={'%'}
   onAnimationComplete={() => { alert('callback') }}
 />
@@ -127,7 +127,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
  <CircularProgress
   value={60}
   radius={120}
-  textColor={'#ecf0f1'}
+  progressValueColor={'#ecf0f1'}
   activeStrokeColor={'#f39c12'}
   inActiveStrokeColor={'#9b59b6'}
   inActiveStrokeOpacity={0.5}
@@ -138,7 +138,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 <CircularProgress
   value={60}
   radius={120}
-  textColor={'#ecf0f1'}
+  progressValueColor={'#ecf0f1'}
   activeStrokeColor={'#f39c12'}
   inActiveStrokeColor={'#9b59b6'}
   inActiveStrokeOpacity={0.5}
@@ -152,7 +152,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   inActiveStrokeOpacity={0.5}
   activeStrokeWidth={20}
   inActiveStrokeWidth={20}
-  textStyle={{ fontWeight: '100', color: 'yellow' }}
+  progressValueStyle={{ fontWeight: '100', color: 'yellow' }}
 />
 
 ```
@@ -171,7 +171,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   radius={120}
   maxValue={10}
   initialValue={10}
-  textColor={'#fff'}
+  progressValueColor={'#fff'}
   activeStrokeWidth={15}
   inActiveStrokeWidth={15}
   duration={10000}

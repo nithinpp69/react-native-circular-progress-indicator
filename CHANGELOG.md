@@ -1,3 +1,8 @@
+###  Build: 🏠 `3.0.1` - react-native-circular-progress-indicator
+
+---
+- Updated typos in the readme. Renamed props are now updated in the readme as well.
+
 ###  Build: 🏠 `3.0.0` - react-native-circular-progress-indicator
 
 ---

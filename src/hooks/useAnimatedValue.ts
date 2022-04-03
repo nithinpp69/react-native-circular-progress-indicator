@@ -20,7 +20,7 @@ export interface useAnimatedValueProps {
   clockwise?: boolean;
   valueSuffix?: string;
   valuePrefix?: string;
-  progressFormatter?: (v: number) => number;
+  progressFormatter?: (v: number) => number | string;
 }
 
 export default function useAnimatedValue({

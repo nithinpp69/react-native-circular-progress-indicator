@@ -19,6 +19,7 @@ This project is inspired from this [Youtube tutorial](https://www.youtube.com/wa
 ![](examples/demo5.gif)
 ![](examples/demo6.gif)
 ![](examples/demo7.gif)
+![](examples/demo8.gif)
 
 ## Prerequisites
 
@@ -251,14 +252,28 @@ By default, the progress value is rounded to the nearest integer. If you want to
 
 ```
 <CircularProgress
-  value={56}
+  value={30}
+  radius={150}
+  duration={1000}
+  progressValueColor={'cyan'}
+  maxValue={100}
+  title={undefined}
+  titleFontSize={16}
+  titleColor={'#333'}
+  titleStyle={{ fontWeight: 'bold' }}
+  circleBackgroundColor={'#333'}
+  activeStrokeColor={'#2465FD'}
+  activeStrokeSecondaryColor={'#C3305D'}
+  inActiveStrokeColor={'white'}
   progressFormatter={(value: number) => {
     'worklet';
-     
+      
     return value.toFixed(2); // 2 decimal places
   }}
 />
 ```
+
+![](examples/demo8.gif)
 
 Make sure to mark this function as a worklet function. Read more about worklets at https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
 

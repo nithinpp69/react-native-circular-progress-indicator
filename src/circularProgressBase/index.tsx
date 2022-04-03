@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import ProgressCircle from '@src/components/progressCircle';
-import useAnimatedValue from '@src/hooks/useAnimatedValue';
-import COLORS from '@src/utils/colors';
+import ProgressCircle from '../components/progressCircle';
+import useAnimatedValue from '../hooks/useAnimatedValue';
+import COLORS from '../utils/colors';
 import styles from './styles';
 import { CircularProgressBaseProps } from './types';
 

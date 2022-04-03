@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 import Animated from 'react-native-reanimated';
-import COLORS from '../../utils/colors';
+import COLORS from '@src/utils/colors';
 import { ProgressCircleProps } from './types';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);

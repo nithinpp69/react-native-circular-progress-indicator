@@ -1,14 +1,9 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedProps,
-  withDelay,
-  runOnJS,
-  Easing,
-} from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
+import useAnimatedValue from '../hooks/useAnimatedValue';
+import COLORS from '../utils/colors';
 import styles from './styles';
 import { CircularProgressBaseProps } from './types';
 
@@ -17,24 +12,34 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
   value,
   initialValue = 0,
-  circleBackgroundColor = 'transparent',
+  circleBackgroundColor = COLORS.TRANSPARENT,
   radius = 60,
   duration = 500,
   delay = 0,
   maxValue = 100,
   strokeLinecap = 'round',
   onAnimationComplete = () => null,
-  activeStrokeColor = '#2ecc71',
+  activeStrokeColor = COLORS.GREEN,
   activeStrokeSecondaryColor = null,
   activeStrokeWidth = 10,
-  inActiveStrokeColor = 'rgba(0,0,0,0.3)',
+  inActiveStrokeColor = COLORS.BLACK_30,
   inActiveStrokeWidth = 10,
   inActiveStrokeOpacity = 1,
   clockwise = true,
   rotation = 0,
   children,
 }: CircularProgressBaseProps) => {
-  const animatedValue = useSharedValue(initialValue);
+  const { animatedCircleProps } = useAnimatedValue({
+    initialValue,
+    radius,
+    maxValue,
+    clockwise,
+    delay,
+    value,
+    duration,
+    onAnimationComplete,
+  });
+
   const viewBox = radius + Math.max(activeStrokeWidth, inActiveStrokeWidth);
   const circleCircumference = 2 * Math.PI * radius;
 
@@ -45,29 +50,6 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
     }),
     [radius, rotation]
   );
-
-  const animatedCircleProps = useAnimatedProps(() => {
-    let biggestValue = Math.max(initialValue, maxValue);
-    biggestValue = biggestValue <= 0 ? 1 : biggestValue;
-    const maxPercentage: number = clockwise
-      ? (100 * animatedValue.value) / biggestValue
-      : (100 * -animatedValue.value) / biggestValue;
-    return {
-      strokeDashoffset:
-        circleCircumference - (circleCircumference * maxPercentage) / 100,
-    };
-  });
-
-  useEffect(() => {
-    animatedValue.value = withDelay(
-      delay,
-      withTiming(value, { duration, easing: Easing.linear }, (isFinished) => {
-        if (isFinished) {
-          runOnJS(onAnimationComplete)?.();
-        }
-      })
-    );
-  }, [value]);
 
   return (
     <View style={styles(styleProps).container}>

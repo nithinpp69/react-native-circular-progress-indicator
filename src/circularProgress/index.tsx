@@ -1,26 +1,14 @@
-import React, { useEffect, useMemo } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import React, { useMemo } from 'react';
+import { Text, TextInput, StyleSheet, View } from 'react-native';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedProps,
-  withDelay,
-  runOnJS,
-  useDerivedValue,
-  Easing,
-} from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
+import useAnimatedValue from '../hooks/useAnimatedValue';
 import COLORS from '../utils/colors';
 import styles from './styles';
-import {CircularProgressProps} from './types';
+import { CircularProgressProps } from './types';
 
-const AnimatedInput = Animated.createAnimatedComponent(TextInput);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+const AnimatedInput = Animated.createAnimatedComponent(TextInput);
 
 const CircularProgress: React.FC<CircularProgressProps> = ({
   value,
@@ -60,9 +48,21 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     return Math.round(v);
   },
 }: CircularProgressProps) => {
-  const animatedValue = useSharedValue(initialValue);
   const viewBox = radius + Math.max(activeStrokeWidth, inActiveStrokeWidth);
   const circleCircumference = 2 * Math.PI * radius;
+  const { animatedCircleProps, animatedTextProps } = useAnimatedValue({
+    initialValue,
+    radius,
+    maxValue,
+    clockwise,
+    delay,
+    value,
+    duration,
+    onAnimationComplete,
+    valuePrefix,
+    progressFormatter,
+    valueSuffix,
+  });
 
   const styleProps = useMemo(
     () => ({
@@ -96,41 +96,6 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
       subtitleStyle,
     ]
   );
-
-  const animatedCircleProps = useAnimatedProps(() => {
-    let biggestValue = Math.max(initialValue, maxValue);
-    biggestValue = biggestValue <= 0 ? 1 : biggestValue;
-    const maxPercentage: number = clockwise
-      ? (100 * animatedValue.value) / biggestValue
-      : (100 * -animatedValue.value) / biggestValue;
-    return {
-      strokeDashoffset:
-        circleCircumference - (circleCircumference * maxPercentage) / 100,
-    };
-  });
-
-  useEffect(() => {
-    animatedValue.value = withDelay(
-      delay,
-      withTiming(value, { duration, easing: Easing.linear }, (isFinished) => {
-        if (isFinished) {
-          runOnJS(onAnimationComplete)?.();
-        }
-      })
-    );
-  }, [value]);
-
-  const progressValue = useDerivedValue(() => {
-    return `${valuePrefix}${progressFormatter(
-      animatedValue.value
-    )}${valueSuffix}`;
-  });
-
-  const animatedTextProps = useAnimatedProps(() => {
-    return {
-      text: progressValue.value,
-    } as any;
-  });
 
   return (
     <View style={styles(styleProps).container}>

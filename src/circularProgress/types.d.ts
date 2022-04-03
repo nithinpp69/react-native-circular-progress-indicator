@@ -62,10 +62,6 @@ export interface CircularProgressProps {
      */
     inActiveStrokeWidth?: number;
     /**
-     * custom child component for circular progress
-     */
-    children?: React.ReactNode;
-    /**
      * change direction of progress ring
      */
     clockwise?: boolean;

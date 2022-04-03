@@ -1,5 +1,5 @@
-import CircularProgress from './src/circularProgress/index';
-import CircularProgressBase from './src/CircularProgressBase/index';
+import CircularProgress from './src/circularProgress';
+import CircularProgressBase from './src/circularProgressBase';
 
 export default CircularProgress;
 export { CircularProgressBase };

@@ -1,3 +1,10 @@
+###  Build: 🏠 `3.1.0` - react-native-circular-progress-indicator
+
+---
+- Updated internal working of the module.
+- Refactored the code to several standalone components.
+- Moved all the animation logic to a custom hook `useAnimatedValue`
+
 ###  Build: 🏠 `3.0.1` - react-native-circular-progress-indicator
 
 ---

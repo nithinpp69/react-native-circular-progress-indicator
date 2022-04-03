@@ -62,10 +62,6 @@ export interface CircularProgressProps {
      */
     inActiveStrokeWidth?: number;
     /**
-     * custom child component for circular progress
-     */
-    children?: React.ReactNode;
-    /**
      * change direction of progress ring
      */
     clockwise?: boolean;
@@ -136,7 +132,7 @@ export interface CircularProgressProps {
      * Make sure to define it as a worklet function.
      * https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
      */
-    progressFormatter?: (v: number) => number;
+    progressFormatter?: (v: number) => number | string;
 }
 declare const CircularProgress: React.FC<CircularProgressProps>;
 export default CircularProgress;

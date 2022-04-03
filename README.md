@@ -256,8 +256,6 @@ By default, the progress value is rounded to the nearest integer. If you want to
   radius={150}
   duration={1000}
   progressValueColor={'cyan'}
-  maxValue={100}
-  title={undefined}
   titleFontSize={16}
   titleColor={'#333'}
   titleStyle={{ fontWeight: 'bold' }}
@@ -273,10 +271,9 @@ By default, the progress value is rounded to the nearest integer. If you want to
 />
 ```
 
-![](examples/demo8.gif)
-
 Make sure to mark this function as a worklet function. Read more about worklets at https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
 
+![](examples/demo8.gif)
 ## Props
 | Prop                        | Description                                                                           | Type                          | Default Value       | Required |
 | :--------------------------:|:--------------------------------------------------------------------------------------|:-----------------------------:|:-------------------:|:--------:|

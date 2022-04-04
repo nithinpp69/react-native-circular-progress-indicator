@@ -1,3 +1,9 @@
+###  Build: 🏠 `3.2.0` - react-native-circular-progress-indicator
+
+---
+- Added web support.
+- Now you can use the component in web too.
+
 ###  Build: 🏠 `3.1.0` - react-native-circular-progress-indicator
 
 ---

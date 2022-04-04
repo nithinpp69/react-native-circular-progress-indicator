@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 import Animated from 'react-native-reanimated';
 import COLORS from '../..//utils/colors';
+import styles from './styles';
 import { ProgressCircleProps } from './types';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -29,6 +30,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
       width={radius * 2}
       height={radius * 2}
       viewBox={`0 0 ${viewBox * 2} ${viewBox * 2}`}
+      style={styles.svg}
     >
       {activeStrokeSecondaryColor ? (
         <Defs>
@@ -38,7 +40,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
           </LinearGradient>
         </Defs>
       ) : null}
-      <G rotation="270" origin={`${viewBox}, ${viewBox}`}>
+      <G origin={`${viewBox}, ${viewBox}`}>
         <Circle
           cx="50%"
           cy="50%"
@@ -54,7 +56,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
           stroke={activeStrokeSecondaryColor ? 'url(#grad)' : activeStrokeColor}
           strokeWidth={activeStrokeWidth}
           r={radius}
-          fill="transparent"
+          fill={COLORS.TRANSPARENT}
           strokeDasharray={circleCircumference}
           strokeLinecap={strokeLinecap}
           animatedProps={animatedCircleProps}

@@ -9,7 +9,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
-export interface useAnimatedValueProps {
+export interface UseAnimatedValueProps {
   value: number;
   initialValue?: number;
   radius?: number;
@@ -39,7 +39,7 @@ export default function useAnimatedValue({
     return Math.round(v);
   },
   valueSuffix = '',
-}: useAnimatedValueProps) {
+}: UseAnimatedValueProps) {
   const animatedValue = useSharedValue(initialValue);
   const circleCircumference = useMemo(() => 2 * Math.PI * radius, [radius]);
 
@@ -81,5 +81,6 @@ export default function useAnimatedValue({
   return {
     animatedCircleProps,
     animatedTextProps,
+    progressValue,
   };
 }

@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
-import { Text, TextInput, StyleSheet, View } from 'react-native';
-import Animated from 'react-native-reanimated';
+import React, { useMemo, useRef } from 'react';
+import { Text, TextInput, StyleSheet, View, Platform } from 'react-native';
+import Animated, { useAnimatedReaction } from 'react-native-reanimated';
 import ProgressCircle from '../components/progressCircle';
 import useAnimatedValue from '../hooks/useAnimatedValue';
 import COLORS from '../utils/colors';
@@ -47,7 +47,11 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     return Math.round(v);
   },
 }: CircularProgressProps) => {
-  const { animatedCircleProps, animatedTextProps } = useAnimatedValue({
+  const {
+    animatedCircleProps,
+    animatedTextProps,
+    progressValue,
+  } = useAnimatedValue({
     initialValue,
     radius,
     maxValue,
@@ -60,6 +64,22 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     progressFormatter,
     valueSuffix,
   });
+
+  const inputRef = useRef<any>(null);
+
+  if (Platform.OS === 'web') {
+    // only run the reaction on web platform.
+    useAnimatedReaction(
+      () => {
+        return progressValue.value;
+      },
+      (data, prevData) => {
+        if (data !== prevData && inputRef.current) {
+          inputRef.current.value = data;
+        }
+      }
+    );
+  }
 
   const styleProps = useMemo(
     () => ({
@@ -118,7 +138,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
       >
         {showProgressValue && (
           <AnimatedInput
-            underlineColorAndroid="transparent"
+            underlineColorAndroid={COLORS.TRANSPARENT}
             editable={false}
             defaultValue={`${valuePrefix}${initialValue}${valueSuffix}`}
             style={[

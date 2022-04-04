@@ -138,6 +138,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
       >
         {showProgressValue && (
           <AnimatedInput
+            ref={inputRef}
             underlineColorAndroid={COLORS.TRANSPARENT}
             editable={false}
             defaultValue={`${valuePrefix}${initialValue}${valueSuffix}`}

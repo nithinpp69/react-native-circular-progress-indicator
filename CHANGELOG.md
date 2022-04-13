@@ -1,3 +1,7 @@
+###  Build: 🏠 `3.2.1` - react-native-circular-progress-indicator
+
+---
+- Bug fixes and improvements.
 ###  Build: 🏠 `3.2.0` - react-native-circular-progress-indicator
 
 ---

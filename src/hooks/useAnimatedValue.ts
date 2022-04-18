@@ -53,7 +53,7 @@ export default function useAnimatedValue({
   });
 
   const animatedCircleProps = useAnimatedProps(() => {
-    let biggestValue = Math.max(initialValue, maxValue);
+    let biggestValue: number = Math.max(initialValue, maxValue);
     biggestValue = biggestValue <= 0 ? 1 : biggestValue;
     const maxPercentage: number = clockwise
       ? (100 * animatedValue.value) / biggestValue

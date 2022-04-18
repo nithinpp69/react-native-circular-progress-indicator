@@ -5,7 +5,7 @@ import { CircleGradientProps } from './types';
 const CircleGradient: React.FC<CircleGradientProps> = ({
   activeStrokeSecondaryColor,
   activeStrokeColor,
-}) => {
+}: CircleGradientProps) => {
   if (activeStrokeSecondaryColor)
     return (
       <Defs>

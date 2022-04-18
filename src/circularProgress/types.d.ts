@@ -133,6 +133,10 @@ export interface CircularProgressProps {
      * https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
      */
     progressFormatter?: (v: number) => number | string;
+    /**
+     * specifies whether fonts should scale to respect Text Size accessibility settings.
+     */
+    allowFontScaling?: boolean;
 }
 declare const CircularProgress: React.FC<CircularProgressProps>;
 export default CircularProgress;

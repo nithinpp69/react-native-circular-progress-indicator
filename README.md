@@ -1,9 +1,9 @@
 # react-native-circular-progress-indicator
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
-![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20Web-brightgreen.svg?style=flat&colorB=191A17)
-[![Version](https://img.shields.io/npm/v/react-native-circular-progress-indicator.svg)](https://www.npmjs.com/package/react-native-circular-progress-indicator)
-[![npm](https://img.shields.io/npm/dt/react-native-circular-progress-indicator.svg)](https://www.npmjs.com/package/react-native-circular-progress-indicator)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge)]()
+![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20Web-brightgreen.svg?style=for-the-badge&colorB=191A17)
+[![Version](https://img.shields.io/npm/v/react-native-circular-progress-indicator.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-circular-progress-indicator)
+[![npm](https://img.shields.io/npm/dt/react-native-circular-progress-indicator.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-circular-progress-indicator)
 
 A simple and customizable React Native circular progress indicator component. 
 
@@ -310,6 +310,7 @@ Make sure to mark this function as a worklet function. Read more about worklets 
 | showProgressValue           | show or hide the progress text value                                                  | Bool                          | true                | false    |
 | clockwise                   | show ring progress clockwise or anti-clockwise. pass false to enable anti clock-wise  | Bool                          | true                |  false   |
 | progressFormatter           | function to format the progress value. Make sure to define it as a worklet function.  | Function                      | (v)=> Math.round(v) | false    |
+| allowFontScaling            | specifies whether fonts should scale to respect Text Size accessibility settings.     | Bool                          | true                | false    |
 
 ## License
 This project is licenced under the MIT License.

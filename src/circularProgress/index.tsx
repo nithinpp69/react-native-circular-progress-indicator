@@ -46,6 +46,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
 
     return Math.round(v);
   },
+  allowFontScaling = true,
 }: CircularProgressProps) => {
   const {
     animatedCircleProps,
@@ -60,6 +61,8 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     value,
     duration,
     onAnimationComplete,
+    activeStrokeWidth,
+    inActiveStrokeWidth,
     valuePrefix,
     progressFormatter,
     valueSuffix,
@@ -148,12 +151,14 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
               styles(styleProps).fromProps,
             ]}
             animatedProps={animatedTextProps}
+            allowFontScaling={allowFontScaling}
           />
         )}
         {title && title !== '' ? (
           <Text
             style={[styles(styleProps).title, titleStyle]}
             numberOfLines={1}
+            allowFontScaling={allowFontScaling}
           >
             {title}
           </Text>
@@ -166,6 +171,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
               subtitleStyle,
             ]}
             numberOfLines={1}
+            allowFontScaling={allowFontScaling}
           >
             {subtitle}
           </Text>

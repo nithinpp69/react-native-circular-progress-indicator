@@ -1,3 +1,8 @@
+###  Build: 🏠 `4.0.0` - react-native-circular-progress-indicator
+
+---
+- Fixed extra padding issue from the `CircularProgress` component. 
+- Added `allowFontScaling` prop to the `CircularProgress` component. Pass `false` to disable font scaling.
 ###  Build: 🏠 `3.2.1` - react-native-circular-progress-indicator
 
 ---

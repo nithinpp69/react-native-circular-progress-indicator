@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import {
   Easing,
   runOnJS,
@@ -8,6 +8,7 @@ import {
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
+import useCircleValues from './useCircleValues';
 
 export interface UseAnimatedValueProps {
   value: number;
@@ -17,6 +18,8 @@ export interface UseAnimatedValueProps {
   delay?: number;
   maxValue?: number;
   onAnimationComplete?: () => void;
+  activeStrokeWidth?: number;
+  inActiveStrokeWidth?: number;
   clockwise?: boolean;
   valueSuffix?: string;
   valuePrefix?: string;
@@ -32,6 +35,8 @@ export default function useAnimatedValue({
   value,
   duration,
   onAnimationComplete = () => null,
+  activeStrokeWidth = 10,
+  inActiveStrokeWidth = 10,
   valuePrefix = '',
   progressFormatter = (v: number) => {
     'worklet';
@@ -41,7 +46,11 @@ export default function useAnimatedValue({
   valueSuffix = '',
 }: UseAnimatedValueProps) {
   const animatedValue = useSharedValue(initialValue);
-  const circleCircumference = useMemo(() => 2 * Math.PI * radius, [radius]);
+  const { circleCircumference } = useCircleValues({
+    radius,
+    activeStrokeWidth,
+    inActiveStrokeWidth,
+  });
 
   const animatedCircleProps = useAnimatedProps(() => {
     let biggestValue = Math.max(initialValue, maxValue);
@@ -58,17 +67,17 @@ export default function useAnimatedValue({
   useEffect(() => {
     animatedValue.value = withDelay(
       delay,
-      withTiming(value, { duration, easing: Easing.linear }, isFinished => {
+      withTiming(value, { duration, easing: Easing.linear }, (isFinished) => {
         if (isFinished) {
           runOnJS(onAnimationComplete)?.();
         }
-      }),
+      })
     );
   }, [value]);
 
   const progressValue = useDerivedValue(() => {
     return `${valuePrefix}${progressFormatter(
-      animatedValue.value,
+      animatedValue.value
     )}${valueSuffix}`;
   });
 

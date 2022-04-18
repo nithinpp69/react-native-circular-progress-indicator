@@ -1,7 +1,9 @@
 import React, { useMemo } from 'react';
-import Svg, { G, Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
+import Svg, { G, Circle } from 'react-native-svg';
 import Animated from 'react-native-reanimated';
+import useCircleValues from '../../hooks/useCircleValues';
 import COLORS from '../../utils/colors';
+import CircleGradient from '../circleGradient';
 import styles from './styles';
 import { ProgressCircleProps } from './types';
 
@@ -21,9 +23,17 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
 }: ProgressCircleProps) => {
   const viewBox = useMemo(
     () => radius + Math.max(activeStrokeWidth, inActiveStrokeWidth),
-    [radius, activeStrokeWidth, inActiveStrokeWidth],
+    [radius, activeStrokeWidth, inActiveStrokeWidth]
   );
-  const circleCircumference = useMemo(() => 2 * Math.PI * radius, [radius]);
+  const {
+    inactiveCircleRadius,
+    activeCircleRadius,
+    circleCircumference,
+  } = useCircleValues({
+    radius,
+    activeStrokeWidth,
+    inActiveStrokeWidth,
+  });
 
   return (
     <Svg
@@ -32,21 +42,17 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
       viewBox={`0 0 ${viewBox * 2} ${viewBox * 2}`}
       style={styles.svg}
     >
-      {activeStrokeSecondaryColor ? (
-        <Defs>
-          <LinearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <Stop offset="0%" stopColor={activeStrokeSecondaryColor} />
-            <Stop offset="100%" stopColor={activeStrokeColor} />
-          </LinearGradient>
-        </Defs>
-      ) : null}
+      <CircleGradient
+        activeStrokeColor={activeStrokeColor}
+        activeStrokeSecondaryColor={activeStrokeSecondaryColor}
+      />
       <G origin={`${viewBox}, ${viewBox}`}>
         <Circle
           cx="50%"
           cy="50%"
           stroke={inActiveStrokeColor}
           strokeWidth={inActiveStrokeWidth}
-          r={radius}
+          r={inactiveCircleRadius}
           fill={circleBackgroundColor}
           strokeOpacity={inActiveStrokeOpacity}
         />
@@ -55,7 +61,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
           cy="50%"
           stroke={activeStrokeSecondaryColor ? 'url(#grad)' : activeStrokeColor}
           strokeWidth={activeStrokeWidth}
-          r={radius}
+          r={activeCircleRadius}
           fill={COLORS.TRANSPARENT}
           strokeDasharray={circleCircumference}
           strokeLinecap={strokeLinecap}

@@ -35,6 +35,8 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
     value,
     duration,
     onAnimationComplete,
+    activeStrokeWidth,
+    inActiveStrokeWidth,
   });
 
   const styleProps = useMemo(

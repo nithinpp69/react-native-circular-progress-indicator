@@ -1,11 +1,29 @@
-# react-native-circular-progress-indicator
+<h1 align="center">
+  React Native Circular Progress Indicator 🔥
+</h1>
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge)]()
-![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20Web-brightgreen.svg?style=for-the-badge&colorB=191A17)
-[![Version](https://img.shields.io/npm/v/react-native-circular-progress-indicator.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-circular-progress-indicator)
-[![npm](https://img.shields.io/npm/dt/react-native-circular-progress-indicator.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-circular-progress-indicator)
+<p align="center">
+  A simple and customizable React Native circular progress indicator component. 
+</p>
 
-A simple and customizable React Native circular progress indicator component. 
+<p align="center">
+  <a href="https://github.com/nithinpp69/react-native-circular-progress-indicator/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge">
+  </a>
+ 
+  <a href="https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20Web-brightgreen.svg?style=for-the-badge&colorB=191A17">
+    <img src="https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20Web-brightgreen.svg?style=for-the-badge&colorB=191A17">
+  </a>
+ 
+  <a href="https://www.npmjs.com/package/react-native-circular-progress-indicator">
+    <img src="https://img.shields.io/npm/v/react-native-circular-progress-indicator.svg?style=for-the-badge">
+  </a>
+ 
+  <a href="https://www.npmjs.com/package/react-native-circular-progress-indicator">
+    <img src="https://img.shields.io/npm/dt/react-native-circular-progress-indicator.svg?style=for-the-badge">
+  </a>
+  
+</p>
 
 This project is inspired from this [Youtube tutorial](https://www.youtube.com/watch?v=x2LtzCxbWI0). Do check it out. Special mention at [@mironcatalin](https://www.youtube.com/channel/UCTcH04SRuyedaSuuQVeAcdg)
 ## Demo
@@ -39,18 +57,18 @@ Follow [react-native-svg](https://www.npmjs.com/package/react-native-svg#install
 
  Supported version: react-native >= 0.59.0
 
-  ```
+  ```bash
   npm install react-native-circular-progress-indicator
   ```
   
   or
   
-  ```
+  ```bash
   yarn add react-native-circular-progress-indicator
   ```
   
 ## Example
-```
+```jsx
 import CircularProgress from 'react-native-circular-progress-indicator';
 
 ....
@@ -77,7 +95,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 #### with value prefix/suffix
 
-```
+```jsx
 import CircularProgress from 'react-native-circular-progress-indicator';
 
 ....
@@ -102,7 +120,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 #### with callback function
 
-```
+```jsx
 import CircularProgress from 'react-native-circular-progress-indicator';
 
 ....
@@ -121,7 +139,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 #### custom
 
-```
+```jsx
 import CircularProgress from 'react-native-circular-progress-indicator';
 
 ....
@@ -163,7 +181,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 #### use as a countdown timer
 
-```
+```jsx
 import CircularProgress from 'react-native-circular-progress-indicator';
 
 ....
@@ -186,7 +204,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 #### with gradient effect
 
-```
+```jsx
 import CircularProgress from 'react-native-circular-progress-indicator';
 
 ....
@@ -206,7 +224,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 CircularProgressWithChild component has been renamed to CircularProgressBase. The CircularProgressWithChild component is still available in the package but will be removed in the
 next releases Please use the new CircularProgressBase component instead.
 
-```
+```jsx
 import { CircularProgressBase } from 'react-native-circular-progress-indicator';
 
 // accepts any react element as child
@@ -251,7 +269,11 @@ const props = {
 
 By default, the progress value is rounded to the nearest integer. If you want to display decimal place values, you can do so by,
 
-```
+```jsx
+import CircularProgress from 'react-native-circular-progress-indicator';
+
+....
+
 <CircularProgress
   value={30}
   radius={150}

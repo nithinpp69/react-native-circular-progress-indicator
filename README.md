@@ -25,7 +25,17 @@
   
 </p>
 
-This project is inspired from this [Youtube tutorial](https://www.youtube.com/watch?v=x2LtzCxbWI0). Do check it out. Special mention at [@mironcatalin](https://www.youtube.com/channel/UCTcH04SRuyedaSuuQVeAcdg)
+<p align="center">
+  This project is inspired from this 
+  <a href="https://www.youtube.com/watch?v=x2LtzCxbWI0">
+    <span>Youtube tutorial</span>
+  </a>
+  . Do check it out. Special mention at 
+  <a href="https://www.youtube.com/channel/UCTcH04SRuyedaSuuQVeAcdg">
+    <span>@mironcatalin</span>
+  </a>
+</p>
+
 ## Demo
 
 ## ❤️ [Try on Expo Snack](https://snack.expo.dev/@nithinpp69/react-native-circular-progress-indicator/?platform=ios)

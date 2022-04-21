@@ -334,7 +334,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
                                 
 ## CircularProgress Props
 
-### CircularProgress component accepts all CircularProgressBase props except the children prop. Along with that, it also accepts the following props.
+CircularProgress component accepts all CircularProgressBase props except the children prop. Along with that, it also accepts the following props.
 
 | Prop                        | Description                                                                           | Type                          | Default Value       | Required |
 | :--------------------------:|:--------------------------------------------------------------------------------------|:-----------------------------:|:-------------------:|:--------:|

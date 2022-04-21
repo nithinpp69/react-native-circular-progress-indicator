@@ -3,7 +3,7 @@ import { StyleSheet, TextStyle } from 'react-native';
 type StyleProps = {
   radius: number;
   progressValueColor?: string;
-  fontSize?: number;
+  progressValueFontSize?: number;
   progressValueStyle?: TextStyle;
   activeStrokeColor?: string;
   titleStyle?: TextStyle;
@@ -32,7 +32,7 @@ const styles = (props: StyleProps) => {
     },
     fromProps: {
       fontSize:
-        props.fontSize ||
+        props.progressValueFontSize ||
         props.progressValueStyle?.fontSize ||
         props.radius / 2,
       color:
@@ -53,7 +53,6 @@ const styles = (props: StyleProps) => {
       fontSize:
         props.titleFontSize ||
         props.titleStyle?.fontSize ||
-        props.fontSize ||
         props.radius / 4,
     },
     subtitle: {
@@ -64,7 +63,6 @@ const styles = (props: StyleProps) => {
       fontSize:
         props.subtitleFontSize ||
         props.subtitleStyle?.fontSize ||
-        props.fontSize ||
         props.radius / 5,
     },
   });

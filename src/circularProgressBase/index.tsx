@@ -4,7 +4,7 @@ import ProgressCircle from '../components/progressCircle';
 import useAnimatedValue from '../hooks/useAnimatedValue';
 import COLORS from '../utils/colors';
 import styles from './styles';
-import { CircularProgressBaseProps } from './types';
+import type { CircularProgressBaseProps } from '../types';
 
 const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
   value,

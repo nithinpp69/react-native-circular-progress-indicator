@@ -1,15 +1,14 @@
 import { useCallback, useMemo } from 'react';
-
 export interface UseCircleValuesProps {
-  radius?: number;
-  activeStrokeWidth?: number;
-  inActiveStrokeWidth?: number;
+  radius: number;
+  activeStrokeWidth: number;
+  inActiveStrokeWidth: number;
 }
 
 export default function useCircleValues({
-  radius = 60,
-  activeStrokeWidth = 10,
-  inActiveStrokeWidth = 10,
+  radius,
+  activeStrokeWidth,
+  inActiveStrokeWidth,
 }: UseCircleValuesProps) {
   const isSameStrokeWidth = useMemo(
     () => activeStrokeWidth === inActiveStrokeWidth,

@@ -21,6 +21,8 @@ const styles = (props: StyleProps) => {
     container: {
       width: props.radius * 2,
       height: props.radius * 2,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     valueContainer: {
       flex: 1,

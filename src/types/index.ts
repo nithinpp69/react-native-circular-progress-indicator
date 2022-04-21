@@ -1,8 +1,13 @@
 import React from 'react';
-import { TextStyle } from 'react-native';
+import { TextStyle, ViewStyle } from 'react-native';
 import { CircleProps } from 'react-native-svg';
 
-type StrokeLineCap = 'butt' | 'round' | 'square';
+type StrokeLineCapType = 'butt' | 'round' | 'square';
+
+type DashedStrokeConfigType = {
+  count: number;
+  width: number;
+};
 
 type CircleGradientProps = {
   /**
@@ -13,6 +18,15 @@ type CircleGradientProps = {
    * active progress secondary color. Use this to provide a gradient effect
    */
   activeStrokeSecondaryColor?: string | null;
+}
+
+interface DashedCircleProps {
+  circleCircumference: number;
+  inActiveStrokeWidth: number;
+  activeStrokeWidth: number;
+  inactiveCircleRadius: number;
+  activeCircleRadius: number;
+  dashedStrokeConfig?: DashedStrokeConfigType;
 }
 
 interface BaseProgressCircleProps extends CircleGradientProps {
@@ -27,7 +41,7 @@ interface BaseProgressCircleProps extends CircleGradientProps {
   /**
    * progress stroke line cap
    */
-  strokeLinecap?: StrokeLineCap;
+  strokeLinecap?: StrokeLineCapType;
   /**
    * inactive progress circle color
    */
@@ -44,6 +58,13 @@ interface BaseProgressCircleProps extends CircleGradientProps {
    * inactive progress circle stroke width
    */
   inActiveStrokeWidth?: number;
+  /**
+   * This is useful if you want to display the progress circle as dashed lines.
+   * The dashed stroke count and stroke width can be customized.
+   * Based on these values and the radius of the circle,
+   * the dash gap between each dashes will be calculated automatically.
+   */
+  dashedStrokeConfig?: DashedStrokeConfigType;
 }
 
 interface ProgressCircleProps extends BaseProgressCircleProps {
@@ -169,4 +190,6 @@ export type {
   ProgressCircleProps,
   CircularProgressBaseProps,
   CircularProgressProps,
+  DashedCircleProps,
+  DashedStrokeConfigType,
 };

@@ -47,6 +47,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     return Math.round(v);
   },
   allowFontScaling = true,
+  dashedStrokeConfig = { count: 0, width: 0 },
 }: CircularProgressProps) => {
   const {
     animatedCircleProps,
@@ -131,6 +132,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           inActiveStrokeWidth={inActiveStrokeWidth}
           inActiveStrokeOpacity={inActiveStrokeOpacity}
           animatedCircleProps={animatedCircleProps}
+          dashedStrokeConfig={dashedStrokeConfig}
         />
       </View>
       <View

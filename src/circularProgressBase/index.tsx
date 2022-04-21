@@ -24,6 +24,7 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
   inActiveStrokeOpacity = 1,
   clockwise = true,
   rotation = 0,
+  dashedStrokeConfig = { count: 0, width: 0 },
   children,
 }: CircularProgressBaseProps) => {
   const { animatedCircleProps } = useAnimatedValue({
@@ -61,6 +62,7 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
           inActiveStrokeWidth={inActiveStrokeWidth}
           inActiveStrokeOpacity={inActiveStrokeOpacity}
           animatedCircleProps={animatedCircleProps}
+          dashedStrokeConfig={dashedStrokeConfig}
         />
       </View>
       <View

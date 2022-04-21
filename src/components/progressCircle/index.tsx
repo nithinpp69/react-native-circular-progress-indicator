@@ -38,8 +38,18 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
   });
 
   const maskId = useMemo(
-    () => (dashedStrokeConfig ? 'url(#dashed-circle)' : undefined),
-    [dashedStrokeConfig],
+    () =>
+      dashedStrokeConfig &&
+      dashedStrokeConfig?.count > 0 &&
+      dashedStrokeConfig?.width > 0
+        ? 'url(#dashed-circle)'
+        : undefined,
+    [dashedStrokeConfig]
+  );
+
+  const strokeColor = useMemo(
+    () => (activeStrokeSecondaryColor ? 'url(#grad)' : activeStrokeColor),
+    [activeStrokeSecondaryColor, activeStrokeColor]
   );
 
   return (
@@ -74,7 +84,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
         <AnimatedCircle
           cx="50%"
           cy="50%"
-          stroke={activeStrokeSecondaryColor ? 'url(#grad)' : activeStrokeColor}
+          stroke={strokeColor}
           strokeWidth={activeStrokeWidth}
           r={activeCircleRadius}
           fill={COLORS.TRANSPARENT}

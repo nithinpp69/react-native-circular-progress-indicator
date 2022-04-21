@@ -27,7 +27,7 @@ const DashedCircle: React.FC<DashedCircleProps> = ({
     [inactiveCircleRadius, activeCircleRadius],
   );
 
-  if (dashedStrokeConfig) {
+  if (dashedStrokeConfig?.count > 0 && dashedStrokeConfig?.width > 0) {
     return (
       <Defs>
         <Mask id="dashed-circle">

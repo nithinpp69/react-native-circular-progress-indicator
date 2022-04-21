@@ -13,6 +13,7 @@ This project is inspired from this [Youtube tutorial](https://www.youtube.com/wa
 ## Demo
 ## ❤️ [Try on Expo Snack](https://snack.expo.dev/@nithinpp69/react-native-circular-progress-indicator/?platform=ios)
 
+![](examples/demo10.gif)
 ![](examples/demo.gif)
 ![](examples/demo2.gif)
 ![](examples/demo3.gif)
@@ -22,7 +23,6 @@ This project is inspired from this [Youtube tutorial](https://www.youtube.com/wa
 ![](examples/demo7.gif)
 ![](examples/demo8.gif)
 ![](examples/demo9.gif)
-![](examples/demo10.gif)
 
 ## Prerequisites
 

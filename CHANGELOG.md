@@ -1,3 +1,9 @@
+###  Build: 🏠 `4.1.0` - react-native-circular-progress-indicator
+
+---
+- feat: added dashed circle configuration.
+- chore: added build setup with react-native-builder-bob.
+
 ###  Build: 🏠 `4.0.0` - react-native-circular-progress-indicator
 
 ---

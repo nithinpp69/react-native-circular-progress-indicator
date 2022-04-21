@@ -3,9 +3,10 @@ import Svg, { G, Circle } from 'react-native-svg';
 import Animated from 'react-native-reanimated';
 import useCircleValues from '../../hooks/useCircleValues';
 import COLORS from '../../utils/colors';
+import type { ProgressCircleProps } from '../../types';
 import CircleGradient from '../circleGradient';
 import styles from './styles';
-import type { ProgressCircleProps } from '../../types';
+import DashedCircle from '../dashedCircle';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -19,6 +20,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
   inActiveStrokeColor = COLORS.BLACK_30,
   inActiveStrokeWidth = 10,
   inActiveStrokeOpacity = 1,
+  dashedStrokeConfig,
   animatedCircleProps,
 }: ProgressCircleProps) => {
   const viewBox = useMemo(
@@ -35,6 +37,21 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
     inActiveStrokeWidth,
   });
 
+  const maskId = useMemo(
+    () =>
+      dashedStrokeConfig &&
+      dashedStrokeConfig?.count > 0 &&
+      dashedStrokeConfig?.width > 0
+        ? 'url(#dashed-circle)'
+        : undefined,
+    [dashedStrokeConfig]
+  );
+
+  const strokeColor = useMemo(
+    () => (activeStrokeSecondaryColor ? 'url(#grad)' : activeStrokeColor),
+    [activeStrokeSecondaryColor, activeStrokeColor]
+  );
+
   return (
     <Svg
       width={radius * 2}
@@ -46,7 +63,15 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
         activeStrokeColor={activeStrokeColor}
         activeStrokeSecondaryColor={activeStrokeSecondaryColor}
       />
-      <G origin={`${viewBox}, ${viewBox}`}>
+      <DashedCircle
+        circleCircumference={circleCircumference}
+        inActiveStrokeWidth={inActiveStrokeWidth}
+        activeStrokeWidth={activeStrokeWidth}
+        inactiveCircleRadius={inactiveCircleRadius}
+        activeCircleRadius={activeCircleRadius}
+        dashedStrokeConfig={dashedStrokeConfig}
+      />
+      <G mask={maskId}>
         <Circle
           cx="50%"
           cy="50%"
@@ -59,7 +84,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
         <AnimatedCircle
           cx="50%"
           cy="50%"
-          stroke={activeStrokeSecondaryColor ? 'url(#grad)' : activeStrokeColor}
+          stroke={strokeColor}
           strokeWidth={activeStrokeWidth}
           r={activeCircleRadius}
           fill={COLORS.TRANSPARENT}

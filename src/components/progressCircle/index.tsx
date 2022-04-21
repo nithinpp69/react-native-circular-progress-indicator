@@ -5,7 +5,7 @@ import useCircleValues from '../../hooks/useCircleValues';
 import COLORS from '../../utils/colors';
 import CircleGradient from '../circleGradient';
 import styles from './styles';
-import { ProgressCircleProps } from './types';
+import type { ProgressCircleProps } from '../../types';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 

@@ -5,7 +5,7 @@ import ProgressCircle from '../components/progressCircle';
 import useAnimatedValue from '../hooks/useAnimatedValue';
 import COLORS from '../utils/colors';
 import styles from './styles';
-import { CircularProgressProps } from './types';
+import type { CircularProgressProps } from '../types';
 
 const AnimatedInput = Animated.createAnimatedComponent(TextInput);
 
@@ -33,7 +33,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   titleFontSize,
   progressValueColor,
   progressValueStyle = {},
-  fontSize,
+  progressValueFontSize,
   valuePrefix = '',
   valueSuffix = '',
   showProgressValue = true,
@@ -89,7 +89,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
       radius,
       rotation,
       progressValueColor,
-      fontSize,
+      progressValueFontSize,
       progressValueStyle,
       activeStrokeColor,
       titleStyle,
@@ -104,7 +104,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
       radius,
       rotation,
       progressValueColor,
-      fontSize,
+      progressValueFontSize,
       progressValueStyle,
       activeStrokeColor,
       titleStyle,

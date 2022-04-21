@@ -2,9 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "lib": [
-      "es2017"
-    ],
+    "lib": ["esnext"],
     "allowJs": true,
     "jsx": "react-native",
     "noEmit": false,
@@ -20,12 +18,14 @@
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": false
+    "skipLibCheck": true,
+    "outDir": "./lib",
+    "declaration": true
   },
   "exclude": [
     "node_modules",
     "babel.config.js",
     "metro.config.js",
-    "jest.config.js"
-  ]
+  ],
+  "include": ["src"]
 }

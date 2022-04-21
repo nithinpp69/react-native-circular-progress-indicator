@@ -329,7 +329,7 @@ Make sure to mark this function as a worklet function. Read more about worklets 
 | progressValueColor          | progress value text color                                                             | String                        |                     | false    |
 | progressValueStyle          | progress value text style                                                             | Object                        | {}                  | false    |
 | maxValue                    | progress maximum value. Percentage calculation is based on the maximum value provided | String                        | 100                 | false    |
-| fontSize                    | progress value text font size                                                         | Number                        |                     | false    |
+| progressValueFontSize       | progress value text font size                                                         | Number                        |                     | false    |
 | inActiveStrokeOpacity       | inactive progress circle opacity value                                                | Number                        | 1                   | false    |
 | rotation                    | rotate the progress ring by this value. Accepts a number from -360 to 360             | Number                        | 0                   | false    |
 | strokeLinecap               | progress stroke line cap                                                              | 'round' or 'butt' or 'square' | 'round'             | false    |

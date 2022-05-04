@@ -35,6 +35,7 @@ const DashedCircle: React.FC<DashedCircleProps> = ({
             cx="50%"
             cy="50%"
             stroke={COLORS.WHITE}
+            fill={COLORS.TRANSPARENT}
             strokeWidth={strokeWidth}
             r={radius}
             strokeOpacity={1}

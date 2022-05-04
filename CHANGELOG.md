@@ -1,3 +1,7 @@
+###  Build: 🏠 `4.1.1` - react-native-circular-progress-indicator
+
+---
+- fix: make dashed circle fill color transparent
 ###  Build: 🏠 `4.1.0` - react-native-circular-progress-indicator
 
 ---

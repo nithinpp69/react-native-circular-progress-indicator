@@ -158,6 +158,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
         )}
         {title && title !== '' ? (
           <Text
+            testID="circular-progress-text"
             style={[styles(styleProps).title, titleStyle]}
             numberOfLines={1}
             allowFontScaling={allowFontScaling}

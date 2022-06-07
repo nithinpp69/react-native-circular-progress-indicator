@@ -37,13 +37,11 @@ export default function useAnimatedValue({
   onAnimationComplete = () => null,
   activeStrokeWidth = 10,
   inActiveStrokeWidth = 10,
-  valuePrefix = '',
   progressFormatter = (v: number) => {
     'worklet';
 
     return Math.round(v);
   },
-  valueSuffix = '',
 }: UseAnimatedValueProps) {
   const animatedValue = useSharedValue(initialValue);
   const { circleCircumference } = useCircleValues({
@@ -76,9 +74,7 @@ export default function useAnimatedValue({
   }, [value]);
 
   const progressValue = useDerivedValue(() => {
-    return `${valuePrefix}${progressFormatter(
-      animatedValue.value
-    )}${valueSuffix}`;
+    return `${progressFormatter(animatedValue.value)}`;
   });
 
   const animatedTextProps = useAnimatedProps(() => {

@@ -48,26 +48,23 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   },
   allowFontScaling = true,
   dashedStrokeConfig = { count: 0, width: 0 },
+  valuePrefixStyle = {},
+  valueSuffixStyle = {},
 }: CircularProgressProps) => {
-  const {
-    animatedCircleProps,
-    animatedTextProps,
-    progressValue,
-  } = useAnimatedValue({
-    initialValue,
-    radius,
-    maxValue,
-    clockwise,
-    delay,
-    value,
-    duration,
-    onAnimationComplete,
-    activeStrokeWidth,
-    inActiveStrokeWidth,
-    valuePrefix,
-    progressFormatter,
-    valueSuffix,
-  });
+  const { animatedCircleProps, animatedTextProps, progressValue } =
+    useAnimatedValue({
+      initialValue,
+      radius,
+      maxValue,
+      clockwise,
+      delay,
+      value,
+      duration,
+      onAnimationComplete,
+      activeStrokeWidth,
+      inActiveStrokeWidth,
+      progressFormatter,
+    });
 
   const inputRef = useRef<any>(null);
 
@@ -142,19 +139,45 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
         ]}
       >
         {showProgressValue && (
-          <AnimatedInput
-            ref={inputRef}
-            underlineColorAndroid={COLORS.TRANSPARENT}
-            editable={false}
-            defaultValue={`${valuePrefix}${initialValue}${valueSuffix}`}
-            style={[
-              styles(styleProps).input,
-              progressValueStyle,
-              styles(styleProps).fromProps,
-            ]}
-            animatedProps={animatedTextProps}
-            allowFontScaling={allowFontScaling}
-          />
+          <View style={styles(styleProps).valueContainerRow}>
+            {!!valuePrefix && (
+              <Text
+                style={[
+                  styles(styleProps).input,
+                  progressValueStyle,
+                  styles(styleProps).fromProps,
+                  valuePrefixStyle,
+                ]}
+              >
+                {valuePrefix}
+              </Text>
+            )}
+            <AnimatedInput
+              ref={inputRef}
+              underlineColorAndroid={COLORS.TRANSPARENT}
+              editable={false}
+              defaultValue={`${initialValue}`}
+              style={[
+                styles(styleProps).input,
+                progressValueStyle,
+                styles(styleProps).fromProps,
+              ]}
+              animatedProps={animatedTextProps}
+              allowFontScaling={allowFontScaling}
+            />
+            {!!valueSuffix && (
+              <Text
+                style={[
+                  styles(styleProps).input,
+                  progressValueStyle,
+                  styles(styleProps).fromProps,
+                  valueSuffixStyle,
+                ]}
+              >
+                {valueSuffix}
+              </Text>
+            )}
+          </View>
         )}
         {title && title !== '' ? (
           <Text

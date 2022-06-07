@@ -355,6 +355,8 @@ CircularProgress component accepts all CircularProgressBase props except the chi
 | showProgressValue           | show or hide the progress text value                                                  | Bool                          | true                | false    |
 | progressFormatter           | function to format the progress value. Make sure to define it as a worklet function.  | Function                      | (v)=> Math.round(v) | false    |
 | allowFontScaling            | specifies whether fonts should scale to respect Text Size accessibility settings.     | Bool                          | true                | false    |
+| valuePrefixStyle            | custom styling to value prefix. Use this to customize the styling of the value prefix. If not provided, the progress value style/colors will be used. | TextStyle | {} | false |
+| valueSuffixStyle            | custom styling to value suffix. Use this to customize the styling of the value suffix. If not provided, the progress value style/colors will be used. | TextStyle | {} | false |
 
 ## License
 This project is licenced under the MIT License.

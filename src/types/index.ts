@@ -281,6 +281,22 @@ interface CircularProgressProps extends BaseCircularProgressProps {
    * scaling.
    */
   allowFontScaling?: boolean;
+  /**
+   * custom styling to value prefix.
+   * Use this to customize the styling of the value prefix.
+   * If not provided, the progress value style/colors will be used.
+   *
+   * * @default {}
+   */
+  valuePrefixStyle?: TextStyle;
+  /**
+   * custom styling to value suffix.
+   * Use this to customize the styling of the value suffix.
+   * If not provided, the progress value style/colors will be used.
+   *
+   * * @default {}
+   */
+  valueSuffixStyle?: TextStyle;
 }
 
 export type {

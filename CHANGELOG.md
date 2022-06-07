@@ -1,3 +1,9 @@
+###  Build: 🏠 `4.2.0` - react-native-circular-progress-indicator
+
+---
+- make prefix and suffix separate text components
+- add separate styles for prefix and suffix value
+
 ###  Build: 🏠 `4.1.1` - react-native-circular-progress-indicator
 
 ---

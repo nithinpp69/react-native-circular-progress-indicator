@@ -1,5 +1,6 @@
 import React from 'react';
-import type { TextStyle } from 'react-native';
+import type { TextInputProps, TextStyle } from 'react-native';
+import Animated, { AnimateProps } from 'react-native-reanimated';
 import type { CircleProps } from 'react-native-svg';
 
 type StrokeLineCapType = 'butt' | 'round' | 'square';
@@ -99,7 +100,7 @@ interface BaseProgressCircleProps extends CircleGradientProps {
 }
 
 interface ProgressCircleProps extends BaseProgressCircleProps {
-  animatedCircleProps: CircleProps;
+  animatedCircleProps: AnimateProps<CircleProps>;
 }
 
 interface BaseCircularProgressProps extends BaseProgressCircleProps {
@@ -299,6 +300,18 @@ interface CircularProgressProps extends BaseCircularProgressProps {
   valueSuffixStyle?: TextStyle;
 }
 
+type ProgressValueProps = {
+  initialValue: number,
+  radius?: number,
+  activeStrokeColor?: string,
+  progressValueColor?: string,
+  progressValueStyle?: TextStyle,
+  progressValueFontSize?: number,
+  progressValue: Animated.SharedValue<string>,
+  animatedTextProps: AnimateProps<TextInputProps>,
+  allowFontScaling?: boolean,
+}
+
 export type {
   CircleGradientProps,
   ProgressCircleProps,
@@ -306,4 +319,5 @@ export type {
   CircularProgressProps,
   DashedCircleProps,
   DashedStrokeConfigType,
+  ProgressValueProps,
 };

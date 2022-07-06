@@ -1,13 +1,11 @@
-import React, { useMemo, useRef } from 'react';
-import { Text, TextInput, StyleSheet, View, Platform } from 'react-native';
-import Animated, { useAnimatedReaction } from 'react-native-reanimated';
+import React, { useMemo } from 'react';
+import { Text, StyleSheet, View } from 'react-native';
 import ProgressCircle from '../components/progressCircle';
 import useAnimatedValue from '../hooks/useAnimatedValue';
 import COLORS from '../utils/colors';
 import styles from './styles';
 import type { CircularProgressProps } from '../types';
-
-const AnimatedInput = Animated.createAnimatedComponent(TextInput);
+import ProgressValue from '../components/progressValue';
 
 const CircularProgress: React.FC<CircularProgressProps> = ({
   value,
@@ -65,22 +63,6 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
       inActiveStrokeWidth,
       progressFormatter,
     });
-
-  const inputRef = useRef<any>(null);
-
-  if (Platform.OS === 'web') {
-    // only run the reaction on web platform.
-    useAnimatedReaction(
-      () => {
-        return progressValue.value;
-      },
-      (data, prevData) => {
-        if (data !== prevData && inputRef.current) {
-          inputRef.current.value = data;
-        }
-      }
-    );
-  }
 
   const styleProps = useMemo(
     () => ({
@@ -148,21 +130,20 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
                   styles(styleProps).fromProps,
                   valuePrefixStyle,
                 ]}
+                allowFontScaling={allowFontScaling}
               >
                 {valuePrefix}
               </Text>
             )}
-            <AnimatedInput
-              ref={inputRef}
-              underlineColorAndroid={COLORS.TRANSPARENT}
-              editable={false}
-              defaultValue={`${initialValue}`}
-              style={[
-                styles(styleProps).input,
-                progressValueStyle,
-                styles(styleProps).fromProps,
-              ]}
-              animatedProps={animatedTextProps}
+            <ProgressValue
+              initialValue={initialValue}
+              radius={radius}
+              activeStrokeColor={activeStrokeColor}
+              progressValueColor={progressValueColor}
+              progressValueStyle={progressValueStyle}
+              progressValueFontSize={progressValueFontSize}
+              progressValue={progressValue}
+              animatedTextProps={animatedTextProps}
               allowFontScaling={allowFontScaling}
             />
             {!!valueSuffix && (
@@ -173,6 +154,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
                   styles(styleProps).fromProps,
                   valueSuffixStyle,
                 ]}
+                allowFontScaling={allowFontScaling}
               >
                 {valueSuffix}
               </Text>

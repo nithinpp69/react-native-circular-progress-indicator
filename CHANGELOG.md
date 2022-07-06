@@ -1,3 +1,8 @@
+###  Build: 🏠 `4.2.1` - react-native-circular-progress-indicator
+
+---
+- fix prefix and suffix style on android
+
 ###  Build: 🏠 `4.2.0` - react-native-circular-progress-indicator
 
 ---

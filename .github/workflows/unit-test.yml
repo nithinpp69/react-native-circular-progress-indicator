@@ -6,7 +6,7 @@ on:
 
 jobs:
   release:
-    name: 📚 test
+    name: 🧪 unit-test
     runs-on: ubuntu-latest
     steps:
     - name: checkout

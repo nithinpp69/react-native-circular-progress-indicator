@@ -8,6 +8,7 @@ import {
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
+
 import useCircleValues from './useCircleValues';
 
 export interface UseAnimatedValueProps {
@@ -23,6 +24,7 @@ export interface UseAnimatedValueProps {
   clockwise?: boolean;
   valueSuffix?: string;
   valuePrefix?: string;
+  // eslint-disable-next-line no-unused-vars
   progressFormatter?: (v: number) => number | string;
 }
 
@@ -71,6 +73,7 @@ export default function useAnimatedValue({
         }
       })
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   const progressValue = useDerivedValue(() => {
@@ -80,7 +83,8 @@ export default function useAnimatedValue({
   const animatedTextProps = useAnimatedProps(() => {
     return {
       text: progressValue.value,
-    } as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any; // eslint-disable-line prettier/prettier
   });
 
   return {

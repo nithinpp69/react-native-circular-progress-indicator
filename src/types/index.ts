@@ -1,7 +1,8 @@
-import React from 'react';
-import type { TextInputProps, TextStyle } from 'react-native';
-import Animated, { AnimateProps } from 'react-native-reanimated';
-import type { CircleProps } from 'react-native-svg';
+import type React from 'react';
+import type {TextInputProps, TextStyle} from 'react-native';
+import type {AnimateProps} from 'react-native-reanimated';
+import type Animated from 'react-native-reanimated';
+import type {CircleProps} from 'react-native-svg';
 
 type StrokeLineCapType = 'butt' | 'round' | 'square';
 
@@ -9,11 +10,11 @@ type DashedStrokeConfigType = {
   /**
    * The total number of dashes to draw.
    */
-  count: number;
+  count: number,
   /**
    * The width of each dash.
    */
-  width: number;
+  width: number,
 };
 
 type CircleGradientProps = {
@@ -23,7 +24,7 @@ type CircleGradientProps = {
    *
    * @default '#2ecc71'
    */
-  activeStrokeColor?: string;
+  activeStrokeColor?: string,
   /**
    * active progress secondary color. Use this to provide a
    * gradient effect. The circle will be drawn with gradient
@@ -31,7 +32,7 @@ type CircleGradientProps = {
    *
    * @default null
    */
-  activeStrokeSecondaryColor?: string | null;
+  activeStrokeSecondaryColor?: string | null,
 };
 
 interface DashedCircleProps {
@@ -275,6 +276,7 @@ interface CircularProgressProps extends BaseCircularProgressProps {
    * Make sure to define it as a worklet function.
    * https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
    */
+  // eslint-disable-next-line no-unused-vars
   progressFormatter?: (v: number) => number | string;
   /**
    * specifies whether fonts should scale to respect Text Size
@@ -310,7 +312,7 @@ type ProgressValueProps = {
   progressValue: Animated.SharedValue<string>,
   animatedTextProps: AnimateProps<TextInputProps>,
   allowFontScaling?: boolean,
-}
+};
 
 export type {
   CircleGradientProps,

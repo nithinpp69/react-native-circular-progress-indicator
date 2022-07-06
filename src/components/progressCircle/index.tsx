@@ -1,12 +1,14 @@
-import React, { useMemo } from 'react';
-import Svg, { G, Circle } from 'react-native-svg';
+import React, {useMemo} from 'react';
+import Svg, {G, Circle} from 'react-native-svg';
 import Animated from 'react-native-reanimated';
+
 import useCircleValues from '../../hooks/useCircleValues';
 import COLORS from '../../utils/colors';
-import type { ProgressCircleProps } from '../../types';
+import type {ProgressCircleProps} from '../../types';
 import CircleGradient from '../circleGradient';
-import styles from './styles';
 import DashedCircle from '../dashedCircle';
+
+import styles from './styles';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -27,15 +29,12 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
     () => radius + Math.max(activeStrokeWidth, inActiveStrokeWidth),
     [radius, activeStrokeWidth, inActiveStrokeWidth]
   );
-  const {
-    inactiveCircleRadius,
-    activeCircleRadius,
-    circleCircumference,
-  } = useCircleValues({
-    radius,
-    activeStrokeWidth,
-    inActiveStrokeWidth,
-  });
+  const {inactiveCircleRadius, activeCircleRadius, circleCircumference} =
+    useCircleValues({
+      radius,
+      activeStrokeWidth,
+      inActiveStrokeWidth,
+    });
 
   const maskId = useMemo(
     () =>
@@ -57,8 +56,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
       width={radius * 2}
       height={radius * 2}
       viewBox={`0 0 ${viewBox * 2} ${viewBox * 2}`}
-      style={styles.svg}
-    >
+      style={styles.svg}>
       <CircleGradient
         activeStrokeColor={activeStrokeColor}
         activeStrokeSecondaryColor={activeStrokeSecondaryColor}

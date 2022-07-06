@@ -1,11 +1,18 @@
-import React, { useMemo, useRef } from 'react';
-import { TextInput, Platform } from 'react-native';
-import Animated, { useAnimatedReaction } from 'react-native-reanimated';
-import COLORS from '../../utils/colors';
-import styles from './styles';
-import type { ProgressValueProps } from '../../types';
+// implementation reference from from
+// https://github.com/wcandillon/react-native-redash/blob/master/src/ReText.tsx
+// and https://github.com/coinjar/react-native-wagmi-charts/
+// blob/master/src/components/AnimatedText.tsx for web compatibility
 
-Animated.addWhitelistedNativeProps({ text: true });
+import React, {useMemo, useRef} from 'react';
+import {TextInput, Platform} from 'react-native';
+import Animated, {useAnimatedReaction} from 'react-native-reanimated';
+
+import COLORS from '../../utils/colors';
+import type {ProgressValueProps} from '../../types';
+
+import styles from './styles';
+
+Animated.addWhitelistedNativeProps({text: true});
 const AnimatedInput = Animated.createAnimatedComponent(TextInput);
 
 const ProgressValue: React.FC<ProgressValueProps> = ({
@@ -19,11 +26,12 @@ const ProgressValue: React.FC<ProgressValueProps> = ({
   animatedTextProps,
   allowFontScaling = true,
 }: ProgressValueProps) => {
-
-  const inputRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const inputRef = useRef<any>(null); // eslint-disable-line prettier/prettier
 
   if (Platform.OS === 'web') {
     // only run the reaction on web platform.
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useAnimatedReaction(
       () => {
         return progressValue.value;

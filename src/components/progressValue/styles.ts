@@ -1,11 +1,12 @@
-import { StyleSheet, TextStyle } from 'react-native';
+import type {TextStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 type StyleProps = {
-  radius: number;
-  progressValueColor?: string;
-  progressValueFontSize?: number;
-  progressValueStyle?: TextStyle;
-  activeStrokeColor?: string;
+  radius: number,
+  progressValueColor?: string,
+  progressValueFontSize?: number,
+  progressValueStyle?: TextStyle,
+  activeStrokeColor?: string,
 };
 
 const styles = (props: StyleProps) => {

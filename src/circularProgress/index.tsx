@@ -1,11 +1,13 @@
-import React, { useMemo } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import React, {useMemo} from 'react';
+import {Text, StyleSheet, View} from 'react-native';
+
 import ProgressCircle from '../components/progressCircle';
 import useAnimatedValue from '../hooks/useAnimatedValue';
 import COLORS from '../utils/colors';
-import styles from './styles';
-import type { CircularProgressProps } from '../types';
+import type {CircularProgressProps} from '../types';
 import ProgressValue from '../components/progressValue';
+
+import styles from './styles';
 
 const CircularProgress: React.FC<CircularProgressProps> = ({
   value,
@@ -45,11 +47,11 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     return Math.round(v);
   },
   allowFontScaling = true,
-  dashedStrokeConfig = { count: 0, width: 0 },
+  dashedStrokeConfig = {count: 0, width: 0},
   valuePrefixStyle = {},
   valueSuffixStyle = {},
 }: CircularProgressProps) => {
-  const { animatedCircleProps, animatedTextProps, progressValue } =
+  const {animatedCircleProps, animatedTextProps, progressValue} =
     useAnimatedValue({
       initialValue,
       radius,
@@ -118,8 +120,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
         style={[
           StyleSheet.absoluteFillObject,
           styles(styleProps).valueContainer,
-        ]}
-      >
+        ]}>
         {showProgressValue && (
           <View style={styles(styleProps).valueContainerRow}>
             {!!valuePrefix && (
@@ -130,8 +131,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
                   styles(styleProps).fromProps,
                   valuePrefixStyle,
                 ]}
-                allowFontScaling={allowFontScaling}
-              >
+                allowFontScaling={allowFontScaling}>
                 {valuePrefix}
               </Text>
             )}
@@ -154,8 +154,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
                   styles(styleProps).fromProps,
                   valueSuffixStyle,
                 ]}
-                allowFontScaling={allowFontScaling}
-              >
+                allowFontScaling={allowFontScaling}>
                 {valueSuffix}
               </Text>
             )}
@@ -165,8 +164,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           <Text
             style={[styles(styleProps).title, titleStyle]}
             numberOfLines={1}
-            allowFontScaling={allowFontScaling}
-          >
+            allowFontScaling={allowFontScaling}>
             {title}
           </Text>
         ) : null}
@@ -178,8 +176,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
               subtitleStyle,
             ]}
             numberOfLines={1}
-            allowFontScaling={allowFontScaling}
-          >
+            allowFontScaling={allowFontScaling}>
             {subtitle}
           </Text>
         ) : null}

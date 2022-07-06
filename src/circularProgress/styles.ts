@@ -31,7 +31,7 @@ const styles = (props: StyleProps) => {
     },
     valueContainerRow: {
       flexDirection: 'row',
-      alignItems: 'baseline',
+      alignItems: 'center',
     },
     rotatingContainer: {
       transform: [{ rotate: `${props.rotation}deg` }],

@@ -17,3 +17,5 @@ tmp
 # Examples (If applicable to your project)
 examples
 /coverage
+*.zip
+*.tgz

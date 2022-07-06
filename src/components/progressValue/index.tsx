@@ -63,6 +63,7 @@ const ProgressValue: React.FC<ProgressValueProps> = ({
 
   return (
     <AnimatedInput
+      testID="progress-value-text"
       ref={inputRef}
       underlineColorAndroid={COLORS.TRANSPARENT}
       editable={false}

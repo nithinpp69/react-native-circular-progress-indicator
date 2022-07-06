@@ -53,6 +53,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
 
   return (
     <Svg
+      testID="progress-circle"
       width={radius * 2}
       height={radius * 2}
       viewBox={`0 0 ${viewBox * 2} ${viewBox * 2}`}

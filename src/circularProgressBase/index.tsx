@@ -51,7 +51,7 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
   );
 
   return (
-    <View style={styles(styleProps).container}>
+    <View style={styles(styleProps).container} testID="progress-bar">
       <View style={styles(styleProps).rotatingContainer}>
         <ProgressCircle
           circleBackgroundColor={circleBackgroundColor}

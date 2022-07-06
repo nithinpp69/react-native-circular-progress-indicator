@@ -100,7 +100,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   );
 
   return (
-    <View style={styles(styleProps).container}>
+    <View style={styles(styleProps).container} testID="progress-bar">
       <View style={styles(styleProps).rotatingContainer}>
         <ProgressCircle
           circleBackgroundColor={circleBackgroundColor}
@@ -125,6 +125,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           <View style={styles(styleProps).valueContainerRow}>
             {!!valuePrefix && (
               <Text
+                testID="progress-bar-value-prefix"
                 style={[
                   styles(styleProps).input,
                   progressValueStyle,
@@ -148,6 +149,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
             />
             {!!valueSuffix && (
               <Text
+                testID="progress-bar-value-suffix"
                 style={[
                   styles(styleProps).input,
                   progressValueStyle,
@@ -162,6 +164,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
         )}
         {title && title !== '' ? (
           <Text
+            testID="progress-title-text"
             style={[styles(styleProps).title, titleStyle]}
             numberOfLines={1}
             allowFontScaling={allowFontScaling}>
@@ -170,6 +173,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
         ) : null}
         {subtitle && subtitle !== '' ? (
           <Text
+            testID="progress-subtitle-text"
             style={[
               styles(styleProps).title,
               styles(styleProps).subtitle,

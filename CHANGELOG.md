@@ -1,3 +1,8 @@
+###  Build: 🏠 `4.3.0` - react-native-circular-progress-indicator
+
+---
+- feat: change stroke color based on animation value
+- 
 ###  Build: 🏠 `4.2.1` - react-native-circular-progress-indicator
 
 ---

@@ -1,12 +1,12 @@
-name: "🚀 release"
+name: "🧪 unit-test"
 on:
- push:
+ pull_request:
   branches:
     - main
 
 jobs:
   release:
-    name: 🚀 release
+    name: 🧪 unit-test
     runs-on: ubuntu-latest
     steps:
     - name: checkout
@@ -18,7 +18,5 @@ jobs:
         registry-url: https://registry.npmjs.org
     - name: Install dependencies
       run: yarn
-    - name: Release
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - name: Test
+      run: npm test

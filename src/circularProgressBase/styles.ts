@@ -1,8 +1,8 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 type StyleProp = {
-  radius: number;
-  rotation: number;
+  radius: number,
+  rotation: number,
 };
 
 const styles = (props: StyleProp) =>
@@ -19,7 +19,7 @@ const styles = (props: StyleProp) =>
       justifyContent: 'center',
     },
     rotatingContainer: {
-      transform: [{ rotate: `${props.rotation}deg` }],
+      transform: [{rotate: `${props.rotation}deg`}],
     },
   });
 

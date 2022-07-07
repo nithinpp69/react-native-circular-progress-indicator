@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import {useCallback, useMemo} from 'react';
 
 export interface UseCircleValuesProps {
   radius: number;
@@ -40,9 +40,10 @@ export default function useCircleValues({
 
   const activeCircleRadius = useMemo(() => findRadius(), [findRadius]);
 
-  const circleCircumference = useMemo(() => 2 * Math.PI * activeCircleRadius, [
-    activeCircleRadius,
-  ]);
+  const circleCircumference = useMemo(
+    () => 2 * Math.PI * activeCircleRadius,
+    [activeCircleRadius]
+  );
 
   return {
     inactiveCircleRadius,

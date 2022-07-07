@@ -1,10 +1,12 @@
-import React, { useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, {useMemo} from 'react';
+import {StyleSheet, View} from 'react-native';
+
 import ProgressCircle from '../components/progressCircle';
 import useAnimatedValue from '../hooks/useAnimatedValue';
 import COLORS from '../utils/colors';
+import type {CircularProgressBaseProps} from '../types';
+
 import styles from './styles';
-import type { CircularProgressBaseProps } from '../types';
 
 const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
   value,
@@ -24,10 +26,11 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
   inActiveStrokeOpacity = 1,
   clockwise = true,
   rotation = 0,
-  dashedStrokeConfig = { count: 0, width: 0 },
+  dashedStrokeConfig = {count: 0, width: 0},
+  strokeColorConfig = undefined,
   children,
 }: CircularProgressBaseProps) => {
-  const { animatedCircleProps } = useAnimatedValue({
+  const {animatedCircleProps} = useAnimatedValue({
     initialValue,
     radius,
     maxValue,
@@ -38,6 +41,7 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
     onAnimationComplete,
     activeStrokeWidth,
     inActiveStrokeWidth,
+    strokeColorConfig,
   });
 
   const styleProps = useMemo(
@@ -49,7 +53,7 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
   );
 
   return (
-    <View style={styles(styleProps).container}>
+    <View style={styles(styleProps).container} testID="progress-bar">
       <View style={styles(styleProps).rotatingContainer}>
         <ProgressCircle
           circleBackgroundColor={circleBackgroundColor}
@@ -69,8 +73,7 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
         style={[
           StyleSheet.absoluteFillObject,
           styles(styleProps).valueContainer,
-        ]}
-      >
+        ]}>
         {children}
       </View>
     </View>

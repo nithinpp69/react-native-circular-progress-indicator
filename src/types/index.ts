@@ -1,6 +1,8 @@
-import React from 'react';
-import type { TextStyle } from 'react-native';
-import type { CircleProps } from 'react-native-svg';
+import type React from 'react';
+import type {TextInputProps, TextStyle} from 'react-native';
+import type {AnimateProps} from 'react-native-reanimated';
+import type Animated from 'react-native-reanimated';
+import type {CircleProps} from 'react-native-svg';
 
 type StrokeLineCapType = 'butt' | 'round' | 'square';
 
@@ -8,11 +10,11 @@ type DashedStrokeConfigType = {
   /**
    * The total number of dashes to draw.
    */
-  count: number;
+  count: number,
   /**
    * The width of each dash.
    */
-  width: number;
+  width: number,
 };
 
 type CircleGradientProps = {
@@ -22,7 +24,7 @@ type CircleGradientProps = {
    *
    * @default '#2ecc71'
    */
-  activeStrokeColor?: string;
+  activeStrokeColor?: string,
   /**
    * active progress secondary color. Use this to provide a
    * gradient effect. The circle will be drawn with gradient
@@ -30,7 +32,7 @@ type CircleGradientProps = {
    *
    * @default null
    */
-  activeStrokeSecondaryColor?: string | null;
+  activeStrokeSecondaryColor?: string | null,
 };
 
 interface DashedCircleProps {
@@ -41,6 +43,11 @@ interface DashedCircleProps {
   activeCircleRadius: number;
   dashedStrokeConfig?: DashedStrokeConfigType;
 }
+
+type StrokeColorConfigType = {
+  value: number,
+  color: string,
+};
 
 interface BaseProgressCircleProps extends CircleGradientProps {
   /**
@@ -96,10 +103,21 @@ interface BaseProgressCircleProps extends CircleGradientProps {
    * the dash gap between each dashes will be calculated automatically.
    */
   dashedStrokeConfig?: DashedStrokeConfigType;
+  /**
+   * This is useful if you want to animate the progress circle stroke color
+   * based on the animation value. The stroke color config accepts an array
+   * of color & value object. You can define a specific color for a
+   * specific value and the component will animate the color based on the
+   * current animated value.
+   * It is important to note that when this is used, the strokeColorConfig
+   * will take precedence over the activeStrokeColor and the
+   * activeStrokeSecondaryColor props.
+   */
+  strokeColorConfig?: StrokeColorConfigType[];
 }
 
 interface ProgressCircleProps extends BaseProgressCircleProps {
-  animatedCircleProps: CircleProps;
+  animatedCircleProps: AnimateProps<CircleProps>;
 }
 
 interface BaseCircularProgressProps extends BaseProgressCircleProps {
@@ -274,6 +292,7 @@ interface CircularProgressProps extends BaseCircularProgressProps {
    * Make sure to define it as a worklet function.
    * https://docs.swmansion.com/react-native-reanimated/docs/2.2.0/worklets/
    */
+  // eslint-disable-next-line no-unused-vars
   progressFormatter?: (v: number) => number | string;
   /**
    * specifies whether fonts should scale to respect Text Size
@@ -299,6 +318,18 @@ interface CircularProgressProps extends BaseCircularProgressProps {
   valueSuffixStyle?: TextStyle;
 }
 
+type ProgressValueProps = {
+  initialValue: number,
+  radius?: number,
+  activeStrokeColor?: string,
+  progressValueColor?: string,
+  progressValueStyle?: TextStyle,
+  progressValueFontSize?: number,
+  progressValue: Animated.SharedValue<string>,
+  animatedTextProps: AnimateProps<TextInputProps>,
+  allowFontScaling?: boolean,
+};
+
 export type {
   CircleGradientProps,
   ProgressCircleProps,
@@ -306,4 +337,6 @@ export type {
   CircularProgressProps,
   DashedCircleProps,
   DashedStrokeConfigType,
+  ProgressValueProps,
+  StrokeColorConfigType,
 };

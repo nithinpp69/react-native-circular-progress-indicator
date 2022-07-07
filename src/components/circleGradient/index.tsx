@@ -1,12 +1,13 @@
 import React from 'react';
-import { Defs, LinearGradient, Stop } from 'react-native-svg';
-import type { CircleGradientProps } from '../../types';
+import {Defs, LinearGradient, Stop} from 'react-native-svg';
+
+import type {CircleGradientProps} from '../../types';
 
 const CircleGradient: React.FC<CircleGradientProps> = ({
   activeStrokeSecondaryColor,
   activeStrokeColor,
 }: CircleGradientProps) => {
-  if (activeStrokeSecondaryColor)
+  if (activeStrokeSecondaryColor) {
     return (
       <Defs>
         <LinearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -15,6 +16,7 @@ const CircleGradient: React.FC<CircleGradientProps> = ({
         </LinearGradient>
       </Defs>
     );
+  }
   return null;
 };
 

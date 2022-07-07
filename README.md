@@ -23,6 +23,7 @@ This project is inspired from this [Youtube tutorial](https://www.youtube.com/wa
 ![](examples/demo7.gif)
 ![](examples/demo8.gif)
 ![](examples/demo9.gif)
+![](examples/demo11.gif)
 
 ## Prerequisites
 
@@ -306,6 +307,27 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 ```
 
 ![](examples/demo9.gif)
+#### Animated stroke color
+
+```jsx
+import CircularProgress from 'react-native-circular-progress-indicator';
+
+....
+
+ <CircularProgress
+  value={100}
+  radius={120}
+  progressValueColor={'#fff'}
+  duration={10000}
+  strokeColorConfig={[
+    { color: 'red', value: 0 },
+    { color: 'skyblue', value: 50 },
+    { color: 'yellowgreen', value: 100 },
+  ]}
+/>
+```
+
+![](examples/demo11.gif)
 ## Props
 
 ## CircularProgressBase Props
@@ -329,8 +351,9 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 | activeStrokeSecondaryColor  | active progress secondary color. Use this to provide a gradient effect                | String                        | ''                  | false    |
 | inActiveStrokeColor         | inactive progress circle color                                                        | String                        | 'rgba(0,0,0,0.3)' | false    |
 | clockwise                   | show ring progress clockwise or anti-clockwise. pass false to enable anti clock-wise  | Bool                          | true                | false    |
-| dashedStrokeConfig          | This is useful if you want to display the progress circle as dashed lines. The dashed stroke count and stroke width can be customized. Based on these values and the radius of the circle, the dash gap between each dashes will be calculated automatically.         | DashedStrokeConfigType        | { width: 0, count: 0 }| false    |
-| children                    | any react element                                                                     | React Element                  | null                 | false    |                                
+| dashedStrokeConfig          | Display the progress circle as dashed lines with customizable stroke count and width. | DashedStrokeConfigType        | { width: 0, count: 0 }| false    |
+| strokeColorConfig           | Animate the progress circle stroke color based on the animation value.                | StrokeColorConfigType[]       | undefined           | false    |
+| children                    | any react element                                                                     | React Element                 | null                | false    |                                
                                 
 ## CircularProgress Props
 

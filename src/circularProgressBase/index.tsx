@@ -27,6 +27,7 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
   clockwise = true,
   rotation = 0,
   dashedStrokeConfig = {count: 0, width: 0},
+  strokeColorConfig = undefined,
   children,
 }: CircularProgressBaseProps) => {
   const {animatedCircleProps} = useAnimatedValue({
@@ -40,6 +41,7 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
     onAnimationComplete,
     activeStrokeWidth,
     inActiveStrokeWidth,
+    strokeColorConfig,
   });
 
   const styleProps = useMemo(

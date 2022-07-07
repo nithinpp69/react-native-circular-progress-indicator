@@ -44,6 +44,11 @@ interface DashedCircleProps {
   dashedStrokeConfig?: DashedStrokeConfigType;
 }
 
+type StrokeColorConfigType = {
+  value: number,
+  color: string,
+};
+
 interface BaseProgressCircleProps extends CircleGradientProps {
   /**
    * progress circle background color. Use this to
@@ -98,6 +103,17 @@ interface BaseProgressCircleProps extends CircleGradientProps {
    * the dash gap between each dashes will be calculated automatically.
    */
   dashedStrokeConfig?: DashedStrokeConfigType;
+  /**
+   * This is useful if you want to animate the progress circle stroke color
+   * based on the animation value. The stroke color config accepts an array
+   * of color & value object. You can define a specific color for a
+   * specific value and the component will animate the color based on the
+   * current animated value.
+   * It is important to note that when this is used, the strokeColorConfig
+   * will take precedence over the activeStrokeColor and the
+   * activeStrokeSecondaryColor props.
+   */
+  strokeColorConfig?: StrokeColorConfigType[];
 }
 
 interface ProgressCircleProps extends BaseProgressCircleProps {
@@ -322,4 +338,5 @@ export type {
   DashedCircleProps,
   DashedStrokeConfigType,
   ProgressValueProps,
+  StrokeColorConfigType,
 };

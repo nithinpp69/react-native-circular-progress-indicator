@@ -50,6 +50,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   dashedStrokeConfig = {count: 0, width: 0},
   valuePrefixStyle = {},
   valueSuffixStyle = {},
+  strokeColorConfig = undefined,
 }: CircularProgressProps) => {
   const {animatedCircleProps, animatedTextProps, progressValue} =
     useAnimatedValue({
@@ -64,6 +65,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
       activeStrokeWidth,
       inActiveStrokeWidth,
       progressFormatter,
+      strokeColorConfig,
     });
 
   const styleProps = useMemo(

@@ -1,4 +1,4 @@
-name: "📚 release"
+name: "🚀 release"
 on:
  push:
   branches:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   release:
-    name: 📚 release
+    name: 🚀 release
     runs-on: ubuntu-latest
     steps:
     - name: checkout
@@ -14,7 +14,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 14
         registry-url: https://registry.npmjs.org
     - name: Install dependencies
       run: yarn

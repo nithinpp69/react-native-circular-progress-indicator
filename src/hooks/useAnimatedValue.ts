@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import {useEffect, useMemo} from 'react';
 import {
   Easing,
+  interpolateColor,
   runOnJS,
   useAnimatedProps,
   useDerivedValue,
@@ -8,6 +9,8 @@ import {
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
+
+import type { StrokeColorConfigType } from '../types';
 
 import useCircleValues from './useCircleValues';
 
@@ -26,7 +29,13 @@ export interface UseAnimatedValueProps {
   valuePrefix?: string;
   // eslint-disable-next-line no-unused-vars
   progressFormatter?: (v: number) => number | string;
+  strokeColorConfig?: StrokeColorConfigType[];
 }
+
+type Config = {
+  strokeDashoffset: number;
+  stroke?: string | number;
+};
 
 export default function useAnimatedValue({
   initialValue = 0,
@@ -44,6 +53,7 @@ export default function useAnimatedValue({
 
     return Math.round(v);
   },
+  strokeColorConfig = undefined,
 }: UseAnimatedValueProps) {
   const animatedValue = useSharedValue(initialValue);
   const { circleCircumference } = useCircleValues({
@@ -52,16 +62,39 @@ export default function useAnimatedValue({
     inActiveStrokeWidth,
   });
 
+  const sortedStrokeColors = useMemo(() => {
+    if (!strokeColorConfig) {return null;}
+    return strokeColorConfig.sort((a, b) => a.value - b.value);
+  }, [strokeColorConfig]);
+
+  const colors = useMemo(() => {
+    if (!sortedStrokeColors) {return null;}
+    return sortedStrokeColors.map((item) => item.color);
+  }, [sortedStrokeColors]);
+
+  const values = useMemo(() => {
+    if (!sortedStrokeColors) {return null;}
+    return sortedStrokeColors.map((item) => item.value);
+  }, [sortedStrokeColors]);
+
   const animatedCircleProps = useAnimatedProps(() => {
     let biggestValue: number = Math.max(initialValue, maxValue);
     biggestValue = biggestValue <= 0 ? 1 : biggestValue;
     const maxPercentage: number = clockwise
       ? (100 * animatedValue.value) / biggestValue
       : (100 * -animatedValue.value) / biggestValue;
-    return {
-      strokeDashoffset:
-        circleCircumference - (circleCircumference * maxPercentage) / 100,
-    };
+      const config: Config = {
+        strokeDashoffset:
+          circleCircumference - (circleCircumference * maxPercentage) / 100,
+      };
+      const strokeColor =
+        colors && values
+          ? interpolateColor(animatedValue.value, values, colors)
+          : undefined;
+      if (strokeColor) {
+        config.stroke = strokeColor;
+      }
+      return config;
   });
 
   useEffect(() => {

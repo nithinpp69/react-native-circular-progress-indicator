@@ -125,5 +125,8 @@
       "<rootDir>/lib/"
     ],
     "transformIgnorePatterns": []
+  },
+  "dependencies": {
+    "react-native-redash": "*"
   }
 }

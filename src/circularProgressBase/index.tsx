@@ -1,36 +1,39 @@
-import React, {useMemo} from 'react';
+import React, {forwardRef, useImperativeHandle, useMemo} from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import ProgressCircle from '../components/progressCircle';
 import useAnimatedValue from '../hooks/useAnimatedValue';
 import COLORS from '../utils/colors';
-import type {CircularProgressBaseProps} from '../types';
+import type {CircularProgressBaseProps, ProgressRef} from '../types';
 
 import styles from './styles';
 
-const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
-  value,
-  initialValue = 0,
-  circleBackgroundColor = COLORS.TRANSPARENT,
-  radius = 60,
-  duration = 500,
-  delay = 0,
-  maxValue = 100,
-  strokeLinecap = 'round',
-  onAnimationComplete = () => null,
-  activeStrokeColor = COLORS.GREEN,
-  activeStrokeSecondaryColor = null,
-  activeStrokeWidth = 10,
-  inActiveStrokeColor = COLORS.BLACK_30,
-  inActiveStrokeWidth = 10,
-  inActiveStrokeOpacity = 1,
-  clockwise = true,
-  rotation = 0,
-  dashedStrokeConfig = {count: 0, width: 0},
-  strokeColorConfig = undefined,
-  children,
-}: CircularProgressBaseProps) => {
-  const {animatedCircleProps} = useAnimatedValue({
+// eslint-disable-next-line max-len, prettier/prettier
+const CircularProgressBase = forwardRef<ProgressRef,CircularProgressBaseProps>((props, ref) => {
+  const {
+    value,
+    initialValue = 0,
+    circleBackgroundColor = COLORS.TRANSPARENT,
+    radius = 60,
+    duration = 500,
+    delay = 0,
+    maxValue = 100,
+    strokeLinecap = 'round',
+    onAnimationComplete = () => null,
+    activeStrokeColor = COLORS.GREEN,
+    activeStrokeSecondaryColor = null,
+    activeStrokeWidth = 10,
+    inActiveStrokeColor = COLORS.BLACK_30,
+    inActiveStrokeWidth = 10,
+    inActiveStrokeOpacity = 1,
+    clockwise = true,
+    rotation = 0,
+    dashedStrokeConfig = {count: 0, width: 0},
+    strokeColorConfig = undefined,
+    children,
+  } = props;
+
+  const {animatedCircleProps, play, pause, reAnimate} = useAnimatedValue({
     initialValue,
     radius,
     maxValue,
@@ -43,6 +46,12 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
     inActiveStrokeWidth,
     strokeColorConfig,
   });
+
+  useImperativeHandle(ref, () => ({
+    play,
+    pause,
+    reAnimate,
+  }));
 
   const styleProps = useMemo(
     () => ({
@@ -78,6 +87,6 @@ const CircularProgressBase: React.FC<CircularProgressBaseProps> = ({
       </View>
     </View>
   );
-};
+});
 
 export default CircularProgressBase;

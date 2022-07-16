@@ -330,6 +330,21 @@ type ProgressValueProps = {
   allowFontScaling?: boolean,
 };
 
+type ProgressRef = {
+  /**
+   * Use this to play the animation once  the animation is paused.
+   */
+  play: () => void,
+  /**
+   * Use this to pause the animation.
+   */
+  pause: () => void,
+  /**
+   * Use this to replay the animation.
+   */
+  reAnimate: () => void,
+};
+
 export type {
   CircleGradientProps,
   ProgressCircleProps,
@@ -339,4 +354,5 @@ export type {
   DashedStrokeConfigType,
   ProgressValueProps,
   StrokeColorConfigType,
+  ProgressRef,
 };

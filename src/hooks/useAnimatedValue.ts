@@ -1,4 +1,4 @@
-import {useEffect, useMemo} from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import {
   Easing,
   interpolateColor,
@@ -9,6 +9,7 @@ import {
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
+import { withPause } from 'react-native-redash';
 
 import type { StrokeColorConfigType } from '../types';
 
@@ -55,25 +56,66 @@ export default function useAnimatedValue({
   },
   strokeColorConfig = undefined,
 }: UseAnimatedValueProps) {
+  const paused = useSharedValue(<boolean>false);
   const animatedValue = useSharedValue(initialValue);
   const { circleCircumference } = useCircleValues({
     radius,
     activeStrokeWidth,
     inActiveStrokeWidth,
+  // eslint-disable-next-line prettier/prettier
   });
 
+  const pause = useCallback(() => {
+    paused.value = true;
+  }, [paused]);
+
+  const play = useCallback(() => {
+    paused.value = false;
+  }, [paused]);
+
+  const resetAnimatedValue = useCallback(() => {
+    paused.value = false;
+    animatedValue.value = initialValue;
+  }, [animatedValue, initialValue, paused]);
+
+  const animateValue = useCallback(() => {
+    animatedValue.value = withPause(
+      withDelay(
+        delay,
+        withTiming(value, { duration, easing: Easing.linear }, (isFinished) => {
+          if (isFinished) {
+            runOnJS(onAnimationComplete)?.();
+          }
+        })
+      ),
+      paused
+    );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[animatedValue, delay, duration, paused, value]);
+
+  const reAnimate = () => {
+    resetAnimatedValue();
+    animateValue();
+  };
+
   const sortedStrokeColors = useMemo(() => {
-    if (!strokeColorConfig) {return null;}
+    if (!strokeColorConfig) {
+      return null;
+    }
     return strokeColorConfig.sort((a, b) => a.value - b.value);
   }, [strokeColorConfig]);
 
   const colors = useMemo(() => {
-    if (!sortedStrokeColors) {return null;}
+    if (!sortedStrokeColors) {
+      return null;
+    }
     return sortedStrokeColors.map((item) => item.color);
   }, [sortedStrokeColors]);
 
   const values = useMemo(() => {
-    if (!sortedStrokeColors) {return null;}
+    if (!sortedStrokeColors) {
+      return null;
+    }
     return sortedStrokeColors.map((item) => item.value);
   }, [sortedStrokeColors]);
 
@@ -83,31 +125,23 @@ export default function useAnimatedValue({
     const maxPercentage: number = clockwise
       ? (100 * animatedValue.value) / biggestValue
       : (100 * -animatedValue.value) / biggestValue;
-      const config: Config = {
-        strokeDashoffset:
-          circleCircumference - (circleCircumference * maxPercentage) / 100,
-      };
-      const strokeColor =
-        colors && values
-          ? interpolateColor(animatedValue.value, values, colors)
-          : undefined;
-      if (strokeColor) {
-        config.stroke = strokeColor;
-      }
-      return config;
+    const config: Config = {
+      strokeDashoffset:
+        circleCircumference - (circleCircumference * maxPercentage) / 100,
+    };
+    const strokeColor =
+      colors && values
+        ? interpolateColor(animatedValue.value, values, colors)
+        : undefined;
+    if (strokeColor) {
+      config.stroke = strokeColor;
+    }
+    return config;
   });
 
   useEffect(() => {
-    animatedValue.value = withDelay(
-      delay,
-      withTiming(value, { duration, easing: Easing.linear }, (isFinished) => {
-        if (isFinished) {
-          runOnJS(onAnimationComplete)?.();
-        }
-      })
-    );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+    animateValue();
+  }, [animateValue]);
 
   const progressValue = useDerivedValue(() => {
     return `${progressFormatter(animatedValue.value)}`;
@@ -116,13 +150,16 @@ export default function useAnimatedValue({
   const animatedTextProps = useAnimatedProps(() => {
     return {
       text: progressValue.value,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any; // eslint-disable-line prettier/prettier
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any;  
   });
 
   return {
     animatedCircleProps,
     animatedTextProps,
     progressValue,
+    pause,
+    play,
+    reAnimate,
   };
 }

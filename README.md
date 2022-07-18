@@ -24,6 +24,7 @@ This project is inspired from this [Youtube tutorial](https://www.youtube.com/wa
 ![](examples/demo8.gif)
 ![](examples/demo9.gif)
 ![](examples/demo11.gif)
+![](examples/demo12.gif)
 
 ## Prerequisites
 
@@ -326,8 +327,35 @@ import CircularProgress from 'react-native-circular-progress-indicator';
   ]}
 />
 ```
-
 ![](examples/demo11.gif)
+#### Play, Pause, and ReAnimate
+
+```jsx
+import CircularProgress, { ProgressRef } from 'react-native-circular-progress-indicator';
+
+const progressRef = useRef<ProgressRef>(null);
+
+// to pause animation
+progressRef.current.pause();
+
+// to play animation
+progressRef.current.play();
+
+// to re-play animation
+progressRef.current.reAnimate();
+
+....
+
+ <CircularProgress
+  ref={progressRef}
+  value={100}
+  radius={120}
+  duration={10000}
+/>
+```
+
+![](examples/demo12.gif)
+
 ## Props
 
 ## CircularProgressBase Props
@@ -381,5 +409,28 @@ CircularProgress component accepts all CircularProgressBase props except the chi
 | valuePrefixStyle            | custom styling to value prefix. Use this to customize the styling of the value prefix. If not provided, the progress value style/colors will be used. | TextStyle | {} | false |
 | valueSuffixStyle            | custom styling to value suffix. Use this to customize the styling of the value suffix. If not provided, the progress value style/colors will be used. | TextStyle | {} | false |
 
+## Methods
+
+`pause`
+Imperative method to pause the animation.
+
+```javascript
+progressRef.current.pause();
+```
+
+`play`
+Imperative method to play the animation once paused.
+
+```javascript
+progressRef.current.play();
+```
+
+`reAnimate`
+Imperative method to restart the animation.
+
+```javascript
+progressRef.current.reAnimate();
+```
+
 ## License
-This project is licenced under the MIT License.
+This project is licensed under the MIT License.

@@ -76,7 +76,7 @@ export default function useAnimatedValue({
   }, [paused]);
 
   const resetAnimatedValue = useCallback(() => {
-    paused.value = startPaused;
+    paused.value = <boolean>startPaused;
     animatedValue.value = initialValue;
   }, [animatedValue, initialValue, paused]);
 

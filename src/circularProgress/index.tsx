@@ -28,6 +28,7 @@ const CircularProgress = forwardRef<ProgressRef, CircularProgressProps>((props, 
     inActiveStrokeWidth = 10,
     inActiveStrokeOpacity = 1,
     clockwise = true,
+    startPaused = false,
     rotation = 0,
     title = '',
     titleStyle = {},
@@ -62,11 +63,13 @@ const CircularProgress = forwardRef<ProgressRef, CircularProgressProps>((props, 
     play,
     pause,
     reAnimate,
+    resetAnimatedValue
   } = useAnimatedValue({
       initialValue,
       radius,
       maxValue,
       clockwise,
+      startPaused,
       delay,
       value,
       duration,
@@ -81,6 +84,7 @@ const CircularProgress = forwardRef<ProgressRef, CircularProgressProps>((props, 
     play,
     pause,
     reAnimate,
+    resetAnimatedValue
   }));
 
   const styleProps = useMemo(

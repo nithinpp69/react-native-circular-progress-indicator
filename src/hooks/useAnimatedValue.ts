@@ -26,6 +26,7 @@ export interface UseAnimatedValueProps {
   activeStrokeWidth?: number;
   inActiveStrokeWidth?: number;
   clockwise?: boolean;
+  startPaused?: boolean;
   valueSuffix?: string;
   valuePrefix?: string;
   // eslint-disable-next-line no-unused-vars
@@ -43,6 +44,7 @@ export default function useAnimatedValue({
   radius = 60,
   maxValue = 100,
   clockwise,
+  startPaused,
   delay = 0,
   value,
   duration,
@@ -56,7 +58,7 @@ export default function useAnimatedValue({
   },
   strokeColorConfig = undefined,
 }: UseAnimatedValueProps) {
-  const paused = useSharedValue(<boolean>false);
+  const paused = useSharedValue(<boolean>startPaused);
   const animatedValue = useSharedValue(initialValue);
   const { circleCircumference } = useCircleValues({
     radius,
@@ -161,5 +163,6 @@ export default function useAnimatedValue({
     pause,
     play,
     reAnimate,
+    resetAnimatedValue
   };
 }

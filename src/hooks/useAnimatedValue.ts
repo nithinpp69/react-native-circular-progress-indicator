@@ -76,7 +76,7 @@ export default function useAnimatedValue({
   }, [paused]);
 
   const resetAnimatedValue = useCallback(() => {
-    paused.value = false;
+    paused.value = startPaused;
     animatedValue.value = initialValue;
   }, [animatedValue, initialValue, paused]);
 
@@ -97,7 +97,7 @@ export default function useAnimatedValue({
 
   const reAnimate = () => {
     resetAnimatedValue();
-    if(!startPaused) animateValue();
+    animateValue();
   };
 
   const sortedStrokeColors = useMemo(() => {

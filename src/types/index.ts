@@ -171,6 +171,12 @@ interface BaseCircularProgressProps extends BaseProgressCircleProps {
    */
   clockwise?: boolean;
   /**
+   * change the initial state (play/paused) of the animation when the component mounts
+   *
+   * @default false
+   */
+  startPaused?: boolean;
+  /**
    * rotate the progress ring by this value. Accepts a number from -360 to 360.
    *
    * @default 0
@@ -343,6 +349,11 @@ type ProgressRef = {
    * Use this to replay the animation.
    */
   reAnimate: () => void,
+  /**
+   * Use this to reset the animation.
+   */
+  resetAnimatedValue: () => void
+
 };
 
 export type {

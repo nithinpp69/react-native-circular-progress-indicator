@@ -27,17 +27,19 @@ const CircularProgressBase = forwardRef<ProgressRef,CircularProgressBaseProps>((
     inActiveStrokeWidth = 10,
     inActiveStrokeOpacity = 1,
     clockwise = true,
+    startPaused = false,
     rotation = 0,
     dashedStrokeConfig = {count: 0, width: 0},
     strokeColorConfig = undefined,
     children,
   } = props;
 
-  const {animatedCircleProps, play, pause, reAnimate} = useAnimatedValue({
+  const {animatedCircleProps, play, pause, reAnimate, resetAnimatedValue} = useAnimatedValue({
     initialValue,
     radius,
     maxValue,
     clockwise,
+    startPaused,
     delay,
     value,
     duration,
@@ -51,6 +53,7 @@ const CircularProgressBase = forwardRef<ProgressRef,CircularProgressBaseProps>((
     play,
     pause,
     reAnimate,
+    resetAnimatedValue
   }));
 
   const styleProps = useMemo(

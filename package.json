@@ -1,5 +1,5 @@
 {
-  "name": "@ichanner8/react-native-circular-progress-indicator",
+  "name": "react-native-circular-progress-indicator",
   "version": "4.4.1",
   "description": "React Native customizable circular progress indicator",
   "main": "lib/commonjs/index",

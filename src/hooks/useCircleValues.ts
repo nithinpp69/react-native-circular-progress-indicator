@@ -1,4 +1,4 @@
-import {useCallback, useMemo} from 'react';
+import { useCallback, useMemo } from 'react';
 
 export interface UseCircleValuesProps {
   radius: number;

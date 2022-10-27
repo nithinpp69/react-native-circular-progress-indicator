@@ -7,6 +7,6 @@ import type {
 } from './types';
 
 export default CircularProgress;
-export {CircularProgressBase};
-export {CircularProgressBase as CircularProgressWithChild};
-export type {DashedStrokeConfigType, StrokeColorConfigType, ProgressRef};
+export { CircularProgressBase };
+export { CircularProgressBase as CircularProgressWithChild };
+export type { DashedStrokeConfigType, StrokeColorConfigType, ProgressRef };

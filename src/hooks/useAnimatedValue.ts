@@ -64,7 +64,6 @@ export default function useAnimatedValue({
     radius,
     activeStrokeWidth,
     inActiveStrokeWidth,
-  // eslint-disable-next-line prettier/prettier
   });
 
   const pause = useCallback(() => {
@@ -87,7 +86,7 @@ export default function useAnimatedValue({
     animatedValue.value = withPause(
       withDelay(
         delay,
-        withTiming(value, { duration, easing: Easing.linear }, (isFinished) => {
+        withTiming(value, { duration, easing: Easing.linear }, isFinished => {
           if (isFinished) {
             runOnJS(onAnimationComplete)?.();
           }
@@ -95,8 +94,8 @@ export default function useAnimatedValue({
       ),
       paused
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[animatedValue, delay, duration, paused, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animatedValue, delay, duration, paused, value]);
 
   const reAnimate = () => {
     resetAnimatedValue();
@@ -114,14 +113,14 @@ export default function useAnimatedValue({
     if (!sortedStrokeColors) {
       return null;
     }
-    return sortedStrokeColors.map((item) => item.color);
+    return sortedStrokeColors.map(item => item.color);
   }, [sortedStrokeColors]);
 
   const values = useMemo(() => {
     if (!sortedStrokeColors) {
       return null;
     }
-    return sortedStrokeColors.map((item) => item.value);
+    return sortedStrokeColors.map(item => item.value);
   }, [sortedStrokeColors]);
 
   const animatedCircleProps = useAnimatedProps(() => {
@@ -156,7 +155,7 @@ export default function useAnimatedValue({
     return {
       text: progressValue.value,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any;  
+    } as any;
   });
 
   return {

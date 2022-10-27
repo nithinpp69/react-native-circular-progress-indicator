@@ -1,7 +1,7 @@
 import React from 'react';
-import {Defs, LinearGradient, Stop} from 'react-native-svg';
+import { Defs, LinearGradient, Stop } from 'react-native-svg';
 
-import type {CircleGradientProps} from '../../types';
+import type { CircleGradientProps } from '../../types';
 
 const CircleGradient: React.FC<CircleGradientProps> = ({
   activeStrokeSecondaryColor,

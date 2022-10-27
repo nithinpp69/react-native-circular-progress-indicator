@@ -1,11 +1,11 @@
-import React, {useMemo} from 'react';
-import {Circle, Defs, Mask} from 'react-native-svg';
+import React, { useMemo } from 'react';
+import { Circle, Defs, Mask } from 'react-native-svg';
 
 import COLORS from '../../utils/colors';
-import type {DashedCircleProps} from '../../types';
+import type { DashedCircleProps } from '../../types';
 
 const DashedCircle: React.FC<DashedCircleProps> = ({
-  dashedStrokeConfig = {count: 0, width: 0},
+  dashedStrokeConfig = { count: 0, width: 0 },
   circleCircumference,
   inActiveStrokeWidth,
   activeStrokeWidth,

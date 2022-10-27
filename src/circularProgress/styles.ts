@@ -1,20 +1,20 @@
-import type {TextStyle} from 'react-native';
-import {StyleSheet} from 'react-native';
+import type { TextStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 type StyleProps = {
-  radius: number,
-  progressValueColor?: string,
-  progressValueFontSize?: number,
-  progressValueStyle?: TextStyle,
-  activeStrokeColor?: string,
-  titleStyle?: TextStyle,
-  titleColor?: string,
-  titleFontSize?: number,
-  showProgressValue?: boolean,
-  subtitleColor?: string,
-  subtitleFontSize?: number,
-  subtitleStyle: TextStyle,
-  rotation: number,
+  radius: number;
+  progressValueColor?: string;
+  progressValueFontSize?: number;
+  progressValueStyle?: TextStyle;
+  activeStrokeColor?: string;
+  titleStyle?: TextStyle;
+  titleColor?: string;
+  titleFontSize?: number;
+  showProgressValue?: boolean;
+  subtitleColor?: string;
+  subtitleFontSize?: number;
+  subtitleStyle: TextStyle;
+  rotation: number;
 };
 
 const styles = (props: StyleProps) => {
@@ -35,7 +35,7 @@ const styles = (props: StyleProps) => {
       alignItems: 'center',
     },
     rotatingContainer: {
-      transform: [{rotate: `${props.rotation}deg`}],
+      transform: [{ rotate: `${props.rotation}deg` }],
     },
     fromProps: {
       fontSize:

@@ -379,8 +379,9 @@ progressRef.current.reAnimate();
 | activeStrokeSecondaryColor  | active progress secondary color. Use this to provide a gradient effect                | String                        | ''                  | false    |
 | inActiveStrokeColor         | inactive progress circle color                                                        | String                        | 'rgba(0,0,0,0.3)' | false    |
 | clockwise                   | show ring progress clockwise or anti-clockwise. pass false to enable anti clock-wise  | Bool                          | true                | false    |
-| dashedStrokeConfig          | Display the progress circle as dashed lines with customizable stroke count and width. | DashedStrokeConfigType        | { width: 0, count: 0 }| false    |
-| strokeColorConfig           | Animate the progress circle stroke color based on the animation value.                | StrokeColorConfigType[]       | undefined           | false    |
+| dashedStrokeConfig          | display the progress circle as dashed lines with customizable stroke count and width. | DashedStrokeConfigType        | { width: 0, count: 0 }| false  |
+| strokeColorConfig           | animate the progress circle stroke color based on the animation value.                | StrokeColorConfigType[]       | undefined           | false    |
+| startInPausedState          | render the progress circle initially without any animation.                            | Bool                          | false               | false    |
 | children                    | any react element                                                                     | React Element                 | null                | false    |                                
                                 
 ## CircularProgress Props

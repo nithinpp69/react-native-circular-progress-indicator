@@ -1,8 +1,8 @@
 import type React from 'react';
-import type {TextInputProps, TextStyle} from 'react-native';
-import type {AnimateProps} from 'react-native-reanimated';
+import type { TextInputProps, TextStyle } from 'react-native';
+import type { AnimateProps } from 'react-native-reanimated';
 import type Animated from 'react-native-reanimated';
-import type {CircleProps} from 'react-native-svg';
+import type { CircleProps } from 'react-native-svg';
 
 type StrokeLineCapType = 'butt' | 'round' | 'square';
 
@@ -10,11 +10,11 @@ type DashedStrokeConfigType = {
   /**
    * The total number of dashes to draw.
    */
-  count: number,
+  count: number;
   /**
    * The width of each dash.
    */
-  width: number,
+  width: number;
 };
 
 type CircleGradientProps = {
@@ -24,7 +24,7 @@ type CircleGradientProps = {
    *
    * @default '#2ecc71'
    */
-  activeStrokeColor?: string,
+  activeStrokeColor?: string;
   /**
    * active progress secondary color. Use this to provide a
    * gradient effect. The circle will be drawn with gradient
@@ -32,7 +32,7 @@ type CircleGradientProps = {
    *
    * @default null
    */
-  activeStrokeSecondaryColor?: string | null,
+  activeStrokeSecondaryColor?: string | null;
 };
 
 interface DashedCircleProps {
@@ -45,8 +45,8 @@ interface DashedCircleProps {
 }
 
 type StrokeColorConfigType = {
-  value: number,
-  color: string,
+  value: number;
+  color: string;
 };
 
 interface BaseProgressCircleProps extends CircleGradientProps {
@@ -170,6 +170,16 @@ interface BaseCircularProgressProps extends BaseProgressCircleProps {
    * @default true
    */
   clockwise?: boolean;
+  /**
+   * Use this to render the progress circle initially without any animation.
+   * This will by default pause the progress animation and the progress will
+   * be kept at zero.
+   * The component can be animated again by calling the `reAnimate` or `play`
+   * function.
+   *
+   * @default false
+   */
+  startInPausedState?: boolean;
   /**
    * rotate the progress ring by this value. Accepts a number from -360 to 360.
    *
@@ -319,30 +329,30 @@ interface CircularProgressProps extends BaseCircularProgressProps {
 }
 
 type ProgressValueProps = {
-  initialValue: number,
-  radius?: number,
-  activeStrokeColor?: string,
-  progressValueColor?: string,
-  progressValueStyle?: TextStyle,
-  progressValueFontSize?: number,
-  progressValue: Animated.SharedValue<string>,
-  animatedTextProps: AnimateProps<TextInputProps>,
-  allowFontScaling?: boolean,
+  initialValue: number;
+  radius?: number;
+  activeStrokeColor?: string;
+  progressValueColor?: string;
+  progressValueStyle?: TextStyle;
+  progressValueFontSize?: number;
+  progressValue: Animated.SharedValue<string>;
+  animatedTextProps: AnimateProps<TextInputProps>;
+  allowFontScaling?: boolean;
 };
 
 type ProgressRef = {
   /**
    * Use this to play the animation once  the animation is paused.
    */
-  play: () => void,
+  play: () => void;
   /**
    * Use this to pause the animation.
    */
-  pause: () => void,
+  pause: () => void;
   /**
    * Use this to replay the animation.
    */
-  reAnimate: () => void,
+  reAnimate: () => void;
 };
 
 export type {

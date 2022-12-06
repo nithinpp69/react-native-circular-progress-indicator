@@ -6,7 +6,33 @@
     "prettier",
     "plugin:import/typescript"
   ],
+  "globals": {
+    "expect": false,
+    "describe": false,
+    "jest": false,
+    "it": false
+  },
+
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "bracketSpacing": true,
+        "parser": "typescript",
+        "arrowParens": "avoid",
+        "bracketSameLine": true,
+        "endOfLine": "lf",
+        "insertPragma": false,
+        "jsxSingleQuote": false,
+        "proseWrap": "preserve",
+        "quoteProps": "as-needed",
+        "semi": true,
+        "trailingComma": "es5",
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    ],
     "quotes": [
       "error",
       "single",
@@ -16,7 +42,7 @@
     ],
      "max-len": [
       "error",
-      80
+      95
     ],
     "@typescript-eslint/ban-ts-comment": 2,
     "@typescript-eslint/no-explicit-any": 2,

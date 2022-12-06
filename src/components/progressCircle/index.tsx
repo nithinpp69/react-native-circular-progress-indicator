@@ -1,10 +1,10 @@
-import React, {useMemo} from 'react';
-import Svg, {G, Circle} from 'react-native-svg';
+import React, { useMemo } from 'react';
+import Svg, { G, Circle } from 'react-native-svg';
 import Animated from 'react-native-reanimated';
 
 import useCircleValues from '../../hooks/useCircleValues';
 import COLORS from '../../utils/colors';
-import type {ProgressCircleProps} from '../../types';
+import type { ProgressCircleProps } from '../../types';
 import CircleGradient from '../circleGradient';
 import DashedCircle from '../dashedCircle';
 
@@ -29,7 +29,7 @@ const ProgressCircle: React.FC<ProgressCircleProps> = ({
     () => radius + Math.max(activeStrokeWidth, inActiveStrokeWidth),
     [radius, activeStrokeWidth, inActiveStrokeWidth]
   );
-  const {inactiveCircleRadius, activeCircleRadius, circleCircumference} =
+  const { inactiveCircleRadius, activeCircleRadius, circleCircumference } =
     useCircleValues({
       radius,
       activeStrokeWidth,

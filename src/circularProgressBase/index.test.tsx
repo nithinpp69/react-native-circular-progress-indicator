@@ -1,11 +1,11 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 
-import CircularProgressBase from '../index';
+import CircularProgressBase from './index';
 
 describe('render circular progress base', () => {
   it('should render progress with minimum items', () => {
-    const {queryByTestId} = render(<CircularProgressBase value={50} />);
+    const { queryByTestId } = render(<CircularProgressBase value={50} />);
     expect(queryByTestId('progress-bar')).toBeDefined();
     expect(queryByTestId('progress-circle')).toBeDefined();
   });

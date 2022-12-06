@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import {
+  createAnimatedPropAdapter,
   Easing,
   interpolateColor,
+  processColor,
   runOnJS,
   useAnimatedProps,
   useDerivedValue,
@@ -123,25 +125,38 @@ export default function useAnimatedValue({
     return sortedStrokeColors.map(item => item.value);
   }, [sortedStrokeColors]);
 
-  const animatedCircleProps = useAnimatedProps(() => {
-    let biggestValue: number = Math.max(initialValue, maxValue);
-    biggestValue = biggestValue <= 0 ? 1 : biggestValue;
-    const maxPercentage: number = clockwise
-      ? (100 * animatedValue.value) / biggestValue
-      : (100 * -animatedValue.value) / biggestValue;
-    const config: Config = {
-      strokeDashoffset:
-        circleCircumference - (circleCircumference * maxPercentage) / 100,
-    };
-    const strokeColor =
-      colors && values
-        ? interpolateColor(animatedValue.value, values, colors)
-        : undefined;
-    if (strokeColor) {
-      config.stroke = strokeColor;
-    }
-    return config;
-  });
+  const animatedCircleProps = useAnimatedProps(
+    () => {
+      let biggestValue: number = Math.max(initialValue, maxValue);
+      biggestValue = biggestValue <= 0 ? 1 : biggestValue;
+      const maxPercentage: number = clockwise
+        ? (100 * animatedValue.value) / biggestValue
+        : (100 * -animatedValue.value) / biggestValue;
+      const config: Config = {
+        strokeDashoffset:
+          circleCircumference - (circleCircumference * maxPercentage) / 100,
+      };
+      const strokeColor =
+        colors && values
+          ? interpolateColor(animatedValue.value, values, colors)
+          : undefined;
+      if (strokeColor) {
+        config.stroke = strokeColor;
+      }
+      return config;
+    },
+    [],
+    createAnimatedPropAdapter(
+      props => {
+        if (Object.keys(props).includes('stroke')) {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          props.stroke = { type: 0, payload: processColor(props.stroke) };
+        }
+      },
+      ['stroke']
+    )
+  );
 
   useEffect(() => {
     animateValue();

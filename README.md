@@ -39,6 +39,9 @@ Follow [react-native-reanimated-v2](https://docs.swmansion.com/react-native-rean
 This component has a peer dependency on react-native-svg to draw the countdown circle. react-native-svg has to be installed and linked into your project.
 Follow [react-native-svg](https://www.npmjs.com/package/react-native-svg#installation) to install the dependency.
 
+This library also depends on `withPause` function from `react-native-redash`. If you have already installed `react-native-redash`, make sure the package
+version is at-least `v15.0.1`
+
 ## Installation
 
  Supported version: react-native >= 0.59.0

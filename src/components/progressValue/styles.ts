@@ -24,6 +24,7 @@ const styles = (props: StyleProps) => {
     input: {
       fontWeight: 'bold',
       textAlign: 'center',
+      padding: 0,
     },
   });
 };

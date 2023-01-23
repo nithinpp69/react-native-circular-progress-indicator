@@ -32,15 +32,17 @@ This project is inspired from this [Youtube tutorial](https://www.youtube.com/wa
 
  * [react-native-svg](https://www.npmjs.com/package/react-native-svg#installation)
  * [react-native-reanimated-v2](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation/)
+ * [react-native-redash](https://github.com/wcandillon/react-native-redash#installation)
 
-This component has a peer dependency on react-native-reanimated-v2. react-native-reanimated-v2 has to be installed and linked into your project.
+This component has a peer dependency on `react-native-reanimated-v2`. `react-native-reanimated-v2` has to be installed and linked into your project.
 Follow [react-native-reanimated-v2](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation/) to install the dependency.
 
-This component has a peer dependency on react-native-svg to draw the countdown circle. react-native-svg has to be installed and linked into your project.
+This component has a peer dependency on `react-native-svg` to draw the countdown circle. `react-native-svg` has to be installed and linked into your project.
 Follow [react-native-svg](https://www.npmjs.com/package/react-native-svg#installation) to install the dependency.
 
-This library also depends on `withPause` function from `react-native-redash`. If you have already installed `react-native-redash`, make sure the package
-version is at-least `v15.0.1`
+This component has a peer dependency on `react-native-redash` to make an animation pausable([withPause](https://wcandillon.gitbook.io/redash/animations#withpause)). `react-native-redash` has to be installed and linked into your project.
+Follow [react-native-redash](https://github.com/wcandillon/react-native-redash#installation) to install the dependency. ⚠️IMPORTANT⚠️: make sure the package version is at-least `v15.0.1`
+
 
 ## Installation
 

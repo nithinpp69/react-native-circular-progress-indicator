@@ -1,5 +1,5 @@
 import type { TextStyle } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 type StyleProps = {
   radius: number;
@@ -50,6 +50,7 @@ const styles = (props: StyleProps) => {
     input: {
       fontWeight: 'bold',
       textAlign: 'center',
+      width: Platform.OS === 'web' ? 'inherit' : '100%',
     },
     title: {
       textAlign: 'center',

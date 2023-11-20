@@ -145,7 +145,7 @@ export default function useAnimatedValue({
       }
       return config;
     },
-    [],
+    [maxValue],
     createAnimatedPropAdapter(
       props => {
         if (Object.keys(props).includes('stroke')) {
